@@ -3,300 +3,300 @@
     "dni": "12345678A",
     "name": "John",
     "surname": "Doe",
-    "email": "john.doe@example.com",
-    "phoneNumber": "555-1234",
-    "address": "123 Elm Street",
-    "username": "johnnyD",
-    "password": "password123",
-    "devices": [
-      {
-        "model": "MacBook Pro 2020",
-        "serialNumber": "SN12345",
-        "description": "Apple Laptop",
-        "brand": "Apple",
-        "status": "NEW",
-        "type": "LAPTOP"
-      }
-    ]
+    "email": "johndoe@example.com",
+    "phoneNumber": "+1234567890",
+    "address": "123 Main St, Cityville",
+    "username": "johndoe",
+    "password": "password123"
   },
   {
-    "dni": "87654321B",
+    "dni": "23456789B",
     "name": "Jane",
     "surname": "Smith",
-    "email": "jane.smith@example.com",
-    "phoneNumber": "555-5678",
-    "address": "456 Oak Avenue",
-    "username": "janeS",
-    "password": "password456",
-    "devices": [
-      {
-        "model": "Dell XPS 15",
-        "serialNumber": "SN22345",
-        "description": "Windows Laptop",
-        "brand": "Dell",
-        "status": "IN_GOOD_CONDITION",
-        "type": "LAPTOP"
-      }
-    ]
+    "email": "janesmith@example.com",
+    "phoneNumber": "+1234567891",
+    "address": "456 Oak St, Townsville",
+    "username": "janesmith",
+    "password": "mypassword"
   },
   {
-    "dni": "11223344C",
-    "name": "Carlos",
-    "surname": "Martinez",
-    "email": "carlos.martinez@example.com",
-    "phoneNumber": "555-9876",
-    "address": "789 Pine Road",
-    "username": "carlosM",
-    "password": "password789",
-    "devices": [
-      {
-        "model": "iPhone 13",
-        "serialNumber": "SN32345",
-        "description": "Smartphone",
-        "brand": "Apple",
-        "status": "WORKING",
-        "type": "SMARTPHONE"
-      }
-    ]
-  },
-  {
-    "dni": "98765432D",
-    "name": "Linda",
+    "dni": "34567890C",
+    "name": "Albert",
     "surname": "Johnson",
-    "email": "linda.johnson@example.com",
-    "phoneNumber": "555-6543",
-    "address": "101 Maple Lane",
-    "username": "lindaJ",
-    "password": "password101",
-    "devices": [
-      {
-        "model": "Samsung Galaxy Tab S6",
-        "serialNumber": "SN42345",
-        "description": "Tablet",
-        "brand": "Samsung",
-        "status": "USED",
-        "type": "TABLET"
-      }
-    ]
+    "email": "albertj@example.com",
+    "phoneNumber": "+1234567892",
+    "address": "789 Maple Ave, Villagetown",
+    "username": "albertj",
+    "password": "securepass"
   },
   {
-    "dni": "56781234E",
+    "dni": "45678901D",
+    "name": "Lucy",
+    "surname": "Green",
+    "email": "lucygreen@example.com",
+    "phoneNumber": "+1234567893",
+    "address": "321 Elm St, Hamletville",
+    "username": "lucygreen",
+    "password": "lucy123"
+  },
+  {
+    "dni": "56789012E",
     "name": "Michael",
     "surname": "Brown",
-    "email": "michael.brown@example.com",
-    "phoneNumber": "555-7654",
-    "address": "202 Birch Road",
-    "username": "michaelB",
-    "password": "password102",
-    "devices": [
-      {
-        "model": "Sony Xperia 5 II",
-        "serialNumber": "SN52345",
-        "description": "Smartphone",
-        "brand": "Sony",
-        "status": "SCRATCHED",
-        "type": "SMARTPHONE"
-      }
-    ]
+    "email": "michaelbrown@example.com",
+    "phoneNumber": "+1234567894",
+    "address": "500 Pine St, Citytown",
+    "username": "michaelb",
+    "password": "mikepassword"
   },
   {
-    "dni": "13579246F",
-    "name": "Olivia",
-    "surname": "Williams",
-    "email": "olivia.williams@example.com",
-    "phoneNumber": "555-2468",
-    "address": "303 Cedar Street",
-    "username": "oliviaW",
-    "password": "password202",
-    "devices": [
-      {
-        "model": "Acer Predator Monitor",
-        "serialNumber": "SN62345",
-        "description": "Gaming Monitor",
-        "brand": "Acer",
-        "status": "REPAIRED",
-        "type": "MONITOR"
-      }
-    ]
+    "dni": "67890123F",
+    "name": "Emma",
+    "surname": "Davis",
+    "email": "emmadavis@example.com",
+    "phoneNumber": "+1234567895",
+    "address": "600 Birch Rd, Towncity",
+    "username": "emmad",
+    "password": "emma123"
   },
   {
-    "dni": "56783901G",
-    "name": "Jack",
-    "surname": "Harris",
-    "email": "jack.harris@example.com",
-    "phoneNumber": "555-8765",
-    "address": "404 Birchwood Lane",
-    "username": "jackH",
-    "password": "password303",
-    "devices": [
-      {
-        "model": "Lenovo ThinkPad",
-        "serialNumber": "SN72345",
-        "description": "Business Laptop",
-        "brand": "Lenovo",
-        "status": "DEFECTIVE",
-        "type": "LAPTOP"
-      }
-    ]
-  },
-  {
-    "dni": "90817264H",
-    "name": "Sophia",
+    "dni": "78901234G",
+    "name": "William",
     "surname": "Garcia",
-    "email": "sophia.garcia@example.com",
-    "phoneNumber": "555-1357",
-    "address": "505 Pinewood Drive",
-    "username": "sophiaG",
-    "password": "password404",
-    "devices": [
-      {
-        "model": "Google Pixel 5",
-        "serialNumber": "SN82345",
-        "description": "Smartphone",
-        "brand": "Google",
-        "status": "USED",
-        "type": "SMARTPHONE"
-      }
-    ]
+    "email": "williamg@example.com",
+    "phoneNumber": "+1234567896",
+    "address": "700 Cedar St, Villecity",
+    "username": "williamg",
+    "password": "williamsecure"
   },
   {
-    "dni": "12380945I",
-    "name": "Lucas",
-    "surname": "Taylor",
-    "email": "lucas.taylor@example.com",
-    "phoneNumber": "555-2345",
-    "address": "606 Willow Road",
-    "username": "lucasT",
-    "password": "password505",
-    "devices": [
-      {
-        "model": "iPad Pro 2021",
-        "serialNumber": "SN92345",
-        "description": "Tablet",
-        "brand": "Apple",
-        "status": "NEW",
-        "type": "TABLET"
-      }
-    ]
+    "dni": "89012345H",
+    "name": "Sophia",
+    "surname": "Martinez",
+    "email": "sophiamartinez@example.com",
+    "phoneNumber": "+1234567897",
+    "address": "800 Maple Ave, Hamletville",
+    "username": "sophiam",
+    "password": "sophia2023"
   },
   {
-    "dni": "56473892J",
-    "name": "Mia",
-    "surname": "Moore",
-    "email": "mia.moore@example.com",
-    "phoneNumber": "555-6789",
-    "address": "707 Oak Drive",
-    "username": "miaM",
-    "password": "password606",
-    "devices": [
-      {
-        "model": "Samsung Galaxy Watch 4",
-        "serialNumber": "SN10234",
-        "description": "Smartwatch",
-        "brand": "Samsung",
-        "status": "IN_GOOD_CONDITION",
-        "type": "SMARTWATCH"
-      }
-    ]
+    "dni": "90123456I",
+    "name": "James",
+    "surname": "Rodriguez",
+    "email": "jamesr@example.com",
+    "phoneNumber": "+1234567898",
+    "address": "900 Oak St, Villagecity",
+    "username": "jamesr",
+    "password": "jamespassword"
   },
   {
-    "dni": "45367280K",
-    "name": "Ethan",
-    "surname": "King",
-    "email": "ethan.king@example.com",
-    "phoneNumber": "555-2345",
-    "address": "808 Cedar Street",
-    "username": "ethanK",
-    "password": "password707",
-    "devices": [
-      {
-        "model": "Oculus Quest 2",
-        "serialNumber": "SN11234",
-        "description": "VR Headset",
-        "brand": "Oculus",
-        "status": "DESTROYED",
-        "type": "OTHER"
-      }
-    ]
+    "dni": "01234567J",
+    "name": "Olivia",
+    "surname": "Wilson",
+    "email": "oliviawilson@example.com",
+    "phoneNumber": "+1234567899",
+    "address": "1000 Fir St, Cityville",
+    "username": "oliviaw",
+    "password": "oliviaw2023"
   },
   {
-    "dni": "12830957L",
-    "name": "Charlotte",
-    "surname": "Lee",
-    "email": "charlotte.lee@example.com",
-    "phoneNumber": "555-9876",
-    "address": "909 Birch Street",
-    "username": "charlotteL",
-    "password": "password808",
-    "devices": [
-      {
-        "model": "Xiaomi Mi 11",
-        "serialNumber": "SN23456",
-        "description": "Smartphone",
-        "brand": "Xiaomi",
-        "status": "WORKING",
-        "type": "SMARTPHONE"
-      }
-    ]
+    "dni": "12345678K",
+    "name": "Liam",
+    "surname": "Lopez",
+    "email": "liamlopez@example.com",
+    "phoneNumber": "+1234567800",
+    "address": "1100 Redwood Ave, Towndale",
+    "username": "liaml",
+    "password": "liam_secure"
   },
   {
-    "dni": "76385901M",
-    "name": "Amelia",
-    "surname": "Scott",
-    "email": "amelia.scott@example.com",
-    "phoneNumber": "555-3456",
-    "address": "1010 Pine Road",
-    "username": "ameliaS",
-    "password": "password909",
-    "devices": [
-      {
-        "model": "HP Spectre x360",
-        "serialNumber": "SN12347",
-        "description": "Convertible Laptop",
-        "brand": "HP",
-        "status": "USED",
-        "type": "LAPTOP"
-      }
-    ]
-  },
-  {
-    "dni": "84736291N",
-    "name": "Benjamin",
-    "surname": "Young",
-    "email": "benjamin.young@example.com",
-    "phoneNumber": "555-4567",
-    "address": "1111 Maple Avenue",
-    "username": "benjaminY",
-    "password": "password1010",
-    "devices": [
-      {
-        "model": "Asus ROG Strix",
-        "serialNumber": "SN23457",
-        "description": "Gaming Laptop",
-        "brand": "Asus",
-        "status": "REPAIRED",
-        "type": "LAPTOP"
-      }
-    ]
-  },
-  {
-    "dni": "73958204O",
+    "dni": "23456789L",
     "name": "Isabella",
-    "surname": "Adams",
-    "email": "isabella.adams@example.com",
-    "phoneNumber": "555-5670",
-    "address": "1212 Cedar Lane",
-    "username": "isabellaA",
-    "password": "password1111",
-    "devices": [
-      {
-        "model": "LG 27GL850",
-        "serialNumber": "SN34567",
-        "description": "Gaming Monitor",
-        "brand": "LG",
-        "status": "WORKING",
-        "type": "MONITOR"
-      }
-    ]
+    "surname": "Gonzalez",
+    "email": "isabellag@example.com",
+    "phoneNumber": "+1234567801",
+    "address": "1200 Walnut St, Citytown",
+    "username": "isabellag",
+    "password": "bella123"
+  },
+  {
+    "dni": "34567890M",
+    "name": "Benjamin",
+    "surname": "Anderson",
+    "email": "benjamina@example.com",
+    "phoneNumber": "+1234567802",
+    "address": "1300 Cedar Rd, Townville",
+    "username": "benjamina",
+    "password": "benpass"
+  },
+  {
+    "dni": "45678901N",
+    "name": "Charlotte",
+    "surname": "Thomas",
+    "email": "charlottet@example.com",
+    "phoneNumber": "+1234567803",
+    "address": "1400 Spruce Ln, Hamletville",
+    "username": "charlottet",
+    "password": "charlotte2023"
+  },
+  {
+    "dni": "56789012O",
+    "name": "Henry",
+    "surname": "Taylor",
+    "email": "henrytaylor@example.com",
+    "phoneNumber": "+1234567804",
+    "address": "1500 Pine St, Townplace",
+    "username": "henryt",
+    "password": "henrypass"
+  },
+  {
+    "dni": "67890123P",
+    "name": "Amelia",
+    "surname": "Moore",
+    "email": "ameliamoore@example.com",
+    "phoneNumber": "+1234567805",
+    "address": "1600 Willow Ave, Villageville",
+    "username": "ameliam",
+    "password": "amelia2023"
+  },
+  {
+    "dni": "78901234Q",
+    "name": "Alexander",
+    "surname": "Jackson",
+    "email": "alexjackson@example.com",
+    "phoneNumber": "+1234567806",
+    "address": "1700 Birch St, Cityplace",
+    "username": "alexj",
+    "password": "alexj_password"
+  },
+  {
+    "dni": "89012345R",
+    "name": "Mia",
+    "surname": "Martinez",
+    "email": "miam@example.com",
+    "phoneNumber": "+1234567807",
+    "address": "1800 Redwood Ave, Towncity",
+    "username": "miamartinez",
+    "password": "mia2023"
+  },
+  {
+    "dni": "90123456S",
+    "name": "Elijah",
+    "surname": "Martinez",
+    "email": "elijahm@example.com",
+    "phoneNumber": "+1234567808",
+    "address": "1900 Elm St, Villagetown",
+    "username": "elijahm",
+    "password": "elijahsecure"
+  },
+  {
+    "dni": "01234567T",
+    "name": "Harper",
+    "surname": "Hernandez",
+    "email": "harperh@example.com",
+    "phoneNumber": "+1234567809",
+    "address": "2000 Maple Ave, Citytown",
+    "username": "harperh",
+    "password": "harperpass"
+  },
+  {
+    "dni": "12345678U",
+    "name": "Sebastian",
+    "surname": "Clark",
+    "email": "sebastianclark@example.com",
+    "phoneNumber": "+1234567810",
+    "address": "2100 Fir St, Towncity",
+    "username": "sebastianc",
+    "password": "sebastian2023"
+  },
+  {
+    "dni": "23456789V",
+    "name": "Evelyn",
+    "surname": "Rodriguez",
+    "email": "evelynr@example.com",
+    "phoneNumber": "+1234567811",
+    "address": "2200 Oak Ave, Hamletville",
+    "username": "evelynr",
+    "password": "evelynpass"
+  },
+  {
+    "dni": "34567890W",
+    "name": "Jack",
+    "surname": "Lewis",
+    "email": "jacklewis@example.com",
+    "phoneNumber": "+1234567812",
+    "address": "2300 Pine Rd, Townplace",
+    "username": "jackl",
+    "password": "jackpassword"
+  },
+  {
+    "dni": "45678901X",
+    "name": "Scarlett",
+    "surname": "Young",
+    "email": "scarlettyoung@example.com",
+    "phoneNumber": "+1234567813",
+    "address": "2400 Cedar Ln, Villageland",
+    "username": "scarletty",
+    "password": "scarlett2023"
+  },
+  {
+    "dni": "56789012Y",
+    "name": "David",
+    "surname": "Walker",
+    "email": "davidwalker@example.com",
+    "phoneNumber": "+1234567814",
+    "address": "2500 Maple St, Cityland",
+    "username": "davidw",
+    "password": "davidpassword"
+  },
+  {
+    "dni": "67890123Z",
+    "name": "Layla",
+    "surname": "Hall",
+    "email": "laylah@example.com",
+    "phoneNumber": "+1234567815",
+    "address": "2600 Oak Rd, Hamletplace",
+    "username": "laylah",
+    "password": "layla2023"
+  },
+  {
+    "dni": "78901234A",
+    "name": "Daniel",
+    "surname": "Allen",
+    "email": "daniela@example.com",
+    "phoneNumber": "+1234567816",
+    "address": "2700 Pine Ln, Cityplace",
+    "username": "daniela",
+    "password": "daniel123"
+  },
+  {
+    "dni": "89012345B",
+    "name": "Madison",
+    "surname": "King",
+    "email": "madisonk@example.com",
+    "phoneNumber": "+1234567817",
+    "address": "2800 Redwood St, Villagetown",
+    "username": "madisonk",
+    "password": "madisonsecure"
+  },
+  {
+    "dni": "90123456C",
+    "name": "Joseph",
+    "surname": "Wright",
+    "email": "josephwright@example.com",
+    "phoneNumber": "+1234567818",
+    "address": "2900 Birch Ave, Cityville",
+    "username": "josephw",
+    "password": "joseph2023"
+  },
+  {
+    "dni": "01234567D",
+    "name": "Avery",
+    "surname": "Scott",
+    "email": "averys@example.com",
+    "phoneNumber": "+1234567819",
+    "address": "3000 Spruce St, Townland",
+    "username": "averys",
+    "password": "averysecure"
   }
 ]

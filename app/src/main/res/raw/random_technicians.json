@@ -1,0 +1,222 @@
+[
+  {
+    "dni": "56789012E",
+    "name": "Alice",
+    "surname": "Walker",
+    "email": "alice.walker@example.com",
+    "phoneNumber": "+1234567894",
+    "address": "123 Cherry St, Metropolis",
+    "username": "alicewalker",
+    "password": "alicepass",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "67890123F",
+    "name": "Bob",
+    "surname": "Brown",
+    "email": "bob.brown@example.com",
+    "phoneNumber": "+1234567895",
+    "address": "456 Maple St, Cityland",
+    "username": "bobbrown",
+    "password": "bobsecure",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "78901234G",
+    "name": "Charlie",
+    "surname": "Smith",
+    "email": "charlie.smith@example.com",
+    "phoneNumber": "+1234567896",
+    "address": "789 Oak St, Townside",
+    "username": "charliesmith",
+    "password": "charlie123",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "89012345H",
+    "name": "Diana",
+    "surname": "Jones",
+    "email": "diana.jones@example.com",
+    "phoneNumber": "+1234567897",
+    "address": "321 Pine St, Villagetown",
+    "username": "dianajones",
+    "password": "dianapass",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "90123456I",
+    "name": "Edward",
+    "surname": "Taylor",
+    "email": "edward.taylor@example.com",
+    "phoneNumber": "+1234567898",
+    "address": "654 Elm St, Hamletville",
+    "username": "edwardtaylor",
+    "password": "edward456",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "01234567J",
+    "name": "Fiona",
+    "surname": "Miller",
+    "email": "fiona.miller@example.com",
+    "phoneNumber": "+1234567899",
+    "address": "987 Cedar St, Riverside",
+    "username": "fionamiller",
+    "password": "fiona321",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "12345678K",
+    "name": "George",
+    "surname": "Wilson",
+    "email": "george.wilson@example.com",
+    "phoneNumber": "+1234567890",
+    "address": "111 Birch St, Foresttown",
+    "username": "georgewilson",
+    "password": "georgepass",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "23456789L",
+    "name": "Helen",
+    "surname": "Moore",
+    "email": "helen.moore@example.com",
+    "phoneNumber": "+1234567891",
+    "address": "222 Fir St, Lakeside",
+    "username": "helenmoore",
+    "password": "helenpw",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "34567890M",
+    "name": "Ian",
+    "surname": "Clark",
+    "email": "ian.clark@example.com",
+    "phoneNumber": "+1234567892",
+    "address": "333 Palm St, Beachcity",
+    "username": "ianclark",
+    "password": "ianpass",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "45678901N",
+    "name": "Julia",
+    "surname": "Wright",
+    "email": "julia.wright@example.com",
+    "phoneNumber": "+1234567893",
+    "address": "444 Spruce St, Highland",
+    "username": "juliawright",
+    "password": "juliapass",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "56789012O",
+    "name": "Kevin",
+    "surname": "Green",
+    "email": "kevin.green@example.com",
+    "phoneNumber": "+1234567894",
+    "address": "555 Redwood St, Hilltop",
+    "username": "kevingreen",
+    "password": "kevinsecure",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "67890123P",
+    "name": "Laura",
+    "surname": "Adams",
+    "email": "laura.adams@example.com",
+    "phoneNumber": "+1234567895",
+    "address": "666 Pine St, Rivertown",
+    "username": "lauraadams",
+    "password": "laurapass",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "78901234Q",
+    "name": "Mike",
+    "surname": "Lopez",
+    "email": "mike.lopez@example.com",
+    "phoneNumber": "+1234567896",
+    "address": "777 Cedar St, Cliffside",
+    "username": "mikelopez",
+    "password": "mikepass",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "89012345R",
+    "name": "Nancy",
+    "surname": "Hill",
+    "email": "nancy.hill@example.com",
+    "phoneNumber": "+1234567897",
+    "address": "888 Oak St, Valleytown",
+    "username": "nancyhill",
+    "password": "nancypass",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "90123456S",
+    "name": "Oscar",
+    "surname": "Scott",
+    "email": "oscar.scott@example.com",
+    "phoneNumber": "+1234567898",
+    "address": "999 Maple St, Cityplace",
+    "username": "oscarscott",
+    "password": "oscarsecure",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "01234567T",
+    "name": "Paula",
+    "surname": "Young",
+    "email": "paula.young@example.com",
+    "phoneNumber": "+1234567899",
+    "address": "101 Birch St, Greenwood",
+    "username": "paulayoung",
+    "password": "paulapass",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "12345678U",
+    "name": "Quincy",
+    "surname": "King",
+    "email": "quincy.king@example.com",
+    "phoneNumber": "+1234567800",
+    "address": "202 Palm St, Treeland",
+    "username": "quincyking",
+    "password": "quincypass",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "23456789V",
+    "name": "Rita",
+    "surname": "Carter",
+    "email": "rita.carter@example.com",
+    "phoneNumber": "+1234567801",
+    "address": "303 Elm St, Mountainview",
+    "username": "ritacarter",
+    "password": "ritapass",
+    "availability": "UNAVAILABLE"
+  },
+  {
+    "dni": "34567890W",
+    "name": "Steve",
+    "surname": "Harris",
+    "email": "steve.harris@example.com",
+    "phoneNumber": "+1234567802",
+    "address": "404 Cedar St, Lakewood",
+    "username": "steveharris",
+    "password": "stevepass",
+    "availability": "AVAILABLE"
+  },
+  {
+    "dni": "45678901X",
+    "name": "Tina",
+    "surname": "Martinez",
+    "email": "tina.martinez@example.com",
+    "phoneNumber": "+1234567803",
+    "address": "505 Redwood St, Springhill",
+    "username": "tinamartinez",
+    "password": "tinapass",
+    "availability": "UNAVAILABLE"
+  }
+]
