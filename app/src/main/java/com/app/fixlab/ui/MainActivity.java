@@ -24,7 +24,6 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private List<Person> clients;
     private List<Person> technicians;
-    private List<Device> devices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +38,14 @@ public class MainActivity extends AppCompatActivity {
      * LOAD DATA: Loads data of clients, devices and technicians from JSON files
      */
     private void loadData() {
-        loadClients();
-        loadDevices();
+        loadClientsAndDevices();
         loadTechnicians();
     }
 
     /**
-     * LOAD CLIENTS: Loads clients from JSON file
+     * LOAD CLIENTS AND DEVICES: Loads clients with their corresponging devices/s from JSON file
      */
-    private void loadClients() {
+    private void loadClientsAndDevices() {
         clients = new ArrayList<>();
         try {
             JSONArray clientsJSON = GeneralJSONParser.readJSONArray(this, R.raw.random_clients);
@@ -63,40 +61,31 @@ public class MainActivity extends AppCompatActivity {
                 String password = clientsJSONObject.getString("password");
 
                 Person client = new Client(dni, name, surname, email, phoneNumber, address, username, password);
-                clients.add(client);
 
+                if (clientsJSONObject.has("devices")) {
+                    JSONArray devicesJSON = clientsJSONObject.getJSONArray("devices");
+                    for (int j = 0; j < devicesJSON.length(); j++) {
+                        JSONObject devicesJSONObject = devicesJSON.getJSONObject(j);
+                        String model = devicesJSONObject.getString("model");
+                        String serialNumber = devicesJSONObject.getString("serialNumber");
+                        String description = devicesJSONObject.getString("description");
+                        String brand = devicesJSONObject.getString("brand");
+                        String status = devicesJSONObject.getString("status");
+                        String type = devicesJSONObject.getString("type");
+
+                        Device device = new Device(model, serialNumber, description, brand, status, type);
+                        client.addDevice(device);
+                    }
+                }
+                clients.add(client);
             }
             Log.d("Client", clients.toString());
+            Log.d("Device", clients.get(0).getDevices().toString());
             Toast.makeText(this, "Clients loaded: " + clients.size(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Devices loaded: " + clients.get(0).getDevices().size(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.d("Error loading clients and devices", e.getMessage());
-        }
-    }
-
-    /**
-     * LOAD DEVICES: Loads devices from JSON file
-     */
-    private void loadDevices() {
-        devices = new ArrayList<>();
-        try {
-            JSONArray devicesJSONs = GeneralJSONParser.readJSONArray(this, R.raw.random_devices);
-            for (int i = 0; i < devicesJSONs.length(); i++) {
-                JSONObject devicesJSONObject = devicesJSONs.getJSONObject(i);
-                String model = devicesJSONObject.getString("model");
-                String serialNumber = devicesJSONObject.getString("serialNumber");
-                String description = devicesJSONObject.getString("description");
-                String brand = devicesJSONObject.getString("brand");
-                String status = devicesJSONObject.getString("status");
-                String type = devicesJSONObject.getString("type");
-
-                Device device = new Device(model, serialNumber, description, brand, status, type);
-                devices.add(device);
-            }
-
-            Log.d("Device", devices.toString());
-            Toast.makeText(this, "Devices loaded: " + devices.size(), Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.d("Error loading devices", e.getMessage());
+            Log.d("Error loading clients and devices", e.toString());
+            Log.d("Error loading clients and devices", e.toString());
         }
     }
 
@@ -126,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Technician", technicians.toString());
             Toast.makeText(this, "Technicians loaded: " + technicians.size(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.d("Error loading technicians", e.getMessage());
+            Log.d("Error loading technicians", e.toString());
         }
     }
 

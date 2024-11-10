@@ -7,7 +7,25 @@
     "phoneNumber": "+1234567890",
     "address": "123 Main St, Cityville",
     "username": "johndoe",
-    "password": "password123"
+    "password": "password123",
+    "devices": [
+      {
+        "model": "Galaxy S20",
+        "serialNumber": "SN12345678",
+        "description": "Smartphone with scratched screen",
+        "brand": "Samsung",
+        "status": "SCRATCHED",
+        "type": "SMARTPHONE"
+      },
+      {
+        "model": "Alienware Aurora",
+        "serialNumber": "SN12345697",
+        "description": "Gaming PC with slight wear",
+        "brand": "Alienware",
+        "status": "USED",
+        "type": "COMPUTER"
+      }
+    ]
   },
   {
     "dni": "23456789B",
@@ -17,7 +35,25 @@
     "phoneNumber": "+1234567891",
     "address": "456 Oak St, Townsville",
     "username": "janesmith",
-    "password": "mypassword"
+    "password": "mypassword",
+    "devices": [
+      {
+        "model": "MacBook Air",
+        "serialNumber": "SN23456789",
+        "description": "Laptop in good condition",
+        "brand": "Apple",
+        "status": "IN_GOOD_CONDITION",
+        "type": "LAPTOP"
+      },
+      {
+        "model": "Lenovo ThinkCentre",
+        "serialNumber": "SN23456708",
+        "description": "Desktop in good condition",
+        "brand": "Lenovo",
+        "status": "IN_GOOD_CONDITION",
+        "type": "COMPUTER"
+      }
+    ]
   },
   {
     "dni": "34567890C",
@@ -27,7 +63,25 @@
     "phoneNumber": "+1234567892",
     "address": "789 Maple Ave, Villagetown",
     "username": "albertj",
-    "password": "securepass"
+    "password": "securepass",
+    "devices": [
+      {
+        "model": "Huawei P30",
+        "serialNumber": "SN34567819",
+        "description": "Smartphone with minor scratches",
+        "brand": "Huawei",
+        "status": "SCRATCHED",
+        "type": "SMARTPHONE"
+      },
+      {
+        "model": "Logitech Mouse",
+        "serialNumber": "SN45678930",
+        "description": "Peripheral device in new condition",
+        "brand": "Logitech",
+        "status": "NEW",
+        "type": "PERIFERIC"
+      }
+    ]
   },
   {
     "dni": "45678901D",
@@ -37,7 +91,33 @@
     "phoneNumber": "+1234567893",
     "address": "321 Elm St, Hamletville",
     "username": "lucygreen",
-    "password": "lucy123"
+    "password": "lucy123",
+    "devices": [
+      {
+        "model": "HP Pavilion",
+        "serialNumber": "SN34567890",
+        "description": "Laptop with a defective battery",
+        "brand": "HP",
+        "status": "DEFECTIVE",
+        "type": "LAPTOP"
+      },
+      {
+        "model": "iPhone SE",
+        "serialNumber": "SN56789041",
+        "description": "Smartphone in working condition",
+        "brand": "Apple",
+        "status": "WORKING",
+        "type": "SMARTPHONE"
+      },
+      {
+        "model": "iPad Mini",
+        "serialNumber": "SN67890152",
+        "description": "Tablet with scratches",
+        "brand": "Apple",
+        "status": "SCRATCHED",
+        "type": "TABLET"
+      }
+    ]
   },
   {
     "dni": "56789012E",
@@ -47,7 +127,25 @@
     "phoneNumber": "+1234567894",
     "address": "500 Pine St, Citytown",
     "username": "michaelb",
-    "password": "mikepassword"
+    "password": "mikepassword",
+    "devices": [
+      {
+        "model": "LG UltraFine",
+        "serialNumber": "SN78901263",
+        "description": "Monitor in good condition",
+        "brand": "LG",
+        "status": "IN_GOOD_CONDITION",
+        "type": "MONITOR"
+      },
+      {
+        "model": "Samsung Galaxy Watch",
+        "serialNumber": "SN89012374",
+        "description": "Smartwatch in repaired condition",
+        "brand": "Samsung",
+        "status": "REPAIRED",
+        "type": "SMARTWATCH"
+      }
+    ]
   },
   {
     "dni": "67890123F",
@@ -57,7 +155,17 @@
     "phoneNumber": "+1234567895",
     "address": "600 Birch Rd, Towncity",
     "username": "emmad",
-    "password": "emma123"
+    "password": "emma123",
+    "devices": [
+      {
+        "model": "iPad Pro",
+        "serialNumber": "SN98765432",
+        "description": "Tablet with minor scratches",
+        "brand": "Apple",
+        "status": "SCRATCHED",
+        "type": "TABLET"
+      }
+    ]
   },
   {
     "dni": "78901234G",
@@ -67,7 +175,17 @@
     "phoneNumber": "+1234567896",
     "address": "700 Cedar St, Villecity",
     "username": "williamg",
-    "password": "williamsecure"
+    "password": "williamsecure",
+    "devices": [
+      {
+        "model": "Dell XPS 13",
+        "serialNumber": "SN56789012",
+        "description": "Laptop in new condition",
+        "brand": "Dell",
+        "status": "NEW",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "89012345H",
@@ -77,7 +195,17 @@
     "phoneNumber": "+1234567897",
     "address": "800 Maple Ave, Hamletville",
     "username": "sophiam",
-    "password": "sophia2023"
+    "password": "sophia2023",
+    "devices": [
+      {
+        "model": "Sony Bravia",
+        "serialNumber": "SN67890123",
+        "description": "Monitor with slight scratches",
+        "brand": "Sony",
+        "status": "SCRATCHED",
+        "type": "MONITOR"
+      }
+    ]
   },
   {
     "dni": "90123456I",
@@ -87,7 +215,33 @@
     "phoneNumber": "+1234567898",
     "address": "900 Oak St, Villagecity",
     "username": "jamesr",
-    "password": "jamespassword"
+    "password": "jamespassword",
+    "devices": [
+      {
+        "model": "Galaxy Tab S6",
+        "serialNumber": "SN78901234",
+        "description": "Tablet in good working condition",
+        "brand": "Samsung",
+        "status": "WORKING",
+        "type": "TABLET"
+      },
+      {
+        "model": "Microsoft Surface Book",
+        "serialNumber": "SN90123485",
+        "description": "Laptop in used condition",
+        "brand": "Microsoft",
+        "status": "USED",
+        "type": "LAPTOP"
+      },
+      {
+        "model": "Google Nest",
+        "serialNumber": "SN01234596",
+        "description": "Smart home device in working condition",
+        "brand": "Google",
+        "status": "WORKING",
+        "type": "OTHER"
+      }
+    ]
   },
   {
     "dni": "01234567J",
@@ -97,7 +251,33 @@
     "phoneNumber": "+1234567899",
     "address": "1000 Fir St, Cityville",
     "username": "oliviaw",
-    "password": "oliviaw2023"
+    "password": "oliviaw2023",
+    "devices": [
+      {
+        "model": "Acer Aspire",
+        "serialNumber": "SN89012345",
+        "description": "Laptop used with slight wear",
+        "brand": "Acer",
+        "status": "USED",
+        "type": "LAPTOP"
+      },
+      {
+        "model": "Amazon Kindle",
+        "serialNumber": "SN12345607",
+        "description": "E-reader in new condition",
+        "brand": "Amazon",
+        "status": "NEW",
+        "type": "OTHER"
+      },
+      {
+        "model": "HP Envy",
+        "serialNumber": "SN23456718",
+        "description": "Laptop in defective condition",
+        "brand": "HP",
+        "status": "DEFECTIVE",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "12345678K",
@@ -107,7 +287,17 @@
     "phoneNumber": "+1234567800",
     "address": "1100 Redwood Ave, Towndale",
     "username": "liaml",
-    "password": "liam_secure"
+    "password": "liam_secure",
+    "devices": [
+      {
+        "model": "Canon Printer",
+        "serialNumber": "SN90123456",
+        "description": "Peripheral device working well",
+        "brand": "Canon",
+        "status": "WORKING",
+        "type": "PERIFERIC"
+      }
+    ]
   },
   {
     "dni": "23456789L",
@@ -117,7 +307,41 @@
     "phoneNumber": "+1234567801",
     "address": "1200 Walnut St, Citytown",
     "username": "isabellag",
-    "password": "bella123"
+    "password": "bella123",
+    "devices": [
+      {
+        "model": "LG Smart TV",
+        "serialNumber": "SN01234567",
+        "description": "Monitor in used condition",
+        "brand": "LG",
+        "status": "USED",
+        "type": "MONITOR"
+      },
+      {
+        "model": "Samsung Odyssey",
+        "serialNumber": "SN34567829",
+        "description": "Monitor used for gaming",
+        "brand": "Samsung",
+        "status": "USED",
+        "type": "MONITOR"
+      },
+      {
+        "model": "Apple Magic Keyboard",
+        "serialNumber": "SN45678940",
+        "description": "Peripheral in good condition",
+        "brand": "Apple",
+        "status": "IN_GOOD_CONDITION",
+        "type": "PERIFERIC"
+      },
+      {
+        "model": "Dell Inspiron",
+        "serialNumber": "SN56789051",
+        "description": "Laptop with defective battery",
+        "brand": "Dell",
+        "status": "DEFECTIVE",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "34567890M",
@@ -127,7 +351,17 @@
     "phoneNumber": "+1234567802",
     "address": "1300 Cedar Rd, Townville",
     "username": "benjamina",
-    "password": "benpass"
+    "password": "benpass",
+    "devices": [
+      {
+        "model": "ThinkPad X1 Carbon",
+        "serialNumber": "SN34561234",
+        "description": "Laptop in repaired condition",
+        "brand": "Lenovo",
+        "status": "REPAIRED",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "45678901N",
@@ -137,7 +371,41 @@
     "phoneNumber": "+1234567803",
     "address": "1400 Spruce Ln, Hamletville",
     "username": "charlottet",
-    "password": "charlotte2023"
+    "password": "charlotte2023",
+    "devices": [
+      {
+        "model": "iPhone 11",
+        "serialNumber": "SN45678901",
+        "description": "Smartphone with minor scratches",
+        "brand": "Apple",
+        "status": "SCRATCHED",
+        "type": "SMARTPHONE"
+      },
+      {
+        "model": "Canon EOS Rebel",
+        "serialNumber": "SN67890162",
+        "description": "Camera in good working condition",
+        "brand": "Canon",
+        "status": "WORKING",
+        "type": "OTHER"
+      },
+      {
+        "model": "HP Spectre",
+        "serialNumber": "SN78901273",
+        "description": "Laptop in new condition",
+        "brand": "HP",
+        "status": "NEW",
+        "type": "LAPTOP"
+      },
+      {
+        "model": "Sony Alpha A6000",
+        "serialNumber": "SN89012384",
+        "description": "Camera in good condition",
+        "brand": "Sony",
+        "status": "IN_GOOD_CONDITION",
+        "type": "OTHER"
+      }
+    ]
   },
   {
     "dni": "56789012O",
@@ -147,7 +415,33 @@
     "phoneNumber": "+1234567804",
     "address": "1500 Pine St, Townplace",
     "username": "henryt",
-    "password": "henrypass"
+    "password": "henrypass",
+    "devices": [
+      {
+        "model": "Surface Pro 7",
+        "serialNumber": "SN56789021",
+        "description": "Tablet in new condition",
+        "brand": "Microsoft",
+        "status": "NEW",
+        "type": "TABLET"
+      },
+      {
+        "model": "Bose QC35",
+        "serialNumber": "SN90123495",
+        "description": "Headphones in new condition",
+        "brand": "Bose",
+        "status": "NEW",
+        "type": "PERIFERIC"
+      },
+      {
+        "model": "Lenovo Yoga 920",
+        "serialNumber": "SN01234506",
+        "description": "Laptop in used condition",
+        "brand": "Lenovo",
+        "status": "USED",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "67890123P",
@@ -157,7 +451,17 @@
     "phoneNumber": "+1234567805",
     "address": "1600 Willow Ave, Villageville",
     "username": "ameliam",
-    "password": "amelia2023"
+    "password": "amelia2023",
+    "devices": [
+      {
+        "model": "Asus ROG Strix",
+        "serialNumber": "SN67890132",
+        "description": "Laptop used for gaming",
+        "brand": "Asus",
+        "status": "USED",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "78901234Q",
@@ -167,7 +471,17 @@
     "phoneNumber": "+1234567806",
     "address": "1700 Birch St, Cityplace",
     "username": "alexj",
-    "password": "alexj_password"
+    "password": "alexj_password",
+    "devices": [
+      {
+        "model": "Google Pixel 4a",
+        "serialNumber": "SN78901243",
+        "description": "Smartphone in good condition",
+        "brand": "Google",
+        "status": "IN_GOOD_CONDITION",
+        "type": "SMARTPHONE"
+      }
+    ]
   },
   {
     "dni": "89012345R",
@@ -177,7 +491,25 @@
     "phoneNumber": "+1234567807",
     "address": "1800 Redwood Ave, Towncity",
     "username": "miamartinez",
-    "password": "mia2023"
+    "password": "mia2023",
+    "devices": [
+      {
+        "model": "Huawei MatePad",
+        "serialNumber": "SN89012354",
+        "description": "Tablet with cracked screen",
+        "brand": "Huawei",
+        "status": "SCRATCHED",
+        "type": "TABLET"
+      },
+      {
+        "model": "Xiaomi Mi 11",
+        "serialNumber": "SN12345617",
+        "description": "Smartphone in good working condition",
+        "brand": "Xiaomi",
+        "status": "WORKING",
+        "type": "SMARTPHONE"
+      }
+    ]
   },
   {
     "dni": "90123456S",
@@ -187,7 +519,17 @@
     "phoneNumber": "+1234567808",
     "address": "1900 Elm St, Villagetown",
     "username": "elijahm",
-    "password": "elijahsecure"
+    "password": "elijahsecure",
+    "devices": [
+      {
+        "model": "Samsung Smartwatch",
+        "serialNumber": "SN90123465",
+        "description": "Smartwatch with defective battery",
+        "brand": "Samsung",
+        "status": "DEFECTIVE",
+        "type": "SMARTWATCH"
+      }
+    ]
   },
   {
     "dni": "01234567T",
@@ -197,7 +539,17 @@
     "phoneNumber": "+1234567809",
     "address": "2000 Maple Ave, Citytown",
     "username": "harperh",
-    "password": "harperpass"
+    "password": "harperpass",
+    "devices": [
+      {
+        "model": "Dell Ultrasharp",
+        "serialNumber": "SN01234576",
+        "description": "Monitor with slight wear",
+        "brand": "Dell",
+        "status": "USED",
+        "type": "MONITOR"
+      }
+    ]
   },
   {
     "dni": "12345678U",
@@ -207,7 +559,17 @@
     "phoneNumber": "+1234567810",
     "address": "2100 Fir St, Towncity",
     "username": "sebastianc",
-    "password": "sebastian2023"
+    "password": "sebastian2023",
+    "devices": [
+      {
+        "model": "JBL Speaker",
+        "serialNumber": "SN12345687",
+        "description": "Peripheral in good condition",
+        "brand": "JBL",
+        "status": "IN_GOOD_CONDITION",
+        "type": "PERIFERIC"
+      }
+    ]
   },
   {
     "dni": "23456789V",
@@ -217,7 +579,17 @@
     "phoneNumber": "+1234567811",
     "address": "2200 Oak Ave, Hamletville",
     "username": "evelynr",
-    "password": "evelynpass"
+    "password": "evelynpass",
+    "devices": [
+      {
+        "model": "MacBook Pro 16",
+        "serialNumber": "SN23456798",
+        "description": "Laptop in working condition",
+        "brand": "Apple",
+        "status": "WORKING",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "34567890W",
@@ -227,7 +599,17 @@
     "phoneNumber": "+1234567812",
     "address": "2300 Pine Rd, Townplace",
     "username": "jackl",
-    "password": "jackpassword"
+    "password": "jackpassword",
+    "devices": [
+      {
+        "model": "Oculus Quest",
+        "serialNumber": "SN34567809",
+        "description": "VR headset in new condition",
+        "brand": "Oculus",
+        "status": "NEW",
+        "type": "OTHER"
+      }
+    ]
   },
   {
     "dni": "45678901X",
@@ -237,7 +619,17 @@
     "phoneNumber": "+1234567813",
     "address": "2400 Cedar Ln, Villageland",
     "username": "scarletty",
-    "password": "scarlett2023"
+    "password": "scarlett2023",
+    "devices": [
+      {
+        "model": "HP LaserJet",
+        "serialNumber": "SN45678920",
+        "description": "Printer with minor defects",
+        "brand": "HP",
+        "status": "DEFECTIVE",
+        "type": "PERIFERIC"
+      }
+    ]
   },
   {
     "dni": "56789012Y",
@@ -247,7 +639,17 @@
     "phoneNumber": "+1234567814",
     "address": "2500 Maple St, Cityland",
     "username": "davidw",
-    "password": "davidpassword"
+    "password": "davidpassword",
+    "devices": [
+      {
+        "model": "iMac 27\"",
+        "serialNumber": "SN56789031",
+        "description": "Computer with scratches",
+        "brand": "Apple",
+        "status": "SCRATCHED",
+        "type": "COMPUTER"
+      }
+    ]
   },
   {
     "dni": "67890123Z",
@@ -257,7 +659,17 @@
     "phoneNumber": "+1234567815",
     "address": "2600 Oak Rd, Hamletplace",
     "username": "laylah",
-    "password": "layla2023"
+    "password": "layla2023",
+    "devices": [
+      {
+        "model": "Samsung Chromebook",
+        "serialNumber": "SN67890142",
+        "description": "Laptop with used battery",
+        "brand": "Samsung",
+        "status": "USED",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "78901234A",
@@ -267,7 +679,17 @@
     "phoneNumber": "+1234567816",
     "address": "2700 Pine Ln, Cityplace",
     "username": "daniela",
-    "password": "daniel123"
+    "password": "daniel123",
+    "devices": [
+      {
+        "model": "Razer Blade",
+        "serialNumber": "SN78901253",
+        "description": "Gaming laptop in working condition",
+        "brand": "Razer",
+        "status": "WORKING",
+        "type": "LAPTOP"
+      }
+    ]
   },
   {
     "dni": "89012345B",
@@ -277,7 +699,17 @@
     "phoneNumber": "+1234567817",
     "address": "2800 Redwood St, Villagetown",
     "username": "madisonk",
-    "password": "madisonsecure"
+    "password": "madisonsecure",
+    "devices": [
+      {
+        "model": "Fitbit Versa",
+        "serialNumber": "SN89012364",
+        "description": "Smartwatch with minor wear",
+        "brand": "Fitbit",
+        "status": "USED",
+        "type": "SMARTWATCH"
+      }
+    ]
   },
   {
     "dni": "90123456C",
@@ -287,7 +719,17 @@
     "phoneNumber": "+1234567818",
     "address": "2900 Birch Ave, Cityville",
     "username": "josephw",
-    "password": "joseph2023"
+    "password": "joseph2023",
+    "devices": [
+      {
+        "model": "Nikon D5600",
+        "serialNumber": "SN90123475",
+        "description": "Camera in good condition",
+        "brand": "Nikon",
+        "status": "IN_GOOD_CONDITION",
+        "type": "OTHER"
+      }
+    ]
   },
   {
     "dni": "01234567D",
@@ -297,6 +739,16 @@
     "phoneNumber": "+1234567819",
     "address": "3000 Spruce St, Townland",
     "username": "averys",
-    "password": "averysecure"
+    "password": "averysecure",
+    "devices": [
+      {
+        "model": "Sony Xperia 5",
+        "serialNumber": "SN01234586",
+        "description": "Smartphone in working condition",
+        "brand": "Sony",
+        "status": "WORKING",
+        "type": "SMARTPHONE"
+      }
+    ]
   }
 ]
