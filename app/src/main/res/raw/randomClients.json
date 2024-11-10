@@ -1,0 +1,302 @@
+[
+  {
+    "dni": "12345678A",
+    "name": "John",
+    "surname": "Doe",
+    "email": "john.doe@example.com",
+    "phoneNumber": "555-1234",
+    "address": "123 Elm Street",
+    "username": "johnnyD",
+    "password": "password123",
+    "devices": [
+      {
+        "model": "MacBook Pro 2020",
+        "serialNumber": "SN12345",
+        "description": "Apple Laptop",
+        "brand": "Apple",
+        "status": "NEW",
+        "type": "LAPTOP"
+      }
+    ]
+  },
+  {
+    "dni": "87654321B",
+    "name": "Jane",
+    "surname": "Smith",
+    "email": "jane.smith@example.com",
+    "phoneNumber": "555-5678",
+    "address": "456 Oak Avenue",
+    "username": "janeS",
+    "password": "password456",
+    "devices": [
+      {
+        "model": "Dell XPS 15",
+        "serialNumber": "SN22345",
+        "description": "Windows Laptop",
+        "brand": "Dell",
+        "status": "IN_GOOD_CONDITION",
+        "type": "LAPTOP"
+      }
+    ]
+  },
+  {
+    "dni": "11223344C",
+    "name": "Carlos",
+    "surname": "Martinez",
+    "email": "carlos.martinez@example.com",
+    "phoneNumber": "555-9876",
+    "address": "789 Pine Road",
+    "username": "carlosM",
+    "password": "password789",
+    "devices": [
+      {
+        "model": "iPhone 13",
+        "serialNumber": "SN32345",
+        "description": "Smartphone",
+        "brand": "Apple",
+        "status": "WORKING",
+        "type": "SMARTPHONE"
+      }
+    ]
+  },
+  {
+    "dni": "98765432D",
+    "name": "Linda",
+    "surname": "Johnson",
+    "email": "linda.johnson@example.com",
+    "phoneNumber": "555-6543",
+    "address": "101 Maple Lane",
+    "username": "lindaJ",
+    "password": "password101",
+    "devices": [
+      {
+        "model": "Samsung Galaxy Tab S6",
+        "serialNumber": "SN42345",
+        "description": "Tablet",
+        "brand": "Samsung",
+        "status": "USED",
+        "type": "TABLET"
+      }
+    ]
+  },
+  {
+    "dni": "56781234E",
+    "name": "Michael",
+    "surname": "Brown",
+    "email": "michael.brown@example.com",
+    "phoneNumber": "555-7654",
+    "address": "202 Birch Road",
+    "username": "michaelB",
+    "password": "password102",
+    "devices": [
+      {
+        "model": "Sony Xperia 5 II",
+        "serialNumber": "SN52345",
+        "description": "Smartphone",
+        "brand": "Sony",
+        "status": "SCRATCHED",
+        "type": "SMARTPHONE"
+      }
+    ]
+  },
+  {
+    "dni": "13579246F",
+    "name": "Olivia",
+    "surname": "Williams",
+    "email": "olivia.williams@example.com",
+    "phoneNumber": "555-2468",
+    "address": "303 Cedar Street",
+    "username": "oliviaW",
+    "password": "password202",
+    "devices": [
+      {
+        "model": "Acer Predator Monitor",
+        "serialNumber": "SN62345",
+        "description": "Gaming Monitor",
+        "brand": "Acer",
+        "status": "REPAIRED",
+        "type": "MONITOR"
+      }
+    ]
+  },
+  {
+    "dni": "56783901G",
+    "name": "Jack",
+    "surname": "Harris",
+    "email": "jack.harris@example.com",
+    "phoneNumber": "555-8765",
+    "address": "404 Birchwood Lane",
+    "username": "jackH",
+    "password": "password303",
+    "devices": [
+      {
+        "model": "Lenovo ThinkPad",
+        "serialNumber": "SN72345",
+        "description": "Business Laptop",
+        "brand": "Lenovo",
+        "status": "DEFECTIVE",
+        "type": "LAPTOP"
+      }
+    ]
+  },
+  {
+    "dni": "90817264H",
+    "name": "Sophia",
+    "surname": "Garcia",
+    "email": "sophia.garcia@example.com",
+    "phoneNumber": "555-1357",
+    "address": "505 Pinewood Drive",
+    "username": "sophiaG",
+    "password": "password404",
+    "devices": [
+      {
+        "model": "Google Pixel 5",
+        "serialNumber": "SN82345",
+        "description": "Smartphone",
+        "brand": "Google",
+        "status": "USED",
+        "type": "SMARTPHONE"
+      }
+    ]
+  },
+  {
+    "dni": "12380945I",
+    "name": "Lucas",
+    "surname": "Taylor",
+    "email": "lucas.taylor@example.com",
+    "phoneNumber": "555-2345",
+    "address": "606 Willow Road",
+    "username": "lucasT",
+    "password": "password505",
+    "devices": [
+      {
+        "model": "iPad Pro 2021",
+        "serialNumber": "SN92345",
+        "description": "Tablet",
+        "brand": "Apple",
+        "status": "NEW",
+        "type": "TABLET"
+      }
+    ]
+  },
+  {
+    "dni": "56473892J",
+    "name": "Mia",
+    "surname": "Moore",
+    "email": "mia.moore@example.com",
+    "phoneNumber": "555-6789",
+    "address": "707 Oak Drive",
+    "username": "miaM",
+    "password": "password606",
+    "devices": [
+      {
+        "model": "Samsung Galaxy Watch 4",
+        "serialNumber": "SN10234",
+        "description": "Smartwatch",
+        "brand": "Samsung",
+        "status": "IN_GOOD_CONDITION",
+        "type": "SMARTWATCH"
+      }
+    ]
+  },
+  {
+    "dni": "45367280K",
+    "name": "Ethan",
+    "surname": "King",
+    "email": "ethan.king@example.com",
+    "phoneNumber": "555-2345",
+    "address": "808 Cedar Street",
+    "username": "ethanK",
+    "password": "password707",
+    "devices": [
+      {
+        "model": "Oculus Quest 2",
+        "serialNumber": "SN11234",
+        "description": "VR Headset",
+        "brand": "Oculus",
+        "status": "DESTROYED",
+        "type": "OTHER"
+      }
+    ]
+  },
+  {
+    "dni": "12830957L",
+    "name": "Charlotte",
+    "surname": "Lee",
+    "email": "charlotte.lee@example.com",
+    "phoneNumber": "555-9876",
+    "address": "909 Birch Street",
+    "username": "charlotteL",
+    "password": "password808",
+    "devices": [
+      {
+        "model": "Xiaomi Mi 11",
+        "serialNumber": "SN23456",
+        "description": "Smartphone",
+        "brand": "Xiaomi",
+        "status": "WORKING",
+        "type": "SMARTPHONE"
+      }
+    ]
+  },
+  {
+    "dni": "76385901M",
+    "name": "Amelia",
+    "surname": "Scott",
+    "email": "amelia.scott@example.com",
+    "phoneNumber": "555-3456",
+    "address": "1010 Pine Road",
+    "username": "ameliaS",
+    "password": "password909",
+    "devices": [
+      {
+        "model": "HP Spectre x360",
+        "serialNumber": "SN12347",
+        "description": "Convertible Laptop",
+        "brand": "HP",
+        "status": "USED",
+        "type": "LAPTOP"
+      }
+    ]
+  },
+  {
+    "dni": "84736291N",
+    "name": "Benjamin",
+    "surname": "Young",
+    "email": "benjamin.young@example.com",
+    "phoneNumber": "555-4567",
+    "address": "1111 Maple Avenue",
+    "username": "benjaminY",
+    "password": "password1010",
+    "devices": [
+      {
+        "model": "Asus ROG Strix",
+        "serialNumber": "SN23457",
+        "description": "Gaming Laptop",
+        "brand": "Asus",
+        "status": "REPAIRED",
+        "type": "LAPTOP"
+      }
+    ]
+  },
+  {
+    "dni": "73958204O",
+    "name": "Isabella",
+    "surname": "Adams",
+    "email": "isabella.adams@example.com",
+    "phoneNumber": "555-5670",
+    "address": "1212 Cedar Lane",
+    "username": "isabellaA",
+    "password": "password1111",
+    "devices": [
+      {
+        "model": "LG 27GL850",
+        "serialNumber": "SN34567",
+        "description": "Gaming Monitor",
+        "brand": "LG",
+        "status": "WORKING",
+        "type": "MONITOR"
+      }
+    ]
+  }
+]
