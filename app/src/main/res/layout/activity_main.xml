@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    android:background="@drawable/splash_background">
 
-    <ImageView
-        android:id="@+id/ivBackgroundLogo"
+    <LinearLayout
+        android:id="@+id/logoContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-    <Button
-        android:id="@+id/bStartApp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginEnd="100dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/ivBackgroundLogo"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <!-- Logo Symbol -->
+        <ImageView
+            android:id="@+id/logoSymbol"
+            android:layout_width="495dp"
+            android:layout_height="368dp"
+            android:contentDescription="FIXLAB logo symbol"
+            android:src="@drawable/logo" />
+
+        <!-- Logo Text -->
+    </LinearLayout>
+
+    <!-- Enter Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/enterButton"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="ENTRAR"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="@drawable/enter_button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer"
+        app:layout_constraintVertical_bias="0.3"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
