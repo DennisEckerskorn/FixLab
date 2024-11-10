@@ -1,4 +1,5 @@
 package com.app.fixlab.managers;
 
-public class RepairStatusManager {
+public class RepairManager {
+
 }
