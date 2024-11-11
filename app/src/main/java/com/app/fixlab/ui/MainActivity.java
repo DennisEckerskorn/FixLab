@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.app.fixlab.R;
 import com.app.fixlab.models.devices.Device;
@@ -28,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadData();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbarSettings();
 
     }
 
@@ -82,9 +84,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Client", clients.toString());
             Log.d("Device", clients.get(0).getDevices().toString());
             Toast.makeText(this, "Clients loaded: " + clients.size(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Devices loaded: " + clients.get(0).getDevices().size(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.d("Error loading clients and devices", e.toString());
             Log.d("Error loading clients and devices", e.toString());
         }
     }
@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.d("Error loading technicians", e.toString());
         }
+    }
+
+    private void toolbarSettings() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
