@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Objects;
 
 /**
-PERSON CLASS: Father class of Client and Technician
+ * PERSON CLASS: Father class of Client and Technician
  **/
 public abstract class Person {
-    private static int id = 0; //Internal id
+    private static int nextID = 0;
+    private final int id;
     private final String dni;
     private final String name;
     private final String surname;
@@ -22,14 +23,14 @@ public abstract class Person {
     private final List<Device> devices; //Client and technician have devices assigned
 
     /**
-    CONSTRUCTORS:
+     * CONSTRUCTORS:
      **/
 
     public Person(String dni, String name, String surname, String email, String phoneNumber, String address, String username, String password) {
-        this.id = ++id;
+        this.id = ++nextID;
         this.dni = dni;
         this.name = name;
-        this.surname  = surname;
+        this.surname = surname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -39,42 +40,45 @@ public abstract class Person {
     }
 
     /**
-    METHODS TO SHARE WITH SUB-CLASSES:
+     METHODS TO SHARE WITH SUB-CLASSES:
      **/
 
     /**
      * Adds a device to the list of devices assigned to the person
+     *
      * @param device The device to be added
      */
-    public void addDevice(Device device){
+    public void addDevice(Device device) {
         devices.add(device);
     }
 
     /**
      * Removes a device from the list of devices assigned to the person
+     *
      * @param device The device to be removed
      */
-    public void removeDevice(Device device){
+    public void removeDevice(Device device) {
         devices.remove(device);
     }
 
     /**
      * Updates a device in the list of devices assigned to the person
+     *
      * @param device The device to be updated
      */
-    public void updateDevice(Device device){
+    public void updateDevice(Device device) {
         devices.set(devices.indexOf(device), device);
     }
 
     /**
-    GETTERS:
+     * GETTERS:
      **/
 
-    public List<Device> getDevices(){
+    public List<Device> getDevices() {
         return devices;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -111,7 +115,7 @@ public abstract class Person {
     }
 
     /**
-    EQUALS AND HASHCODE:
+     * EQUALS AND HASHCODE:
      **/
 
     @Override
