@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <!-- Logo Symbol -->
+        <ImageView
+            android:id="@+id/iLogoSplash"
+            android:layout_width="495dp"
+            android:layout_height="368dp"
+            android:contentDescription="FIXLAB logo symbol"
+            android:src="@drawable/logo" />
+
+        <!-- Logo Text -->
+    </LinearLayout>
+
+    <!-- Enter Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bSplash"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="ENTRAR"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="@drawable/enter_button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer"
+        app:layout_constraintVertical_bias="0.3"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
