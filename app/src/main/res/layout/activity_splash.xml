@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash_background">
 
-    <include layout="@layout/toolbar" />
-
     <LinearLayout
         android:id="@+id/logoContainer"
         android:layout_width="wrap_content"

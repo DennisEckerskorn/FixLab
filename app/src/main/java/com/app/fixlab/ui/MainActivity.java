@@ -30,7 +30,6 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements FragmentNavigationListener {
     private List<Person> clients;
     private List<Person> technicians;
-    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         setContentView(R.layout.activity_main);
         loadData();
         toolbarSettings();
-        fragmentManager = getSupportFragmentManager();
+        //FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState == null) {
             navigateToFragment(new SplashFragment(), false);
