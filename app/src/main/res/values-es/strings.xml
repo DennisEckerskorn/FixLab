@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FixLab</string>
+    <string name="add_name">Añadir</string>
+    <string name="list_name">Lista</string>
+    <string name="clients_name">Clientes</string>
+    <string name="devices_name">Dispositivos</string>
+    <string name="technicians_name">Tecnicos</string>
+    <string name="start_reparation_name">Iniciar Reparacion</string>
+    <string name="enter_name">ENTRAR</string>
+</resources>

@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash_background">
 
+    <!-- Gradient Background Drawable (crear en res/drawable/splash_background.xml) -->
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <gradient
+        android:type="linear"
+        android:angle="270"
+        android:startColor="#964B00"
+        android:centerColor="#4B0082"
+        android:endColor="#000033" />
+    -->
+
+    <!-- Logo Container -->
     <LinearLayout
         android:id="@+id/logoContainer"
         android:layout_width="wrap_content"
@@ -20,15 +32,31 @@
 
         <!-- Logo Symbol -->
         <ImageView
-            android:id="@+id/iLogoSplash"
-            android:layout_width="495dp"
-            android:layout_height="368dp"
+            android:id="@+id/iLogo"
+            android:layout_width="475dp"
+            android:layout_height="363dp"
             android:contentDescription="FIXLAB logo symbol"
-            android:src="@drawable/logo" />
+            android:src="@drawable/fixlab_logo"
+            app:srcCompat="@drawable/logo" />
 
         <!-- Logo Text -->
     </LinearLayout>
 
     <!-- Enter Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bEnter"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:background="@drawable/enter_button_background"
+        android:text="@string/enter_name"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer"
+        app:layout_constraintVertical_bias="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
