@@ -7,45 +7,58 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.app.fixlab.R;
+import com.app.fixlab.adapters.ClientFragmentStateAdapter;
 import com.app.fixlab.listeners.FragmentNavigationListener;
+import com.app.fixlab.listeners.MenuActionListener;
+import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.parsers.GeneralJSONParser;
+import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
+import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener {
+public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener {
     private List<Person> clients;
+    private Person selectedClient;
     private List<Person> technicians;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadData();
-        toolbarSettings();
-        //FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState == null) {
+            loadData();
+            selectedClient = null;
             navigateToFragment(new SplashFragment(), false);
         }
 
+        toolbarSettings();
 
     }
 
+    /**
+     * NAVIGATION TO FRAGMENT: Navigates to a fragment
+     *
+     * @param fragment       Fragment to navigate to
+     * @param addToBackStack Whether to add the fragment to the back stack, or not
+     */
     @Override
     public void navigateToFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
@@ -139,10 +152,74 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         }
     }
 
+    /**
+     * TOOLBAR SETTINGS: Sets the toolbar
+     */
     private void toolbarSettings() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
+    //????????????????????????
 
+    /**
+     * ON CLICK: Sets the selected client
+     *
+     * @param client Client that was clicked
+     */
+    @Override
+    public void onClick(Person client) {
+        selectedClient = client;
+    }
+
+
+    /*
+     * MENU ACTION LISTENERS:
+     */
+
+    /**
+     * ON CLIENTS SELECTED: Navigates to the clients fragment
+     */
+    @Override
+    public void onClientsSelected() {
+        navigateToFragment(new ClientFragment(), true);
+    }
+
+    /**
+     * ON DEVICES SELECTED: Navigates to the devices fragment
+     */
+    @Override
+    public void onDevicesSelected() {
+
+    }
+
+    /**
+     * ON TECHNICIANS SELECTED: Navigates to the technicians fragment
+     */
+    @Override
+    public void onTechniciansSelected() {
+
+    }
+
+    /**
+     * ON START REPARATION SELECTED: Navigates to the start reparation fragment
+     */
+    @Override
+    public void onStartReparationSelected() {
+
+    }
+
+    /*
+     * GETTERS AND SETTERS:
+     */
+
+    /**
+     * GET CLIENTS: Returns a list of clients, or an empty list if clients is null
+     *
+     * @return List of clients
+     */
+    @Override
+    public List<Person> getClients() {
+        return clients == null ? Collections.emptyList() : clients;
+    }
 }
