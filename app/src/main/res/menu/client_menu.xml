@@ -3,9 +3,9 @@
 
     <item
         android:id="@+id/navAdd"
-        android:title="@string/add_name"
+        android:title="@string/modify_name"
         />
     <item
         android:id="@+id/navList"
-        android:title="@string/list_name" />
+        android:title="@string/delete_name" />
 </menu>

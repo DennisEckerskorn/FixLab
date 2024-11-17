@@ -8,4 +8,12 @@
     <string name="technicians_name">Tecnicos</string>
     <string name="start_reparation_name">Iniciar Reparacion</string>
     <string name="enter_name">ENTRAR</string>
+    <string name="modify_name">Modificar</string>
+    <string name="delete_name">Eliminar</string>
+    <string name="client_name">Cliente</string>
+    <string name="name">Nombre</string>
+    <string name="client_phone">Teléfono</string>
+    <string name="client_email">Email</string>
+    <string name="client_address">Dirección</string>
+    <string name="client_devices">Dispositivos</string>
 </resources>
