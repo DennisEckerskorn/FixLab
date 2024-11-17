@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public void onClientsSelected() {
-        navigateToFragment(new ClientFragment(), false);
+        navigateToFragment(new ClientFragment(), true);
     }
 
     /**
