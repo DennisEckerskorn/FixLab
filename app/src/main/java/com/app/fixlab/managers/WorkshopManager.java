@@ -89,17 +89,14 @@ public class WorkshopManager {
      * @return all clients by that name or null if dni doesnt exist
      */
 
-    public List<Client> getClientsByDNI(String dni){
-        List<Client> results = new ArrayList<>();
+    public Client getClientsByDNI(String dni){
+        Client result = null;
         for (int i = 0; i < allClients.size() ; i++) {
             if(allClients.get(i).getDni().equals(dni)){
-                results.add(allClients.get(i));
+                result = allClients.get(i);
             }
         }
-        if (results.isEmpty()){
-            return null;
-        }
-        return results;
+        return result;
     }
 
     /**
