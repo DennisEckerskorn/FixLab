@@ -27,12 +27,10 @@ public class SplashFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         view.postDelayed(() -> {
-            if (getActivity() instanceof FragmentNavigationListener) {
-                FragmentNavigationListener listener = (FragmentNavigationListener) getActivity();
+            if (getActivity() instanceof FragmentNavigationListener listener) {
                 listener.navigateToFragment(new MainMenuFragment(), false);
             }
         }, SPLASH_SCREEN_DELAY);
-
     }
 
     @Override
