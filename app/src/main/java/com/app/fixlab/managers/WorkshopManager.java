@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkshopManager {
-    private List<Device> allDevices;
-    private List<Device> allClientDevices;
-    private List<Device> allTechnicianDevices;
-    private List<Person> allPersons;
-    private List<Technician> allTechnicians;
-    private List<Client> allClients;
+    private final List<Device> allDevices;
+    private final List<Device> allClientDevices;
+    private final List<Device> allTechnicianDevices;
+    private final List<Person> allPersons;
+    private final List<Technician> allTechnicians;
+    private final List<Client> allClients;
 
     public WorkshopManager() {
         allDevices = new ArrayList<>();
@@ -68,7 +68,7 @@ public class WorkshopManager {
     /**
      *
      * @param name String name of client
-     * @return all clients by that name
+     * @return all clients by that name or null if there is no similar names
      */
     public List<Client> getClientsByName(String name){
         List<Client> results = new ArrayList<>();
@@ -81,5 +81,104 @@ public class WorkshopManager {
             return null;
         }
         return results;
+    }
+
+    /**
+     *
+     * @param dni String dni of client
+     * @return all clients by that name or null if dni doesnt exist
+     */
+
+    public List<Client> getClientsByDNI(String dni){
+        List<Client> results = new ArrayList<>();
+        for (int i = 0; i < allClients.size() ; i++) {
+            if(allClients.get(i).getDni().equals(dni)){
+                results.add(allClients.get(i));
+            }
+        }
+        if (results.isEmpty()){
+            return null;
+        }
+        return results;
+    }
+
+    /**
+     *
+     * @param device device for search
+     * @return first Client with the same device or null if the device doesnt exist
+     */
+    public Client getClientByDevice(Device device){
+        Client client=null;
+        for (int i = 0; i < allClients.size() ; i++) {
+            for (int j = 0; j < allClients.get(i).getDevices().size(); j++) {
+                //si el dispositivo device es igual al dispositivo(j) del cliente (i) devuelve
+                if(device.equals(allClients.get(i).getDevices().get(j))){
+                    client = allClients.get(i);
+                }
+            }
+        }
+        return client;
+    }
+
+    /**
+     *
+     * @param model String that contains the same model name
+     * @return list of clients that have the exact model name or null if model doesnt exist
+     */
+    public List<Client> getClientsByDeviceModel(String model){
+        List<Device> devices = new ArrayList<>();
+        for (int i = 0; i < allClientDevices.size(); i++) {
+            if(model.equals(allClientDevices.get(i).getModel())){
+                devices.add(allClientDevices.get(i));
+            }
+        }
+        List<Client> result = new ArrayList<>();
+        for (int i = 0; i < devices.size(); i++) {
+            result.add(getClientByDevice(devices.get(i)));
+        }
+        if(result.isEmpty())
+            return null;
+        return result;
+    }
+    /**
+     *
+     * @param serialNumber String that contains the same serial number
+     * @return first client that have the exact model serial number or null if model doesnt exist
+     */
+    public Client getClientByDeviceSerialNumber(String serialNumber){
+        Device device = null;
+        for (int i = 0; i < allClientDevices.size(); i++) {
+            if(serialNumber.equals(allClientDevices.get(i).getSerialNumber())){
+                device = allClientDevices.get(i);
+            }
+        }
+        if (device != null){
+            return  getClientByDevice(device);
+        }
+        return null;
+    }
+
+    public List<Device> getAllDevices() {
+        return allDevices;
+    }
+
+    public List<Device> getAllClientDevices() {
+        return allClientDevices;
+    }
+
+    public List<Device> getAllTechnicianDevices() {
+        return allTechnicianDevices;
+    }
+
+    public List<Person> getAllPersons() {
+        return allPersons;
+    }
+
+    public List<Technician> getAllTechnicians() {
+        return allTechnicians;
+    }
+
+    public List<Client> getAllClients() {
+        return allClients;
     }
 }
