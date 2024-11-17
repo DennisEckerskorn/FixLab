@@ -175,7 +175,7 @@ public class WorkshopManager {
         return allTechnicians;
     }
 
-    public List<Client> getAllClients() {
+    public List<? extends Person> getAllClients() {
         return allClients;
     }
 }

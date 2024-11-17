@@ -19,7 +19,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
     private OnClickListenerClients clientListener;
 
 
-    public ClientsAdapter(List<Person> clients) {
+    public ClientsAdapter(List<Person>clients) {
         this.clients = clients;
     }
 

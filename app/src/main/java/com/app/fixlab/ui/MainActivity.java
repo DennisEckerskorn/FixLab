@@ -8,13 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.ClientFragmentStateAdapter;
 import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
+import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
@@ -23,8 +22,6 @@ import com.app.fixlab.parsers.GeneralJSONParser;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,9 +31,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener {
-    private List<Person> clients;
     private Person selectedClient;
-    private List<Person> technicians;
+    private WorkshopManager workshopManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +40,13 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
+            workshopManager = new WorkshopManager();
             loadData();
             selectedClient = null;
             navigateToFragment(new SplashFragment(), false);
         }
 
         toolbarSettings();
-
     }
 
     /**
@@ -77,11 +73,12 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         loadTechnicians();
     }
 
+
     /**
      * LOAD CLIENTS AND DEVICES: Loads clients with their corresponging devices/s from JSON file
      */
     private void loadClientsAndDevices() {
-        clients = new ArrayList<>();
+        List<Person> clients = new ArrayList<>();
         try {
             JSONArray clientsJSON = GeneralJSONParser.readJSONArray(this, R.raw.random_clients);
             for (int i = 0; i < clientsJSON.length(); i++) {
@@ -113,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
                     }
                 }
                 clients.add(client);
+                workshopManager.addPerson(client);
             }
             Log.d("Client", clients.toString());
             Log.d("Device", clients.get(0).getDevices().toString());
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      * LOAD TECHNICIANS: Loads technicians from JSON file
      */
     private void loadTechnicians() {
-        technicians = new ArrayList<>();
+        List<Person> technicians = new ArrayList<>();
         try {
             JSONArray techniciansJSON = GeneralJSONParser.readJSONArray(this, R.raw.random_technicians);
             for (int i = 0; i < techniciansJSON.length(); i++) {
@@ -143,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
 
                 Person technician = new Technician(dni, name, surname, email, phoneNumber, address, username, password, availability);
                 technicians.add(technician);
+                workshopManager.addPerson(technician);
             }
 
             Log.d("Technician", technicians.toString());
@@ -160,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         setSupportActionBar(toolbar);
     }
 
-    //????????????????????????
 
     /**
      * ON CLICK: Sets the selected client
@@ -170,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     @Override
     public void onClick(Person client) {
         selectedClient = client;
+        Toast.makeText(this, "Client selected: " + client.getName(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -220,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public List<Person> getClients() {
+        List<Person> clients = (List<Person>) workshopManager.getAllClients();
         return clients == null ? Collections.emptyList() : clients;
     }
 }
