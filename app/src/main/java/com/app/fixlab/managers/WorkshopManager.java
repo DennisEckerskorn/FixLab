@@ -10,17 +10,11 @@ import java.util.List;
 
 public class WorkshopManager {
     private final List<Device> allDevices;
-    private final List<Device> allClientDevices;
-    private final List<Device> allTechnicianDevices;
-    private final List<Person> allPersons;
-    private final List<Technician> allTechnicians;
-    private final List<Client> allClients;
+    private final List<Person> allTechnicians;
+    private final List<Person> allClients;
 
     public WorkshopManager() {
         allDevices = new ArrayList<>();
-        allClientDevices = new ArrayList<>();
-        allTechnicianDevices = new ArrayList<>();
-        allPersons = new ArrayList<>();
         allTechnicians = new ArrayList<>();
         allClients = new ArrayList<>();
     }
@@ -31,14 +25,11 @@ public class WorkshopManager {
      * @return true if added successfully
      */
     public boolean addPerson(Person person){
-        allPersons.add(person);
         allDevices.addAll(person.getDevices());
         if (person instanceof Technician){
-            allTechnicians.add((Technician) person);
-            allTechnicianDevices.addAll(person.getDevices());
+            allTechnicians.add(person);
         } else if(person instanceof Client) {
-            allClients.add((Client) person);
-            allClientDevices.addAll(person.getDevices());
+            allClients.add(person);
         }
         return true;
     }
@@ -49,15 +40,11 @@ public class WorkshopManager {
      * @return true if removed successfully or false if not exists
      */
     public boolean removePerson(Person person) {
-        if (person instanceof Technician && allPersons.contains(person) && allTechnicians.contains(person)) {
+        if (person instanceof Technician && allTechnicians.contains(person)) {
             allTechnicians.remove(person);
-            allPersons.remove(person);
             allDevices.remove(person.getDevices());
-            allTechnicianDevices.remove(person.getDevices());
             return true;
-        } else if (person instanceof Client && allPersons.contains(person) && allClients.contains(person)) {
-            allPersons.remove(person);
-            allDevices.remove(person.getDevices());
+        } else if (person instanceof Client && allClients.contains(person)) {
             allClients.remove(person);
             allDevices.remove(person.getDevices());
             return true;
@@ -70,8 +57,9 @@ public class WorkshopManager {
      * @param name String name of client
      * @return all clients by that name or null if there is no similar names
      */
-    public List<Client> getClientsByName(String name){
-        List<Client> results = new ArrayList<>();
+    public List<Person> getClientsByName(String name){
+        List<Person> results = new ArrayList<>();
+
         for (int i = 0; i < allClients.size() ; i++) {
             if(allClients.get(i).getName().equals(name)){
                 results.add(allClients.get(i));
@@ -89,8 +77,8 @@ public class WorkshopManager {
      * @return all clients by that name or null if dni doesnt exist
      */
 
-    public Client getClientsByDNI(String dni){
-        Client result = null;
+    public Person getClientsByDNI(String dni){
+        Person result = null;
         for (int i = 0; i < allClients.size() ; i++) {
             if(allClients.get(i).getDni().equals(dni)){
                 result = allClients.get(i);
@@ -104,8 +92,8 @@ public class WorkshopManager {
      * @param device device for search
      * @return first Client with the same device or null if the device doesnt exist
      */
-    public Client getClientByDevice(Device device){
-        Client client=null;
+    public Person getClientByDevice(Device device){
+        Person client=null;
         for (int i = 0; i < allClients.size() ; i++) {
             for (int j = 0; j < allClients.get(i).getDevices().size(); j++) {
                 //si el dispositivo device es igual al dispositivo(j) del cliente (i) devuelve
@@ -122,14 +110,14 @@ public class WorkshopManager {
      * @param model String that contains the same model name
      * @return list of clients that have the exact model name or null if model doesnt exist
      */
-    public List<Client> getClientsByDeviceModel(String model){
+    public List<Person> getClientsByDeviceModel(String model){
         List<Device> devices = new ArrayList<>();
-        for (int i = 0; i < allClientDevices.size(); i++) {
-            if(model.equals(allClientDevices.get(i).getModel())){
-                devices.add(allClientDevices.get(i));
+        for (int i = 0; i < allDevices.size(); i++) {
+            if(model.equals(allDevices.get(i).getModel())){
+                devices.add(allDevices.get(i));
             }
         }
-        List<Client> result = new ArrayList<>();
+        List<Person> result = new ArrayList<>();
         for (int i = 0; i < devices.size(); i++) {
             result.add(getClientByDevice(devices.get(i)));
         }
@@ -142,11 +130,11 @@ public class WorkshopManager {
      * @param serialNumber String that contains the same serial number
      * @return first client that have the exact model serial number or null if model doesnt exist
      */
-    public Client getClientByDeviceSerialNumber(String serialNumber){
+    public Person getClientByDeviceSerialNumber(String serialNumber){
         Device device = null;
-        for (int i = 0; i < allClientDevices.size(); i++) {
-            if(serialNumber.equals(allClientDevices.get(i).getSerialNumber())){
-                device = allClientDevices.get(i);
+        for (int i = 0; i < allDevices.size(); i++) {
+            if(serialNumber.equals(allDevices.get(i).getSerialNumber())){
+                device = allDevices.get(i);
             }
         }
         if (device != null){
@@ -159,23 +147,11 @@ public class WorkshopManager {
         return allDevices;
     }
 
-    public List<Device> getAllClientDevices() {
-        return allClientDevices;
-    }
-
-    public List<Device> getAllTechnicianDevices() {
-        return allTechnicianDevices;
-    }
-
-    public List<Person> getAllPersons() {
-        return allPersons;
-    }
-
-    public List<Technician> getAllTechnicians() {
-        return allTechnicians;
-    }
-
-    public List<? extends Person> getAllClients() {
+    public List<Person> getAllClients() {
         return allClients;
+    }
+
+    public List<Person> getAllTechnicians() {
+        return allTechnicians;
     }
 }
