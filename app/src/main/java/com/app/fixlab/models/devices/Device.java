@@ -1,7 +1,5 @@
 package com.app.fixlab.models.devices;
 
-import androidx.annotation.NonNull;
-
 import java.util.Objects;
 
 /**
@@ -13,19 +11,25 @@ public class Device {
     private final String serialNumber;
     private final String description;
     private final String brand;
-    private final DeviceStatus status;
+    private final DeviceCondition condition;
     private final DeviceType type;
+    private DeviceStatus status;
 
     /**
      * CONSTRUCTORS:
      **/
-    public Device(String model, String serialNumber, String description, String brand, String status, String type) {
+    public Device(String model, String serialNumber, String description, String brand, String condition, String type) {
         this.model = model;
         this.serialNumber = serialNumber;
         this.description = description;
         this.brand = brand;
-        this.status = DeviceStatus.valueOf(status.toUpperCase());
+        this.condition = DeviceCondition.valueOf(condition.toUpperCase());
         this.type = DeviceType.valueOf(type.toUpperCase());
+        this.status = DeviceStatus.RECIVED;
+    }
+
+    public void setStatus(DeviceStatus status) {
+        this.status = status;
     }
 
     /**
@@ -48,8 +52,8 @@ public class Device {
         return brand;
     }
 
-    public DeviceStatus getStatus() {
-        return status;
+    public DeviceCondition getStatus() {
+        return condition;
     }
 
     public DeviceType getType() {
@@ -84,7 +88,7 @@ public class Device {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +
-                ", status=" + status +
+                ", condition=" + condition +
                 ", type=" + type +
                 '}';
     }
