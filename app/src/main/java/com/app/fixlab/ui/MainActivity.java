@@ -19,6 +19,7 @@ import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.parsers.GeneralJSONParser;
+import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener {
+public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener {
     private Person selectedClient;
     private WorkshopManager workshopManager;
 
@@ -168,7 +169,11 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     @Override
     public void onClick(Person client) {
         selectedClient = client;
+        //Navegar al fragmento de detalle del cliente:
         Toast.makeText(this, "Client selected: " + client.getName(), Toast.LENGTH_SHORT).show();
+        navigateToFragment(new ClientDetailFragment(), true);
+
+
     }
 
 
@@ -221,5 +226,15 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     public List<Person> getClients() {
         List<Person> clients = (List<Person>) workshopManager.getAllClients();
         return clients == null ? Collections.emptyList() : clients;
+    }
+
+
+    /**
+     * GET Person (client) from ClientDetailFragment
+     * @return
+     */
+    @Override
+    public Person getClient() {
+        return selectedClient;
     }
 }
