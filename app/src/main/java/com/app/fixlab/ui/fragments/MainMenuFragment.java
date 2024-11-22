@@ -37,12 +37,6 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-
-        // Check if the parent activity implements the MenuActionListener interface
-        if (context instanceof MenuActionListener) {
-            menuActionListener = (MenuActionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement MenuActionListener");
-        }
+        menuActionListener = (MenuActionListener) requireActivity();
     }
 }

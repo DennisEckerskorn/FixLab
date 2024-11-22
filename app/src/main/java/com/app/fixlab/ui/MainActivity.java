@@ -13,6 +13,7 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
+import com.app.fixlab.listeners.OnSaveAddClient;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener {
+public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient {
     private Person selectedClient;
     private WorkshopManager workshopManager;
 
@@ -231,10 +232,25 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
 
     /**
      * GET Person (client) from ClientDetailFragment
+     *
      * @return
      */
     @Override
     public Person getClient() {
         return selectedClient;
+    }
+
+    /**
+     * ON SAVE ADD CLIENT: Saves the client
+     */
+    @Override
+    public void onSaveAddClient(Client client) {
+        if (client != null) {
+            workshopManager.addPerson(client);
+            Toast.makeText(this, "Client saved: " + client.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Client not saved", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
