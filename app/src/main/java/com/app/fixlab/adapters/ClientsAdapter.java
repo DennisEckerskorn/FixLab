@@ -1,5 +1,7 @@
 package com.app.fixlab.adapters;
 
+import static android.provider.Settings.System.getString;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
     private OnClickListenerClients clientListener;
 
 
-    public ClientsAdapter(List<Person>clients) {
+    public ClientsAdapter(List<Person> clients) {
         this.clients = clients;
     }
 
@@ -30,7 +32,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
     @NonNull
     @Override
     public ClientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_client, parent, false);
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.client_item, parent, false);
         return new ClientViewHolder(layout);
     }
 
@@ -46,21 +48,25 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
 
 
     class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView tvClientName;
-        private final TextView tvClientSurname;
+        private final TextView tvNameClient;
+        private final TextView tvPhoneClient;
+        private final TextView tvEmailClient;
+
         private Person client;
 
         public ClientViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvClientName = itemView.findViewById(R.id.tvClientName);
-            tvClientSurname = itemView.findViewById(R.id.tvClientSurname);
+            tvNameClient = itemView.findViewById(R.id.tvNameClient);
+            tvPhoneClient = itemView.findViewById(R.id.tvPhoneClient);
+            tvEmailClient = itemView.findViewById(R.id.tvEmailClient);
             itemView.setOnClickListener(this);
         }
 
         private void bindClient(Person client) {
             this.client = client;
-            tvClientName.setText(client.getName());
-            tvClientSurname.setText(client.getSurname());
+            tvNameClient.setText(client.getName());
+            tvPhoneClient.setText(client.getPhoneNumber());
+            tvEmailClient.setText(client.getEmail());
         }
 
         @Override
