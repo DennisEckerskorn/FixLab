@@ -26,4 +26,9 @@
     <string name="device_type">Device type</string>
     <string name="device_condition">Device condition</string>
     <string name="save_device">Save device</string>
+    <string name="status_recived">Recived</string>
+    <string name="status_in_revision">In revision</string>
+    <string name="status_in_reparation">In reparation</string>
+    <string name="status_fixed">Fixed</string>
+    <string name="status_waiting_for_parts">Waiting for parts</string>
 </resources>

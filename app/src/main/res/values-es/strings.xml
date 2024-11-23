@@ -27,4 +27,9 @@
     <string name="device_type">Tipo de dispositivo</string>
     <string name="device_condition">Condición del dispositivo</string>
     <string name="save_device">Guardar dispositivo</string>
+    <string name="status_recived">Recibido</string>
+    <string name="status_in_revision">En revisión</string>
+    <string name="status_in_reparation">En reparación</string>
+    <string name="status_fixed">Arreglado</string>
+    <string name="status_waiting_for_parts">Esperando piezas</string>
 </resources>

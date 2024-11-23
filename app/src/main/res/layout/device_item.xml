@@ -19,6 +19,7 @@
             android:id="@+id/ivDeviceType"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:src="@drawable/device_type_other"
             android:layout_gravity="center_vertical"
             />
 

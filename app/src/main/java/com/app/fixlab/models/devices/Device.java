@@ -1,5 +1,7 @@
 package com.app.fixlab.models.devices;
 
+import com.app.fixlab.R;
+
 import java.util.Objects;
 
 /**
@@ -52,11 +54,66 @@ public class Device {
         return brand;
     }
 
-    public DeviceCondition getStatus() {
-        return condition;
+    public DeviceStatus getStatus() {
+        return status;
+    }
+    public int getStatusString() {
+        int status = -1;
+        switch (this.getStatus()){
+            case RECIVED:
+                status = R.string.status_recived;
+                break;
+            case IN_REPARATION:
+                status = R.string.status_in_reparation;
+                break;
+            case IN_REVISION:
+                status = R.string.status_in_revision;
+                break;
+            case FIXED:
+                status = R.string.status_fixed;
+                break;
+            case WAITING_FOR_PARTS:
+                status = R.string.status_waiting_for_parts;
+                break;
+            default:
+                break;
+        }
+        return status;
     }
 
     public DeviceType getType() {
+        return type;
+    }
+    public int getTypeString(){
+        int type = -1;
+        switch (this.getType()){
+            case LAPTOP:
+                type = R.drawable.device_type_laptop;
+                break;
+            case COMPUTER:
+                type = R.drawable.device_type_computer;
+                break;
+            case SMARTPHONE:
+                type = R.drawable.device_type_smartphone;
+                break;
+            case TABLET:
+                type = R.drawable.device_type_tablet;
+                break;
+            case SMARTWATCH:
+                type = R.drawable.device_type_smartwatch;
+                break;
+            case MONITOR:
+                type = R.drawable.device_type_monitor;
+                break;
+            case PERIPHERAL:
+                type = R.drawable.device_type_peripheral;
+                break;
+            case OTHER:
+                type = R.drawable.device_type_other;
+                break;
+            default:
+                break;
+        }
         return type;
     }
 

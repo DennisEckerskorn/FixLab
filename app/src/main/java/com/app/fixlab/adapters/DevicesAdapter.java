@@ -1,8 +1,12 @@
 package com.app.fixlab.adapters;
 
+import static com.app.fixlab.models.devices.DeviceStatus.IN_REPARATION;
+import static com.app.fixlab.models.devices.DeviceStatus.RECIVED;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +34,7 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
     @NonNull
     @Override
     public DevicesAdapter.DeviceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device, parent, false);
+        View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.device_item, parent, false);
         return new DevicesAdapter.DeviceViewHolder(layout);
     }
 
@@ -46,22 +50,29 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
 
 
     class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView tvClientName;
-        private final TextView tvClientSurname;
+        private final ImageView ivDeviceType;
+        private final TextView tvDeviceModel;
+        private final TextView tvDeviceBrand;
+        private final TextView tvDeviceStatus;
+
         private Device device;
 
         public DeviceViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvClientName = itemView.findViewById(R.id.tvClientName);
-            tvClientSurname = itemView.findViewById(R.id.tvClientSurname);
+            tvDeviceModel = itemView.findViewById(R.id.tvModel);
+            tvDeviceBrand = itemView.findViewById(R.id.tvBrand);
+            tvDeviceStatus = itemView.findViewById(R.id.tvStatus);
+            ivDeviceType = itemView.findViewById(R.id.ivDeviceType);
             itemView.setOnClickListener(this);
         }
 
         private void bindDevice(Device device) {
             this.device = device;
-//            tvClientName.setText(device.getName());
-//            tvClientSurname.setText(device.getSurname());
-        }
+            tvDeviceModel.setText(device.getModel());
+            tvDeviceBrand.setText(device.getBrand());
+            tvDeviceStatus.setText(device.getStatusString());
+            ivDeviceType.setImageResource(device.getTypeString());
+            }
 
         @Override
         public void onClick(View view) {
