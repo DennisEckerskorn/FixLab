@@ -15,4 +15,15 @@
     <string name="client_email">Email</string>
     <string name="client_address">Address</string>
     <string name="client_devices">Devices</string>
+    <string name="repared_list_name">Repared List</string>
+    <string name="device_info">Device info</string>
+    <string name="model">Model</string>
+    <string name="brand">Brand</string>
+    <string name="serial_number">Serial number</string>
+    <string name="condition">Condition</string>
+    <string name="status">Status</string>
+    <string name="description">Description</string>
+    <string name="device_type">Device type</string>
+    <string name="device_condition">Device condition</string>
+    <string name="save_device">Save device</string>
 </resources>
