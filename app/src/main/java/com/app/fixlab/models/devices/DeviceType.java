@@ -7,6 +7,6 @@ public enum DeviceType {
     TABLET,
     SMARTWATCH,
     MONITOR,
-    PERIFERIC,
+    PERIPHERAL,
     OTHER
 }
