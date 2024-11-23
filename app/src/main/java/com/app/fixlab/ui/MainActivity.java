@@ -13,12 +13,14 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
+import com.app.fixlab.listeners.OnSaveAddClient;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.parsers.GeneralJSONParser;
+import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener {
+public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient {
     private Person selectedClient;
     private WorkshopManager workshopManager;
 
@@ -168,7 +170,11 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     @Override
     public void onClick(Person client) {
         selectedClient = client;
+        //Navegar al fragmento de detalle del cliente:
         Toast.makeText(this, "Client selected: " + client.getName(), Toast.LENGTH_SHORT).show();
+        navigateToFragment(new ClientDetailFragment(), true);
+
+
     }
 
 
@@ -221,5 +227,30 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     public List<Person> getClients() {
         List<Person> clients = (List<Person>) workshopManager.getAllClients();
         return clients == null ? Collections.emptyList() : clients;
+    }
+
+
+    /**
+     * GET Person (client) from ClientDetailFragment
+     *
+     * @return
+     */
+    @Override
+    public Person getClient() {
+        return selectedClient;
+    }
+
+    /**
+     * ON SAVE ADD CLIENT: Saves the client
+     */
+    @Override
+    public void onSaveAddClient(Client client) {
+        if (client != null) {
+            workshopManager.addPerson(client);
+            Toast.makeText(this, "Client saved: " + client.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Client not saved", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
