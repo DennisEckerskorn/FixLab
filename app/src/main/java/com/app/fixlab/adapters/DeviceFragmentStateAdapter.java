@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientsFormAddFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DevicesFormAddFragment;
 
 public class DeviceFragmentStateAdapter extends FragmentStateAdapter {
     private static final int NUM_PAGES = 2;
@@ -27,7 +28,7 @@ public class DeviceFragmentStateAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         return switch (position) {
             case 0 -> new DeviceListFragment();
-            case 1 -> new ClientsFormAddFragment();
+            case 1 -> new DevicesFormAddFragment();
             default -> throw new RuntimeException("Invalid fragment:");
         };
     }
