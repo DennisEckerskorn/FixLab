@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public void onDevicesSelected() {
-
+//        navigateToFragment(new DeviceFragment(), true);
     }
 
     /**

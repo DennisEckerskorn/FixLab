@@ -20,7 +20,7 @@
             android:hint="@string/model">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDeviceModel"
+                android:id="@+id/tilDeviceModel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -35,7 +35,7 @@
             android:hint="@string/brand">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDeviceBrand"
+                android:id="@+id/tilDeviceBrand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -50,7 +50,7 @@
             android:hint="@string/serial_number">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDeviceSerialNumber"
+                android:id="@+id/tilDeviceSerialNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -65,7 +65,7 @@
             android:hint="@string/description">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDeviceDescription"
+                android:id="@+id/tilDeviceDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"

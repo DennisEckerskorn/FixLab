@@ -37,7 +37,7 @@ public class ClientsFormAddFragment extends Fragment {
         bGuardar = view.findViewById(R.id.bGuardar);
 
         bGuardar.setOnClickListener(v -> {
-            if (saveAddClientListener != null) {
+            if (saveAddClientListener != null) {                                                                                                
                 // Get data from TextInputEditText views
                 String name = tilName.getEditText().getText().toString(); // Access EditText within TextInputLayout
                 String email = tilEmail.getEditText().getText().toString();
