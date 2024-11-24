@@ -13,7 +13,9 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
+import com.app.fixlab.listeners.OnClickListenerTechnicians;
 import com.app.fixlab.listeners.OnSaveAddClient;
+import com.app.fixlab.listeners.OnSaveAddTechnician;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
@@ -24,6 +26,9 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
+import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
+import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
+import com.app.fixlab.ui.fragments.technicianfragments.TechnicianListFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,8 +37,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient {
+public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians, TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician {
     private Person selectedClient;
+    private Person selectedTechnician;
     private WorkshopManager workshopManager;
 
     @Override
@@ -173,10 +179,21 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         //Navegar al fragmento de detalle del cliente:
         Toast.makeText(this, "Client selected: " + client.getName(), Toast.LENGTH_SHORT).show();
         navigateToFragment(new ClientDetailFragment(), true);
-
-
     }
 
+    /**
+     * ON CLICK: Sets the selected client
+     *
+     * @param technician Technician that was clicked
+     */
+    @Override
+    public void onTechniciansClick(Person technician) {
+        selectedTechnician = technician;
+        // Toast para feedback visual
+        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
+        // Navegar al fragmento de detalle del técnico
+        navigateToFragment(new TechnicianDetailFragment(), true);
+    }
 
     /*
      * MENU ACTION LISTENERS:
@@ -203,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public void onTechniciansSelected() {
-
+        navigateToFragment(new TechnicianFragment(), true);
     }
 
     /**
@@ -241,6 +258,27 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     }
 
     /**
+     * GET Technicians: Returns a list of clients, or an empty list if clients is null
+     *
+     * @return List of technicians
+     */
+    @Override
+    public List<Person> getTechnicians() {
+        List<Person> technicians = (List<Person>) workshopManager.getAllTechnicians();
+        return technicians == null ? Collections.emptyList() : technicians;
+    }
+
+    /**
+     * GET Person (technician) from TechnicianDetailFragment
+     * @return Person (technician)
+     */
+    @Override
+    public Person getTechnician() {
+        return selectedTechnician;
+    }
+
+
+    /**
      * ON SAVE ADD CLIENT: Saves the client
      */
     @Override
@@ -251,6 +289,19 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         } else {
             Toast.makeText(this, "Client not saved", Toast.LENGTH_SHORT).show();
         }
-
     }
+    /**
+     * OnSaveAddTechnician: Saves the technician
+     */
+    @Override
+    public void onSaveAddTechnician(Technician technician) {
+        if (technician != null) {
+            workshopManager.addPerson(technician);
+            Toast.makeText(this, "Technician saved: " + technician.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Technician not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }

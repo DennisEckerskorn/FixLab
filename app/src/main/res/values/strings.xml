@@ -31,4 +31,7 @@
     <string name="status_in_reparation">In reparation</string>
     <string name="status_fixed">Fixed</string>
     <string name="status_waiting_for_parts">Waiting for parts</string>
+    <string name="status_finished">Finished</string>
+    <string name="technician_info">Technician info</string>
+    <string name="assigned_devices">Assigned devices</string>"
 </resources>

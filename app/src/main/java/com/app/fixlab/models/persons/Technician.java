@@ -1,7 +1,7 @@
 package com.app.fixlab.models.persons;
 
 /**
- * TECHNICIAN CLASS: Child class of Person
+ * TECHNI CIAN CLASS: Child class of Person
  */
 public class Technician extends Person {
     public enum Availability {AVAILABLE, UNAVAILABLE}
