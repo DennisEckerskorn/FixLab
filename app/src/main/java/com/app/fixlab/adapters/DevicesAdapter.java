@@ -50,10 +50,10 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
 
 
     class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final ImageView ivDeviceType;
+        //private final ImageView ivDeviceType;
         private final TextView tvDeviceModel;
         private final TextView tvDeviceBrand;
-        private final TextView tvDeviceStatus;
+        //private final TextView tvDeviceStatus;
 
         private Device device;
 
@@ -61,8 +61,8 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
             super(itemView);
             tvDeviceModel = itemView.findViewById(R.id.tvModel);
             tvDeviceBrand = itemView.findViewById(R.id.tvBrand);
-            tvDeviceStatus = itemView.findViewById(R.id.tvStatus);
-            ivDeviceType = itemView.findViewById(R.id.ivDeviceType);
+           // tvDeviceStatus = itemView.findViewById(R.id.tvStatus);
+            //ivDeviceType = itemView.findViewById(R.id.ivDeviceType);
             itemView.setOnClickListener(this);
         }
 
@@ -70,8 +70,8 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
             this.device = device;
             tvDeviceModel.setText(device.getModel());
             tvDeviceBrand.setText(device.getBrand());
-            tvDeviceStatus.setText(device.getStatusString());
-            ivDeviceType.setImageResource(device.getTypeString());
+           // tvDeviceStatus.setText(device.getStatusString());
+            //ivDeviceType.setImageResource(device.getTypeString());
             }
 
         @Override

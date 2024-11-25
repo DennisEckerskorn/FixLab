@@ -13,27 +13,34 @@ public class Device {
     private final String serialNumber;
     private final String description;
     private final String brand;
-    private final DeviceCondition condition;
-    private final DeviceType type;
-    private DeviceStatus status;
+    private final String type;
+    private final String status;
 
     /**
      * CONSTRUCTORS:
+     * //TODO: NO SE TOCA ESTE CONSTRUCTOR; CREATE OTRO JON:
      **/
-    public Device(String model, String serialNumber, String description, String brand, String condition, String type) {
+    public Device(String model, String serialNumber, String description, String brand, String type, String status) {
         this.model = model;
         this.serialNumber = serialNumber;
         this.description = description;
         this.brand = brand;
-        this.condition = DeviceCondition.valueOf(condition.toUpperCase());
+        this.type = type;
+        this.status = status;
+
+        /*
+         this.condition = DeviceCondition.valueOf(condition.toUpperCase());
         this.type = DeviceType.valueOf(type.toUpperCase());
         this.status = DeviceStatus.RECIVED;
+         */
     }
-
+/*
     public void setStatus(DeviceStatus status) {
         this.status = status;
     }
 
+
+ */
     /**
      * GETTERS:
      **/
@@ -53,10 +60,13 @@ public class Device {
     public String getBrand() {
         return brand;
     }
-
+/*
     public DeviceStatus getStatus() {
         return status;
     }
+
+ */
+    /*
     public int getStatusString() {
         int status = -1;
         switch (this.getStatus()){
@@ -81,9 +91,14 @@ public class Device {
         return status;
     }
 
+     */
+/*
     public DeviceType getType() {
         return type;
     }
+
+ */
+    /*
     public int getTypeString(){
         int type = -1;
         switch (this.getType()){
@@ -117,6 +132,8 @@ public class Device {
         return type;
     }
 
+     */
+
     /**
      * EQUALS AND HASHCODE:
      **/
@@ -145,7 +162,7 @@ public class Device {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +
-                ", condition=" + condition +
+               // ", condition=" + condition +
                 ", type=" + type +
                 '}';
     }

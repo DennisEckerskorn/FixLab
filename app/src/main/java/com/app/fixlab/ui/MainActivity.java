@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
             workshopManager = new WorkshopManager();
             loadData();
             selectedClient = null;
+            selectedTechnician = null;
             navigateToFragment(new SplashFragment(), false);
         }
 
@@ -243,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public List<Person> getClients() {
-        List<Person> clients = (List<Person>) workshopManager.getAllClients();
+        List<Person> clients = workshopManager.getAllClients();
         return clients == null ? Collections.emptyList() : clients;
     }
 
@@ -265,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public List<Person> getTechnicians() {
-        List<Person> technicians = (List<Person>) workshopManager.getAllTechnicians();
+        List<Person> technicians = workshopManager.getAllTechnicians();
         return technicians == null ? Collections.emptyList() : technicians;
     }
 

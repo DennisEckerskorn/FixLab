@@ -27,7 +27,7 @@ public class DevicesFormAddFragment extends Fragment {
     public DevicesFormAddFragment() {
         super(R.layout.activity_add_device);
     }
-
+/*
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,4 +58,6 @@ public class DevicesFormAddFragment extends Fragment {
         super.onAttach(context);
        saveAddDevice = (OnSaveAddDevice) requireActivity();
     }
+
+ */
 }

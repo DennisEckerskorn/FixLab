@@ -65,6 +65,8 @@ public class TechnicianFormAddFragment extends Fragment {
         spinnerAvailability.setAdapter(adapter);
     }
 
+
+
     private void setupSaveButton() {
         btnSave.setOnClickListener(v -> {
             if (validateFields()) {
@@ -173,4 +175,6 @@ public class TechnicianFormAddFragment extends Fragment {
                     + " debe implementar OnSaveAddTechnician");
         }
     }
+
+
 }

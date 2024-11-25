@@ -25,12 +25,12 @@ public class WorkshopManager {
      * @return true if added successfully
      */
     public boolean addPerson(Person person){
-        allDevices.addAll(person.getDevices());
         if (person instanceof Technician){
             allTechnicians.add(person);
         } else if(person instanceof Client) {
             allClients.add(person);
         }
+        allDevices.addAll(person.getDevices());
         return true;
     }
 

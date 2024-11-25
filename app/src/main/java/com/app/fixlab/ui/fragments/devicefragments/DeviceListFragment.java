@@ -23,7 +23,7 @@ public class DeviceListFragment extends Fragment {
     public interface IDeviceListFragmentListener {
         List<Device> getDevices();
     }
-
+/*
     private List<Device> devices;
     private IDeviceListFragmentListener fragmentListener;
 
@@ -52,4 +52,6 @@ public class DeviceListFragment extends Fragment {
         fragmentListener = (IDeviceListFragmentListener) requireActivity();
         devices = listener.getDevices();
     }
+
+ */
 }
