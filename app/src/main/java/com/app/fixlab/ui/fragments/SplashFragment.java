@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.FragmentNavigationListener;
+import com.app.fixlab.listeners.OnSplashDelayFinished;
 
 public class SplashFragment extends Fragment {
     private static final long SPLASH_SCREEN_DELAY = 3000;
@@ -25,12 +26,11 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getActivity() instanceof OnSplashDelayFinished listener) {
+            listener.onSPlashDelayFinished();
+        }
 
-        view.postDelayed(() -> {
-            if (getActivity() instanceof FragmentNavigationListener listener) {
-                listener.navigateToFragment(new MainMenuFragment(), false);
-            }
-        }, SPLASH_SCREEN_DELAY);
+
     }
 
     @Override

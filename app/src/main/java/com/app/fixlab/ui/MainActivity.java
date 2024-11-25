@@ -1,13 +1,14 @@
 package com.app.fixlab.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
@@ -17,12 +18,14 @@ import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
 import com.app.fixlab.listeners.OnSaveAddClient;
 import com.app.fixlab.listeners.OnSaveAddTechnician;
+import com.app.fixlab.listeners.OnSplashDelayFinished;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.parsers.GeneralJSONParser;
+import com.app.fixlab.ui.fragments.MainMenuFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
@@ -38,10 +41,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener, MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians, TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician {
+public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
+        MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians,
+        TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished {
     private Person selectedClient;
     private Person selectedTechnician;
     private WorkshopManager workshopManager;
+    private static final long SPLASH_SCREEN_DELAY = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -292,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
             Toast.makeText(this, "Client not saved", Toast.LENGTH_SHORT).show();
         }
     }
+
     /**
      * OnSaveAddTechnician: Saves the technician
      */
@@ -305,5 +312,13 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         }
     }
 
-
+    /**
+     * ON SPLASH DELAY FINISHED: Navigates to the main menu fragment
+     */
+    @Override
+    public void onSPlashDelayFinished() {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            navigateToFragment(new MainMenuFragment(), false);
+        }, SPLASH_SCREEN_DELAY);
+    }
 }
