@@ -17,13 +17,13 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class ClientFragment extends Fragment {
 
     public ClientFragment() {
-        super(R.layout.activity_clients);
+        super(R.layout.activity_client);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ViewPager2 vp2Clients = view.findViewById(R.id.vp2Clients);
+        ViewPager2 vp2Clients = view.findViewById(R.id.vp2Client);
         TabLayout tabLayout = view.findViewById(R.id.layoutTab);
 
         ClientFragmentStateAdapter clientFragmentStateAdapter = new ClientFragmentStateAdapter(requireActivity());
@@ -33,8 +33,8 @@ public class ClientFragment extends Fragment {
 
         TabLayoutMediator tlm = new TabLayoutMediator(tabLayout, vp2Clients, (tab, position) -> {
             String text = switch (position) {
-                case 0 -> "Lista";
-                case 1 -> "Añadir";
+                case 0 -> getString(R.string.list_name);
+                case 1 -> getString(R.string.add_name);
                 default -> "";
 
             };

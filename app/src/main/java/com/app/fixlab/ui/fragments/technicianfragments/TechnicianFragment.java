@@ -22,7 +22,7 @@ public class TechnicianFragment extends Fragment{
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
             super.onViewCreated(view, savedInstanceState);
-            ViewPager2 vp2Technician = view.findViewById(R.id.vp2Technician);
+            ViewPager2 vp2Technician = view.findViewById(R.id.vp2Tec);
             TabLayout tabLayout = view.findViewById(R.id.layoutTab);
 
             TechnicianFragmentStateAdapter technicianFragmentStateAdapter = new TechnicianFragmentStateAdapter(requireActivity());
@@ -32,8 +32,8 @@ public class TechnicianFragment extends Fragment{
 
             TabLayoutMediator tlm = new TabLayoutMediator(tabLayout, vp2Technician, (tab, position) -> {
                 String text = switch (position) {
-                    case 0 -> "Lista";
-                    case 1 -> "Añadir";
+                    case 0 -> getString(R.string.list_name);
+                    case 1 -> getString(R.string.add_name);
                     default -> "";
             };
                 tab.setText(text);
