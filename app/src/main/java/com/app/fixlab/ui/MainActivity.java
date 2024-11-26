@@ -21,6 +21,7 @@ import com.app.fixlab.listeners.OnSaveAddTechnician;
 import com.app.fixlab.listeners.OnSplashDelayFinished;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
+import com.app.fixlab.models.devices.DeviceType;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
@@ -118,10 +119,15 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
                         String serialNumber = devicesJSONObject.getString("serialNumber");
                         String description = devicesJSONObject.getString("description");
                         String brand = devicesJSONObject.getString("brand");
-                        String status = devicesJSONObject.getString("status");
-                        String type = devicesJSONObject.getString("type");
-
-                        Device device = new Device(model, serialNumber, description, brand, status, type);
+                        DeviceType type;
+                        try {
+                            type = DeviceType.valueOf(devicesJSONObject.getString("type").toUpperCase());
+                        } catch (IllegalArgumentException e) {
+                            // Manejo de error si el valor de "type" no es válido
+                            System.err.println("Tipo de dispositivo no válido: " + devicesJSONObject.getString("type"));
+                            type = DeviceType.OTHER; // Valor por defecto en caso de error
+                        }
+                        Device device = new Device(model, serialNumber, description, brand, type);
                         client.addDevice(device);
                     }
                 }

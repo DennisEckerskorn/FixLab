@@ -14,7 +14,7 @@
         "serialNumber": "SN12345678",
         "description": "Smartphone with scratched screen",
         "brand": "Samsung",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "SMARTPHONE"
       },
       {
@@ -22,7 +22,7 @@
         "serialNumber": "SN12345697",
         "description": "Gaming PC with slight wear",
         "brand": "Alienware",
-        "status": "USED",
+        "condition": "USED",
         "type": "COMPUTER"
       }
     ]
@@ -42,7 +42,7 @@
         "serialNumber": "SN23456789",
         "description": "Laptop in good condition",
         "brand": "Apple",
-        "status": "IN_GOOD_CONDITION",
+        "condition": "IN_GOOD_CONDITION",
         "type": "LAPTOP"
       },
       {
@@ -50,7 +50,7 @@
         "serialNumber": "SN23456708",
         "description": "Desktop in good condition",
         "brand": "Lenovo",
-        "status": "IN_GOOD_CONDITION",
+        "condition": "IN_GOOD_CONDITION",
         "type": "COMPUTER"
       }
     ]
@@ -70,7 +70,7 @@
         "serialNumber": "SN34567819",
         "description": "Smartphone with minor scratches",
         "brand": "Huawei",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "SMARTPHONE"
       },
       {
@@ -78,8 +78,8 @@
         "serialNumber": "SN45678930",
         "description": "Peripheral device in new condition",
         "brand": "Logitech",
-        "status": "NEW",
-        "type": "PERIFERIC"
+        "condition": "NEW",
+        "type": "PERIPHERAL"
       }
     ]
   },
@@ -98,7 +98,7 @@
         "serialNumber": "SN34567890",
         "description": "Laptop with a defective battery",
         "brand": "HP",
-        "status": "DEFECTIVE",
+        "condition": "DEFECTIVE",
         "type": "LAPTOP"
       },
       {
@@ -106,7 +106,7 @@
         "serialNumber": "SN56789041",
         "description": "Smartphone in working condition",
         "brand": "Apple",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "SMARTPHONE"
       },
       {
@@ -114,7 +114,7 @@
         "serialNumber": "SN67890152",
         "description": "Tablet with scratches",
         "brand": "Apple",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "TABLET"
       }
     ]
@@ -134,7 +134,7 @@
         "serialNumber": "SN78901263",
         "description": "Monitor in good condition",
         "brand": "LG",
-        "status": "IN_GOOD_CONDITION",
+        "condition": "IN_GOOD_CONDITION",
         "type": "MONITOR"
       },
       {
@@ -142,7 +142,7 @@
         "serialNumber": "SN89012374",
         "description": "Smartwatch in repaired condition",
         "brand": "Samsung",
-        "status": "REPAIRED",
+        "condition": "REPAIRED",
         "type": "SMARTWATCH"
       }
     ]
@@ -162,7 +162,7 @@
         "serialNumber": "SN98765432",
         "description": "Tablet with minor scratches",
         "brand": "Apple",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "TABLET"
       }
     ]
@@ -182,7 +182,7 @@
         "serialNumber": "SN56789012",
         "description": "Laptop in new condition",
         "brand": "Dell",
-        "status": "NEW",
+        "condition": "NEW",
         "type": "LAPTOP"
       }
     ]
@@ -202,7 +202,7 @@
         "serialNumber": "SN67890123",
         "description": "Monitor with slight scratches",
         "brand": "Sony",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "MONITOR"
       }
     ]
@@ -222,7 +222,7 @@
         "serialNumber": "SN78901234",
         "description": "Tablet in good working condition",
         "brand": "Samsung",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "TABLET"
       },
       {
@@ -230,7 +230,7 @@
         "serialNumber": "SN90123485",
         "description": "Laptop in used condition",
         "brand": "Microsoft",
-        "status": "USED",
+        "condition": "USED",
         "type": "LAPTOP"
       },
       {
@@ -238,7 +238,7 @@
         "serialNumber": "SN01234596",
         "description": "Smart home device in working condition",
         "brand": "Google",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "OTHER"
       }
     ]
@@ -258,7 +258,7 @@
         "serialNumber": "SN89012345",
         "description": "Laptop used with slight wear",
         "brand": "Acer",
-        "status": "USED",
+        "condition": "USED",
         "type": "LAPTOP"
       },
       {
@@ -266,7 +266,7 @@
         "serialNumber": "SN12345607",
         "description": "E-reader in new condition",
         "brand": "Amazon",
-        "status": "NEW",
+        "condition": "NEW",
         "type": "OTHER"
       },
       {
@@ -274,7 +274,7 @@
         "serialNumber": "SN23456718",
         "description": "Laptop in defective condition",
         "brand": "HP",
-        "status": "DEFECTIVE",
+        "condition": "DEFECTIVE",
         "type": "LAPTOP"
       }
     ]
@@ -294,8 +294,8 @@
         "serialNumber": "SN90123456",
         "description": "Peripheral device working well",
         "brand": "Canon",
-        "status": "WORKING",
-        "type": "PERIFERIC"
+        "condition": "WORKING",
+        "type": "PERIPHERAL"
       }
     ]
   },
@@ -314,7 +314,7 @@
         "serialNumber": "SN01234567",
         "description": "Monitor in used condition",
         "brand": "LG",
-        "status": "USED",
+        "condition": "USED",
         "type": "MONITOR"
       },
       {
@@ -322,7 +322,7 @@
         "serialNumber": "SN34567829",
         "description": "Monitor used for gaming",
         "brand": "Samsung",
-        "status": "USED",
+        "condition": "USED",
         "type": "MONITOR"
       },
       {
@@ -330,15 +330,15 @@
         "serialNumber": "SN45678940",
         "description": "Peripheral in good condition",
         "brand": "Apple",
-        "status": "IN_GOOD_CONDITION",
-        "type": "PERIFERIC"
+        "condition": "IN_GOOD_CONDITION",
+        "type": "PERIPHERAL"
       },
       {
         "model": "Dell Inspiron",
         "serialNumber": "SN56789051",
         "description": "Laptop with defective battery",
         "brand": "Dell",
-        "status": "DEFECTIVE",
+        "condition": "DEFECTIVE",
         "type": "LAPTOP"
       }
     ]
@@ -358,7 +358,7 @@
         "serialNumber": "SN34561234",
         "description": "Laptop in repaired condition",
         "brand": "Lenovo",
-        "status": "REPAIRED",
+        "condition": "REPAIRED",
         "type": "LAPTOP"
       }
     ]
@@ -378,7 +378,7 @@
         "serialNumber": "SN45678901",
         "description": "Smartphone with minor scratches",
         "brand": "Apple",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "SMARTPHONE"
       },
       {
@@ -386,7 +386,7 @@
         "serialNumber": "SN67890162",
         "description": "Camera in good working condition",
         "brand": "Canon",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "OTHER"
       },
       {
@@ -394,7 +394,7 @@
         "serialNumber": "SN78901273",
         "description": "Laptop in new condition",
         "brand": "HP",
-        "status": "NEW",
+        "condition": "NEW",
         "type": "LAPTOP"
       },
       {
@@ -402,7 +402,7 @@
         "serialNumber": "SN89012384",
         "description": "Camera in good condition",
         "brand": "Sony",
-        "status": "IN_GOOD_CONDITION",
+        "condition": "IN_GOOD_CONDITION",
         "type": "OTHER"
       }
     ]
@@ -422,7 +422,7 @@
         "serialNumber": "SN56789021",
         "description": "Tablet in new condition",
         "brand": "Microsoft",
-        "status": "NEW",
+        "condition": "NEW",
         "type": "TABLET"
       },
       {
@@ -430,15 +430,15 @@
         "serialNumber": "SN90123495",
         "description": "Headphones in new condition",
         "brand": "Bose",
-        "status": "NEW",
-        "type": "PERIFERIC"
+        "condition": "NEW",
+        "type": "PERIPHERAL"
       },
       {
         "model": "Lenovo Yoga 920",
         "serialNumber": "SN01234506",
         "description": "Laptop in used condition",
         "brand": "Lenovo",
-        "status": "USED",
+        "condition": "USED",
         "type": "LAPTOP"
       }
     ]
@@ -458,7 +458,7 @@
         "serialNumber": "SN67890132",
         "description": "Laptop used for gaming",
         "brand": "Asus",
-        "status": "USED",
+        "condition": "USED",
         "type": "LAPTOP"
       }
     ]
@@ -478,7 +478,7 @@
         "serialNumber": "SN78901243",
         "description": "Smartphone in good condition",
         "brand": "Google",
-        "status": "IN_GOOD_CONDITION",
+        "condition": "IN_GOOD_CONDITION",
         "type": "SMARTPHONE"
       }
     ]
@@ -498,7 +498,7 @@
         "serialNumber": "SN89012354",
         "description": "Tablet with cracked screen",
         "brand": "Huawei",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "TABLET"
       },
       {
@@ -506,7 +506,7 @@
         "serialNumber": "SN12345617",
         "description": "Smartphone in good working condition",
         "brand": "Xiaomi",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "SMARTPHONE"
       }
     ]
@@ -526,7 +526,7 @@
         "serialNumber": "SN90123465",
         "description": "Smartwatch with defective battery",
         "brand": "Samsung",
-        "status": "DEFECTIVE",
+        "condition": "DEFECTIVE",
         "type": "SMARTWATCH"
       }
     ]
@@ -546,7 +546,7 @@
         "serialNumber": "SN01234576",
         "description": "Monitor with slight wear",
         "brand": "Dell",
-        "status": "USED",
+        "condition": "USED",
         "type": "MONITOR"
       }
     ]
@@ -566,8 +566,8 @@
         "serialNumber": "SN12345687",
         "description": "Peripheral in good condition",
         "brand": "JBL",
-        "status": "IN_GOOD_CONDITION",
-        "type": "PERIFERIC"
+        "condition": "IN_GOOD_CONDITION",
+        "type": "PERIPHERAL"
       }
     ]
   },
@@ -586,7 +586,7 @@
         "serialNumber": "SN23456798",
         "description": "Laptop in working condition",
         "brand": "Apple",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "LAPTOP"
       }
     ]
@@ -606,7 +606,7 @@
         "serialNumber": "SN34567809",
         "description": "VR headset in new condition",
         "brand": "Oculus",
-        "status": "NEW",
+        "condition": "NEW",
         "type": "OTHER"
       }
     ]
@@ -626,8 +626,8 @@
         "serialNumber": "SN45678920",
         "description": "Printer with minor defects",
         "brand": "HP",
-        "status": "DEFECTIVE",
-        "type": "PERIFERIC"
+        "condition": "DEFECTIVE",
+        "type": "PERIPHERAL"
       }
     ]
   },
@@ -646,7 +646,7 @@
         "serialNumber": "SN56789031",
         "description": "Computer with scratches",
         "brand": "Apple",
-        "status": "SCRATCHED",
+        "condition": "SCRATCHED",
         "type": "COMPUTER"
       }
     ]
@@ -666,7 +666,7 @@
         "serialNumber": "SN67890142",
         "description": "Laptop with used battery",
         "brand": "Samsung",
-        "status": "USED",
+        "condition": "USED",
         "type": "LAPTOP"
       }
     ]
@@ -686,7 +686,7 @@
         "serialNumber": "SN78901253",
         "description": "Gaming laptop in working condition",
         "brand": "Razer",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "LAPTOP"
       }
     ]
@@ -706,7 +706,7 @@
         "serialNumber": "SN89012364",
         "description": "Smartwatch with minor wear",
         "brand": "Fitbit",
-        "status": "USED",
+        "condition": "USED",
         "type": "SMARTWATCH"
       }
     ]
@@ -726,7 +726,7 @@
         "serialNumber": "SN90123475",
         "description": "Camera in good condition",
         "brand": "Nikon",
-        "status": "IN_GOOD_CONDITION",
+        "condition": "IN_GOOD_CONDITION",
         "type": "OTHER"
       }
     ]
@@ -746,7 +746,7 @@
         "serialNumber": "SN01234586",
         "description": "Smartphone in working condition",
         "brand": "Sony",
-        "status": "WORKING",
+        "condition": "WORKING",
         "type": "SMARTPHONE"
       }
     ]

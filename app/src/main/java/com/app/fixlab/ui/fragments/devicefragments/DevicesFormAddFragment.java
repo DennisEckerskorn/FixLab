@@ -48,7 +48,7 @@ public class DevicesFormAddFragment extends Fragment {
                 //TODO: ADJUST DATA; LAYOUT NEEDS TO BE ADAPTED:
 
 
-                saveAddDevice.onSaveAddDevice(new Device(null,null,null,null,null,null));
+                saveAddDevice.onSaveAddDevice(new Device(null,null,null,null,null));
             }
         });
     }
