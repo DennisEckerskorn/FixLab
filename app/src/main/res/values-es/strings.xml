@@ -12,6 +12,7 @@
     <string name="delete_name">Eliminar</string>
     <string name="client_name">Cliente</string>
     <string name="name">Nombre</string>
+    <string name="client_info">Información del cliente</string>
     <string name="client_phone">Teléfono</string>
     <string name="client_email">Email</string>
     <string name="client_address">Dirección</string>

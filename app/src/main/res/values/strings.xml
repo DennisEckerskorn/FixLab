@@ -9,7 +9,8 @@
     <string name="enter_name">ENTER</string>
     <string name="modify_name">Modify</string>
     <string name="delete_name">Delete</string>
-    <string name="client_name">Cliente</string>
+    <string name="client_info">Client info</string>
+    <string name="client_name">Client</string>
     <string name="name">Name</string>
     <string name="client_phone">Phone</string>
     <string name="client_email">Email</string>
