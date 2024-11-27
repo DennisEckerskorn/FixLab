@@ -1,9 +1,11 @@
 package com.app.fixlab.models.persons;
 
+import java.io.Serializable;
+
 /**
  * TECHNI CIAN CLASS: Child class of Person
  */
-public class Technician extends Person {
+public class Technician extends Person implements Serializable {
     public enum Availability {AVAILABLE, UNAVAILABLE}
 
     private final Availability availability;

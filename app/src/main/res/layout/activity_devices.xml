@@ -38,15 +38,16 @@
                 android:text="@string/list_name" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/TabReparedList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/repared_list_name" />
-            <com.google.android.material.tabs.TabItem
                 android:id="@+id/TabAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_name" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/TabReparedList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/repared_list_name" />
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

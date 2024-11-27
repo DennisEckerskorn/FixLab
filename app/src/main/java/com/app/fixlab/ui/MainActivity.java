@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
@@ -49,7 +50,10 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
     private Person selectedClient;
     private Person selectedTechnician;
     private WorkshopManager workshopManager;
+    private FragmentManager fragmentManager;
     private static final long SPLASH_SCREEN_DELAY = 3000;
+    private static final String CLIENT_KEY = "SELECTED_CLIENT";
+    private static final String TECHNICIAN_KEY = "SELECTED_TECHNICIAN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +61,15 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
+            fragmentManager = getSupportFragmentManager();
             workshopManager = new WorkshopManager();
             loadData();
             selectedClient = null;
             selectedTechnician = null;
             navigateToFragment(new SplashFragment(), false);
+        } else {
+            selectedClient = (Person) savedInstanceState.getSerializable(CLIENT_KEY);
+            selectedTechnician = (Person) savedInstanceState.getSerializable(TECHNICIAN_KEY);
         }
 
         toolbarSettings();
@@ -75,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public void navigateToFragment(Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
+        FragmentTransaction transaction = fragmentManager.beginTransaction()
                 .replace(R.id.fcvMain, fragment);
         if (addToBackStack) {
             transaction.addToBackStack(null);
