@@ -36,4 +36,12 @@
     <string name="status_finished">Terminado</string>
     <string name="technician_info">Informacion del Tecnico</string>
     <string name="assigned_devices">Dispositivos asignados</string>
+    <string name="condition_new">Nuevo</string>
+    <string name="condition_used">Usado</string>
+    <string name="condition_repaired">Reparado</string>
+    <string name="condition_working">Funcionando</string>
+    <string name="condition_good_condition">En buenas condiciones</string>
+    <string name="condition_scratched">Rayado</string>
+    <string name="condition_defective">Defectuoso</string>
+    <string name="condition_destroyed">Destruido</string>
 </resources>

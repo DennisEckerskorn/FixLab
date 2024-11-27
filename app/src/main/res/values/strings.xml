@@ -34,5 +34,13 @@
     <string name="status_waiting_for_parts">Waiting for parts</string>
     <string name="status_finished">Finished</string>
     <string name="technician_info">Technician info</string>
-    <string name="assigned_devices">Assigned devices</string>"
+    <string name="assigned_devices">Assigned devices</string>
+    <string name="condition_new">New</string>
+    <string name="condition_used">Used</string>
+    <string name="condition_repaired">Repaired</string>
+    <string name="condition_working">Working</string>
+    <string name="condition_good_condition">In good condition</string>
+    <string name="condition_scratched">Scratched</string>
+    <string name="condition_defective">Defective</string>
+    <string name="condition_destroyed">Destroyed</string>"
 </resources>

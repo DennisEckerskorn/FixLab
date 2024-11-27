@@ -15,13 +15,15 @@ public class Device {
     private final String brand;
     private DeviceStatus status;
     private final DeviceType type;
+    private final DeviceCondition condition;
 
-    public Device(String model, String serialNumber, String description, String brand, DeviceType type) {
+    public Device(String model, String serialNumber, String description, String brand, DeviceType type, DeviceCondition condition) {
         this.model = model;
         this.serialNumber = serialNumber;
         this.description = description;
         this.brand = brand;
         this.type = type;
+        this.condition = condition;
         this.status = DeviceStatus.RECIVED;
     }
     public void setStatus(DeviceStatus status) {
@@ -52,6 +54,20 @@ public class Device {
         return status;
     }
 
+    public int getConditionString(){
+        int condition = -1;
+        switch (this.getCondition()){
+            case NEW -> condition = R.string.condition_new;
+            case USED -> condition = R.string.condition_used;
+            case REPAIRED -> condition = R.string.condition_repaired;
+            case WORKING -> condition = R.string.condition_working;
+            case IN_GOOD_CONDITION -> condition = R.string.condition_good_condition;
+            case DEFECTIVE -> condition = R.string.condition_defective;
+            case SCRATCHED -> condition = R.string.condition_scratched;
+            case DESTROYED -> condition = R.string.condition_destroyed;
+        }
+        return condition;
+    }
     public int getStatusString() {
         int status = -1;
         switch (this.getStatus()){
@@ -145,4 +161,9 @@ public class Device {
                 ", type=" + type +
                 '}';
     }
+
+    public DeviceCondition getCondition() {
+        return condition;
+    }
 }
+
