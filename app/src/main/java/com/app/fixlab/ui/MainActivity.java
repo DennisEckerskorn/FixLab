@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -40,6 +41,7 @@ import com.app.fixlab.ui.fragments.technicianfragments.TechnicianListFragment;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -73,6 +75,13 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         }
 
         toolbarSettings();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(CLIENT_KEY, (Serializable) selectedClient);
+        outState.putSerializable(TECHNICIAN_KEY, (Serializable) selectedTechnician);
     }
 
     /**
