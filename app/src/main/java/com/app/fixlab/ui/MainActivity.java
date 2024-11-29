@@ -17,7 +17,9 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
+import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
+import com.app.fixlab.listeners.OnClickRepairTechnician;
 import com.app.fixlab.listeners.OnSaveAddClient;
 import com.app.fixlab.listeners.OnSaveAddTechnician;
 import com.app.fixlab.listeners.OnSplashDelayFinished;
@@ -34,6 +36,7 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
+import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianListFragment;
@@ -48,7 +51,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
         MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians,
-        TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished {
+        TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
+        TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician {
     private Person selectedClient;
     private Person selectedTechnician;
     private WorkshopManager workshopManager;
@@ -149,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
                             condition = DeviceCondition.IN_GOOD_CONDITION;
                             type = DeviceType.OTHER; // Valor por defecto en caso de error
                         }
-                        Device device = new Device(model, serialNumber, description, brand, type,condition);
+                        Device device = new Device(model, serialNumber, description, brand, type, condition);
                         client.addDevice(device);
                     }
                 }
@@ -264,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public void onStartReparationSelected() {
-
+        navigateToFragment(new TechnicianSelectionFragment(), true);
     }
 
     /*
@@ -306,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
 
     /**
      * GET Person (technician) from TechnicianDetailFragment
+     *
      * @return Person (technician)
      */
     @Override
@@ -313,6 +318,28 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         return selectedTechnician;
     }
 
+    //REPAIR SECTION:
+
+    /**
+     * GET TECHNICIANS FOR SELECTION: Returns a list of technicians, or an empty list if technicians is null
+     *
+     * @return List of technicians
+     */
+    @Override
+    public List<Person> getTechniciansForSelection() {
+        List<Person> technicians = workshopManager.getAllTechnicians();
+        return technicians == null ? Collections.emptyList() : technicians;
+    }
+
+    @Override
+    public void onRepairTechniciansClick(Person technician) {
+        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClickRepairTechnician(Person technician) {
+
+    }
 
     /**
      * ON SAVE ADD CLIENT: Saves the client
@@ -349,4 +376,5 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
             navigateToFragment(new MainMenuFragment(), false);
         }, SPLASH_SCREEN_DELAY);
     }
+
 }

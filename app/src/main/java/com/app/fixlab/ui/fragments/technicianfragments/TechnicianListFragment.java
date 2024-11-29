@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.TechnicianAdapter;
+import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
+import com.app.fixlab.listeners.OnClickRepairTechnician;
 import com.app.fixlab.models.persons.Person;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class TechnicianListFragment extends Fragment {
 
     private List<Person> technicians;
     private ITechnicianListFragmentListener fragmentListener;
-    private OnClickListenerTechnicians clickListener; // Añadir esta línea
+    private OnClickListenerTechnicians clickListener;
 
     public TechnicianListFragment(){
         super(R.layout.fragment_list);
@@ -38,7 +40,7 @@ public class TechnicianListFragment extends Fragment {
 
         // Set the adapter for the recycler view
         TechnicianAdapter technicianAdapter = new TechnicianAdapter(technicians);
-        technicianAdapter.setListener(clickListener);
+        technicianAdapter.setListenerTechnicians(clickListener);
         rvList.setAdapter(technicianAdapter);
         rvList.setHasFixedSize(true);
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

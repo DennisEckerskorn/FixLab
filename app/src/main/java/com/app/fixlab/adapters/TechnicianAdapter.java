@@ -1,7 +1,5 @@
 package com.app.fixlab.adapters;
 
-import static android.provider.Settings.System.getString;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +9,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
 import com.app.fixlab.models.persons.Person;
-import com.app.fixlab.models.persons.Technician;
 
 import java.util.List;
 
 public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.TechnicianViewHolder> {
     private final List<Person> technicians;
     private OnClickListenerTechnicians technicianListener;
+    private OnClickListenerTechnicianRepairSelection repairSelectionListener;
 
 
     public TechnicianAdapter(List<Person> technicians) {
         this.technicians = technicians;
     }
 
-    public void setListener(OnClickListenerTechnicians technicianListener) {
+    public void setListenerTechnicians(OnClickListenerTechnicians technicianListener) {
         this.technicianListener = technicianListener;
+    }
+
+    public void setListenerRepairSelection(OnClickListenerTechnicianRepairSelection repairSelectionListener) {
+        this.repairSelectionListener = repairSelectionListener;
     }
 
     @NonNull
