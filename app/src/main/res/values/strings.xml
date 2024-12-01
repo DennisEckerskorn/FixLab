@@ -16,7 +16,7 @@
     <string name="client_email">Email</string>
     <string name="client_address">Address</string>
     <string name="client_devices">Devices</string>
-    <string name="repared_list_name">Repared List</string>
+    <string name="repaired_list_name">Repaired List</string>
     <string name="device_info">Device info</string>
     <string name="model">Model</string>
     <string name="brand">Brand</string>

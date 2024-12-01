@@ -17,7 +17,7 @@
     <string name="client_email">Email</string>
     <string name="client_address">Dirección</string>
     <string name="client_devices">Dispositivos</string>
-    <string name="repared_list_name">Lista Reparados</string>
+    <string name="repaired_list_name">Lista Reparados</string>
     <string name="device_info">Información del dispositivo</string>
     <string name="model">Modelo</string>
     <string name="brand">Marca</string>
