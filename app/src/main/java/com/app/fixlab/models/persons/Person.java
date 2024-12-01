@@ -150,4 +150,5 @@ public abstract class Person {
                 ", devices=" + devices +
                 '}';
     }
+
 }

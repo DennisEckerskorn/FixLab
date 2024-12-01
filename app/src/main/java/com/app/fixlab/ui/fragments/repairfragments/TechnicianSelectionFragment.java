@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.TechnicianAdapter;
 import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
-import com.app.fixlab.listeners.OnClickListenerTechnicians;
 import com.app.fixlab.listeners.OnClickRepairTechnician;
 import com.app.fixlab.models.persons.Person;
 
@@ -43,6 +42,8 @@ public class TechnicianSelectionFragment extends Fragment {
         rvList.setAdapter(technicianAdapter);
         rvList.setHasFixedSize(true);
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+
     }
 
     @Override

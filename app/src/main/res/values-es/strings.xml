@@ -44,4 +44,6 @@
     <string name="condition_scratched">Rayado</string>
     <string name="condition_defective">Defectuoso</string>
     <string name="condition_destroyed">Destruido</string>
+    <string name="dni">DNI:</string>
+    <string name="availability">Disponibilidad:</string>
 </resources>

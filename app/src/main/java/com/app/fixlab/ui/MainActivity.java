@@ -336,13 +336,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
 
     @Override
     public void onRepairTechniciansClick(Person technician) {
+        selectedTechnician = technician;
         Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onClickRepairTechnician(Person technician) {
-
+        selectedTechnician = technician;
+        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
     }
+
+
 
     /**
      * ON SAVE ADD CLIENT: Saves the client
@@ -398,4 +403,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
     @Override
     public void onSaveAddDevice(Device device) {
     }
+
+
 }

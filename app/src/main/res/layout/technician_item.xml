@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewTech"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -15,12 +15,11 @@
         android:padding="16dp">
 
         <ImageView
-            app:shapeAppearanceOverlay="@style/CircularImageView"
             android:id="@+id/ivTechnicianPhoto"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
-            />
+            app:shapeAppearanceOverlay="@style/CircularImageView" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -29,26 +28,29 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvTechNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre:"
+                android:text="@string/name"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvTechDNIText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="DNI:"
+                android:text="@string/dni"
                 android:textAlignment="viewStart"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvTechAvailText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Disponibilidad:"
+                android:text="@string/availability"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -64,14 +66,14 @@
                 android:id="@+id/tvTechnicianName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvTechnicianDni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvTechnicianAvailability"
@@ -79,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textColor="@android:color/holo_green_dark"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

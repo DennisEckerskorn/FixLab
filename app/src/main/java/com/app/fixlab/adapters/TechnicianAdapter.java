@@ -3,15 +3,19 @@ package com.app.fixlab.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
 import com.app.fixlab.models.persons.Person;
+import com.app.fixlab.models.persons.Technician;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -52,14 +56,17 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
 
 
     class TechnicianViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final ImageView ivTechnicianPhoto;
         private final TextView tvNameTechnician;
         private final TextView tvDniTechnician;
         private final TextView tvAvailabilityTechnician;
 
-        private Person technician;;
+        private Person technician;
+        ;
 
         public TechnicianViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivTechnicianPhoto = itemView.findViewById(R.id.ivTechnicianPhoto);
             tvNameTechnician = itemView.findViewById(R.id.tvTechnicianName);
             tvDniTechnician = itemView.findViewById(R.id.tvTechnicianDni);
             tvAvailabilityTechnician = itemView.findViewById(R.id.tvTechnicianAvailability);
@@ -68,9 +75,19 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
 
         private void bindTechnician(Person technician) {
             this.technician = technician;
+            ivTechnicianPhoto.setImageResource(R.drawable.ic_launcher_foreground);
             tvNameTechnician.setText(technician.getName());
             tvDniTechnician.setText(technician.getDni());
-            //tvAvailabilityTechnician.setText(technician.getAvailability());
+
+            if (technician instanceof Technician) {
+                Technician.Availability availability = ((Technician) technician).getAvailability();
+                tvAvailabilityTechnician.setText(availability.toString());
+
+                if (availability == Technician.Availability.AVAILABLE) {
+                    tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.neon_green));
+                } else {
+                    tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.red));                }
+            }
         }
 
         @Override
