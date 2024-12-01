@@ -45,7 +45,7 @@ public class RepairedDeviceListFragment extends Fragment {
 
         // Set the adapter for the recycler view
         DevicesAdapter devicesAdapter = new DevicesAdapter(devices);
-        devicesAdapter.setListener((OnDeviceClickListener) repairDeviceClickListener);
+        devicesAdapter.setRepairDeviceClickListener(repairDeviceClickListener);
         rvList.setAdapter(devicesAdapter);
         rvList.setHasFixedSize(true);
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
