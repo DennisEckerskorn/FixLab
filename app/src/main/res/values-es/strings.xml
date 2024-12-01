@@ -17,6 +17,8 @@
     <string name="client_email">Email</string>
     <string name="client_address">Dirección</string>
     <string name="client_devices">Dispositivos</string>
+    <string name="save_client">Guardar cliente</string>
+    <string name="modify_client">Modificar cliente</string>
     <string name="repaired_list_name">Lista Reparados</string>
     <string name="device_info">Información del dispositivo</string>
     <string name="model">Modelo</string>
