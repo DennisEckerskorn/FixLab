@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
-import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
@@ -49,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
+public class MainActivity extends AppCompatActivity implements OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
         MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians,
         TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
         TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician {
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      * @param fragment       Fragment to navigate to
      * @param addToBackStack Whether to add the fragment to the back stack, or not
      */
-    @Override
     public void navigateToFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction()
                 .replace(R.id.fcvMain, fragment);
