@@ -40,15 +40,12 @@ public class DevicesFormAddFragment extends Fragment {
         btnSaveDevice.setOnClickListener(v -> {
             if (saveAddDevice != null) {
                 // Get data from TextInputEditText views
-                String name = tilDeviceModel.getEditText().getText().toString(); // Access EditText within TextInputLayout
-                String email = tilDeviceBrand.getEditText().getText().toString();
-                String telefono = tilDeviceSerialNumber.getEditText().getText().toString();
-                String direccion = tilDeviceDescription.getEditText().getText().toString();
+                String model = tilDeviceModel.getEditText().getText().toString(); // Access EditText within TextInputLayout
+                String brand = tilDeviceBrand.getEditText().getText().toString();
+                String serialNumber = tilDeviceSerialNumber.getEditText().getText().toString();
+                String desc = tilDeviceDescription.getEditText().getText().toString();
+                saveAddDevice.onSaveAddDevice(new Device(model,serialNumber,desc,brand,null,null));
 
-                //TODO: ADJUST DATA; LAYOUT NEEDS TO BE ADAPTED:
-
-
-                saveAddDevice.onSaveAddDevice(new Device(null,null,null,null,null,null));
             }
         });
     }

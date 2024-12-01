@@ -17,10 +17,12 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.FragmentNavigationListener;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
+import com.app.fixlab.listeners.OnClickListenerDevices;
 import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
 import com.app.fixlab.listeners.OnClickRepairTechnician;
 import com.app.fixlab.listeners.OnSaveAddClient;
+import com.app.fixlab.listeners.OnSaveAddDevice;
 import com.app.fixlab.listeners.OnSaveAddTechnician;
 import com.app.fixlab.listeners.OnSplashDelayFinished;
 import com.app.fixlab.managers.WorkshopManager;
@@ -36,6 +38,9 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
@@ -52,7 +57,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements FragmentNavigationListener, OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
         MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians,
         TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
-        TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician {
+        TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician, OnClickListenerDevices, DeviceListFragment.IDeviceListFragmentListener, DeviceDetailFragment.IDeviceDetailFragmentListener, OnSaveAddDevice {
     private Person selectedClient;
     private Person selectedTechnician;
     private WorkshopManager workshopManager;
@@ -252,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
      */
     @Override
     public void onDevicesSelected() {
-//        navigateToFragment(new DeviceFragment(), true);
+        navigateToFragment(new DeviceFragment(), true);
     }
 
     /**
@@ -377,4 +382,22 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigatio
         }, SPLASH_SCREEN_DELAY);
     }
 
+    @Override
+    public void onClick(Device device) {
+
+    }
+
+    @Override
+    public Device getDevice() {
+        return null;
+    }
+
+    @Override
+    public List<Device> getDevices() {
+        return workshopManager.getAllDevices();
+    }
+
+    @Override
+    public void onSaveAddDevice(Device device) {
+    }
 }
