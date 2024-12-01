@@ -1,19 +1,7 @@
 package com.app.fixlab.ui.fragments.devicefragments;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.fixlab.R;
-import com.app.fixlab.adapters.DevicesAdapter;
-import com.app.fixlab.listeners.OnClickListenerClients;
-import com.app.fixlab.listeners.OnClickListenerDevices;
 import com.app.fixlab.models.devices.Device;
 
 import java.util.List;

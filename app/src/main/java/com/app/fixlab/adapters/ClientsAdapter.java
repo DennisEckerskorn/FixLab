@@ -1,7 +1,5 @@
 package com.app.fixlab.adapters;
 
-import static android.provider.Settings.System.getString;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
-import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.models.persons.Person;
 
 import java.util.List;
