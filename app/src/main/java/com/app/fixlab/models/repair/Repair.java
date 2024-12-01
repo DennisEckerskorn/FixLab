@@ -1,0 +1,74 @@
+package com.app.fixlab.models.repair;
+
+import com.app.fixlab.models.devices.Device;
+import com.app.fixlab.models.persons.Person;
+import com.app.fixlab.models.persons.Technician;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Repair implements Serializable {
+    private Person technician;
+    private Device device;
+    private RepairStatus status;
+
+    public enum RepairStatus {
+        PENDING,
+        IN_PROGRESS,
+        COMPLETED
+    }
+
+    public Repair(Person technician, Device device) {
+        this.technician = technician;
+        this.device = device;
+        this.status = status;
+    }
+
+
+
+    public Person getTechnician() {
+        return technician;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public RepairStatus getStatus() {
+        return status;
+    }
+
+    public void setTechnician(Technician technician) {
+        this.technician = technician;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
+
+    public void setStatus(RepairStatus status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Repair repair = (Repair) o;
+        return Objects.equals(technician, repair.technician) && Objects.equals(device, repair.device) && status == repair.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(technician, device, status);
+    }
+
+    @Override
+    public String toString() {
+        return "Repair{" +
+                "technician=" + technician +
+                ", device=" + device +
+                ", status=" + status +
+                '}';
+    }
+}

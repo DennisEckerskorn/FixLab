@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
@@ -18,6 +19,7 @@ import java.util.List;
 public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceViewHolder> {
     private final List<Device> devices;
     private OnDeviceClickListener deviceListener;
+    private IOnItemRepairClickListener repairDeviceClickListener;
 
 
     public DevicesAdapter(List<Device>devices) {
@@ -26,6 +28,10 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
 
     public void setListener(OnDeviceClickListener deviceListener) {
         this.deviceListener = deviceListener;
+    }
+
+    public void setRepairDeviceClickListener(IOnItemRepairClickListener repairDeviceClickListener) {
+        this.repairDeviceClickListener = repairDeviceClickListener;
     }
 
     @NonNull
@@ -75,6 +81,10 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
         public void onClick(View view) {
             if (deviceListener != null) {
                 deviceListener.onDeviceClick(device);
+            }
+
+            if (repairDeviceClickListener != null) {
+                repairDeviceClickListener.onRepairedDeviceClick(device);
             }
         }
     }

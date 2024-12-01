@@ -30,6 +30,7 @@ import com.app.fixlab.models.devices.DeviceType;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
+import com.app.fixlab.models.repair.Repair;
 import com.app.fixlab.parsers.GeneralJSONParser;
 import com.app.fixlab.ui.fragments.MainMenuFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
@@ -55,12 +56,15 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     private Person selectedClient;
     private Person selectedTechnician;
     private Device selectedDevice;
+    private Repair currentRepair;
     private WorkshopManager workshopManager;
     private FragmentManager fragmentManager;
     private static final long SPLASH_SCREEN_DELAY = 3000;
     private static final String CLIENT_KEY = "SELECTED_CLIENT";
     private static final String TECHNICIAN_KEY = "SELECTED_TECHNICIAN";
     private static final String DEVICE_KEY = "SELECTED_DEVICE";
+    private static final String REPAIR_KEY = "SELECTED_REPAIR";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             selectedClient = (Person) savedInstanceState.getSerializable(CLIENT_KEY);
             selectedTechnician = (Person) savedInstanceState.getSerializable(TECHNICIAN_KEY);
             selectedDevice = (Device) savedInstanceState.getSerializable(DEVICE_KEY);
+            currentRepair = (Repair) savedInstanceState.getSerializable(REPAIR_KEY);
         }
 
         toolbarSettings();
@@ -90,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         outState.putSerializable(CLIENT_KEY, (Serializable) selectedClient);
         outState.putSerializable(TECHNICIAN_KEY, (Serializable) selectedTechnician);
         outState.putSerializable(DEVICE_KEY, (Serializable) selectedDevice);
+        outState.putSerializable(REPAIR_KEY, (Serializable) currentRepair);
     }
 
     /**
@@ -425,7 +431,35 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onItemClickRepair(Object item) {
-        selectedTechnician = (Person) item;
-        navigateToFragment(new DeviceFragment(), true);
+        if (item instanceof Technician) {
+            selectedTechnician = (Person) item;
+            Repair repair = new Repair(selectedTechnician, null);
+            this.currentRepair = repair;
+            navigateToFragment(new DeviceFragment(), true);
+            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
+        }
     }
+
+    /**
+     * ON REPAIRED DEVICE CLICK: Handles the click on a repaired device TODO: IMPLEMENTAR PARA FRAGMENT REPAIREDDEVICESLISTFRAGMENT
+     *
+     * @param device Device that was repaired
+     */
+    @Override
+    public void onRepairedDeviceClick(Device device) {
+        Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
+        selectedDevice = device;
+
+        if(currentRepair != null) {
+            currentRepair.setDevice(selectedDevice);
+            currentRepair.setStatus(Repair.RepairStatus.PENDING);
+            Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "No device selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
