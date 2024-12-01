@@ -14,23 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.DevicesAdapter;
-import com.app.fixlab.listeners.IClientProvider;
-import com.app.fixlab.listeners.IDeviceProvider;
+import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
-import com.app.fixlab.listeners.OnClickListenerDevices;
+import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Person;
 
 import java.util.List;
 
 public class ClientDetailFragment extends Fragment {
-    public interface IClientDetailFragmentListener {
-        Person getClient();
-    }
-
     private Person selectedClient;
     private List<Device> devices;
-    private IonItemClickListenerGeneric<Device> itemClickListener;
+    private OnDeviceClickListener itemClickListener;
 
     public ClientDetailFragment() {
         super(R.layout.detail_client_item);
@@ -50,16 +45,11 @@ public class ClientDetailFragment extends Fragment {
         RecyclerView rvClientDevices = view.findViewById(R.id.rvClientDevices);
 
 
-
-
         DevicesAdapter devicesAdapter = new DevicesAdapter(devices);
-        devicesAdapter.setListener((OnClickListenerDevices) itemClickListener);
+        devicesAdapter.setListener(itemClickListener);
         rvClientDevices.setAdapter(devicesAdapter);
         rvClientDevices.setHasFixedSize(true);
         rvClientDevices.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
-
-
 
 
         if (selectedClient != null) {
@@ -73,11 +63,10 @@ public class ClientDetailFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        IClientDetailFragmentListener listener = (IClientDetailFragmentListener) requireActivity();
-        IDeviceProvider deviceProvider = (IDeviceProvider) requireActivity();
-        itemClickListener = (IonItemClickListenerGeneric<Device>) requireActivity();
-        devices = deviceProvider.getDevicesOfClient();
-        selectedClient = listener.getClient();
+        IdataProvider dataProvider = (IdataProvider) requireActivity();
+        itemClickListener = (OnDeviceClickListener) requireActivity();
+        devices = dataProvider.getDeviceOfClient();
+        selectedClient = dataProvider.getClient();
         Toast.makeText(context, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
     }
 }

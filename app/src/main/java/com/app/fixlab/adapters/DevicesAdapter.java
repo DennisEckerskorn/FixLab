@@ -1,33 +1,30 @@
 package com.app.fixlab.adapters;
 
-import static com.app.fixlab.models.devices.DeviceStatus.IN_REPARATION;
-import static com.app.fixlab.models.devices.DeviceStatus.RECIVED;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.listeners.OnClickListenerDevices;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
+import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
 
 import java.util.List;
 
 public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceViewHolder> {
-    private List<Device> devices;
-    private OnClickListenerDevices deviceListener;
+    private final List<Device> devices;
+    private OnDeviceClickListener deviceListener;
 
 
     public DevicesAdapter(List<Device>devices) {
         this.devices = devices;
     }
 
-    public void setListener(OnClickListenerDevices deviceListener) {
+    public void setListener(OnDeviceClickListener deviceListener) {
         this.deviceListener = deviceListener;
     }
 
@@ -77,7 +74,7 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceVi
         @Override
         public void onClick(View view) {
             if (deviceListener != null) {
-                deviceListener.onClick(device);
+                deviceListener.onDeviceClick(device);
             }
         }
     }

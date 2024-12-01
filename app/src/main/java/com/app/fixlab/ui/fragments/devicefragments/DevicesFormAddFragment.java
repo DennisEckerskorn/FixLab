@@ -31,13 +31,18 @@ public class DevicesFormAddFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        /*
+        TODO: AQUI PETA EL CODIGO Y DA NULLPOINTER SOBRE ALGUN LAYOUT
         tilDeviceModel = view.findViewById(R.id.tilDeviceModel);
         tilDeviceBrand = view.findViewById(R.id.tilDeviceBrand);
         tilDeviceSerialNumber = view.findViewById(R.id.tilDeviceSerialNumber);
         tilDeviceDescription = view.findViewById(R.id.tilDeviceDescription);
         btnSaveDevice = view.findViewById(R.id.btnSaveDevice);
 
+
+
         btnSaveDevice.setOnClickListener(v -> {
+
             if (saveAddDevice != null) {
                 // Get data from TextInputEditText views
                 String model = tilDeviceModel.getEditText().getText().toString(); // Access EditText within TextInputLayout
@@ -47,6 +52,8 @@ public class DevicesFormAddFragment extends Fragment {
                 saveAddDevice.onSaveAddDevice(new Device(model,serialNumber,desc,brand,null,null));
             }
         });
+  */
+
     }
 
     @Override

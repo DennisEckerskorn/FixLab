@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.DevicesAdapter;
-import com.app.fixlab.listeners.OnClickListenerDevices;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
+import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
 public class RepairedDeviceListFragment extends Fragment {
     private IRepairedDeviceListFragmentListener fragmentListener;
     private List<Device> devices;
+
     public RepairedDeviceListFragment() {
         super(R.layout.fragment_list);
     }
@@ -40,7 +42,7 @@ public class RepairedDeviceListFragment extends Fragment {
 
         // Set the adapter for the recycler view
         DevicesAdapter devicesAdapter = new DevicesAdapter(devices);
-        devicesAdapter.setListener((OnClickListenerDevices) fragmentListener);
+        devicesAdapter.setListener((OnDeviceClickListener) fragmentListener);
         rvList.setAdapter(devicesAdapter);
         rvList.setHasFixedSize(true);
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

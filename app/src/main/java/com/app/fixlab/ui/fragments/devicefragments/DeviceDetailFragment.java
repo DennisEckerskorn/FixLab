@@ -11,16 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 
 public class DeviceDetailFragment extends Fragment {
-    public interface IDeviceDetailFragmentListener {
-        Device getDevice();
-    }
 
     private Device selectedDevice;
+
     private TextView tvDeviceModel;
     private TextView tvDeviceBrand;
     private TextView tvDeviceSerialNumber;
@@ -30,7 +29,6 @@ public class DeviceDetailFragment extends Fragment {
 
     //TODO: Implement device list
     //private TextView tvClientDevicesDetailValue;
-    private IDeviceDetailFragmentListener listener;
     public DeviceDetailFragment() {
         super(R.layout.detail_client_item);
     }
@@ -45,20 +43,25 @@ public class DeviceDetailFragment extends Fragment {
         tvDeviceCondition = view.findViewById(R.id.tvDeviceCondition);
         tvDeviceStatus = view.findViewById(R.id.tvDeviceStatus);
         tvDeviceDescription = view.findViewById(R.id.tvDeviceDescription);
-
-        tvDeviceModel.setText(selectedDevice.getModel());
-        tvDeviceBrand.setText(selectedDevice.getBrand());
-        tvDeviceSerialNumber.setText(selectedDevice.getSerialNumber());
-        tvDeviceCondition.setText(selectedDevice.getConditionString());
-        tvDeviceStatus.setText(selectedDevice.getStatusString());
-        tvDeviceDescription.setText(selectedDevice.getDescription());
+/*
+        //TODO: ALGUN TEXTVIEW FALLA Y DA NULL POINTER EN ESTA PARTE:
+        if (selectedDevice != null) {
+            tvDeviceModel.setText(selectedDevice.getModel());
+            tvDeviceBrand.setText(selectedDevice.getBrand());
+            tvDeviceSerialNumber.setText(selectedDevice.getSerialNumber());
+            tvDeviceCondition.setText(selectedDevice.getConditionString());
+            tvDeviceStatus.setText(selectedDevice.getStatusString());
+            tvDeviceDescription.setText(selectedDevice.getDescription());
+        }
+        //TODO: Implement device list
+ */
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        listener = (IDeviceDetailFragmentListener) requireActivity();
-        selectedDevice = listener.getDevice();
+        IdataProvider dataProvider = (IdataProvider) requireActivity();
+        selectedDevice = dataProvider.getDevice();
         Toast.makeText(context, "Device selected: " + selectedDevice.getModel(), Toast.LENGTH_SHORT).show();
     }
 }

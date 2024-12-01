@@ -14,15 +14,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
-import com.app.fixlab.listeners.IClientProvider;
-import com.app.fixlab.listeners.IDeviceProvider;
-import com.app.fixlab.listeners.ITechnicianProvider;
+import com.app.fixlab.listeners.IOnItemRepairClickListener;
+import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.MenuActionListener;
-import com.app.fixlab.listeners.OnClickListenerDevices;
-import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
-import com.app.fixlab.listeners.OnClickListenerTechnicians;
-import com.app.fixlab.listeners.OnClickRepairTechnician;
+import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.listeners.OnSaveAddClient;
 import com.app.fixlab.listeners.OnSaveAddDevice;
 import com.app.fixlab.listeners.OnSaveAddTechnician;
@@ -38,15 +34,12 @@ import com.app.fixlab.parsers.GeneralJSONParser;
 import com.app.fixlab.ui.fragments.MainMenuFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
-import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
-import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
-import com.app.fixlab.ui.fragments.technicianfragments.TechnicianListFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -56,17 +49,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IClientProvider, IDeviceProvider, ITechnicianProvider, ClientDetailFragment.IClientDetailFragmentListener,
-        MenuActionListener, OnSaveAddClient, OnClickListenerTechnicians,
-        TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
-        TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician, OnClickListenerDevices, DeviceListFragment.IDeviceListFragmentListener, DeviceDetailFragment.IDeviceDetailFragmentListener, OnSaveAddDevice {
+public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IdataProvider, IOnItemRepairClickListener, OnDeviceClickListener,
+        MenuActionListener, OnSaveAddClient, OnSaveAddTechnician, OnSplashDelayFinished,
+        OnSaveAddDevice {
     private Person selectedClient;
     private Person selectedTechnician;
+    private Device selectedDevice;
     private WorkshopManager workshopManager;
     private FragmentManager fragmentManager;
     private static final long SPLASH_SCREEN_DELAY = 3000;
     private static final String CLIENT_KEY = "SELECTED_CLIENT";
     private static final String TECHNICIAN_KEY = "SELECTED_TECHNICIAN";
+    private static final String DEVICE_KEY = "SELECTED_DEVICE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +73,12 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             loadData();
             selectedClient = null;
             selectedTechnician = null;
+            selectedDevice = null;
             navigateToFragment(new SplashFragment(), false);
         } else {
             selectedClient = (Person) savedInstanceState.getSerializable(CLIENT_KEY);
             selectedTechnician = (Person) savedInstanceState.getSerializable(TECHNICIAN_KEY);
+            selectedDevice = (Device) savedInstanceState.getSerializable(DEVICE_KEY);
         }
 
         toolbarSettings();
@@ -93,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         super.onSaveInstanceState(outState);
         outState.putSerializable(CLIENT_KEY, (Serializable) selectedClient);
         outState.putSerializable(TECHNICIAN_KEY, (Serializable) selectedTechnician);
+        outState.putSerializable(DEVICE_KEY, (Serializable) selectedDevice);
     }
 
     /**
@@ -213,21 +210,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         setSupportActionBar(toolbar);
     }
 
-
-    /**
-     * ON CLICK: Sets the selected client
-     *
-     * @param technician Technician that was clicked
-     */
-    @Override
-    public void onTechniciansClick(Person technician) {
-        selectedTechnician = technician;
-        // Toast para feedback visual
-        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
-        // Navegar al fragmento de detalle del técnico
-        navigateToFragment(new TechnicianDetailFragment(), true);
-    }
-
     /*
      * MENU ACTION LISTENERS:
      */
@@ -264,46 +246,94 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         navigateToFragment(new TechnicianSelectionFragment(), true);
     }
 
+
     /*
      * GETTERS AND SETTERS:
      */
 
 
     /**
-     * GET Person (technician) from TechnicianDetailFragment
+     * GET CLIENT DATA: Returns the clients of the workshop
      *
-     * @return Person (technician)
+     * @return List<Person> clients of the workshop
+     */
+    @Override
+    public List<Person> getClientData() {
+        List<Person> clients = workshopManager.getAllClients();
+        return clients == null ? Collections.emptyList() : clients;
+    }
+
+    /**
+     * GET TECHNICIAN DATA: Returns the technicians of the workshop
+     *
+     * @return List<Person> technicians of the workshop
+     */
+    @Override
+    public List<Person> getTechnicianData() {
+        List<Person> technicians = workshopManager.getAllTechnicians();
+        return technicians == null ? Collections.emptyList() : technicians;
+    }
+
+    /**
+     * GET DEVICE DATA: Returns the devices of the workshop
+     *
+     * @return List<Device> devices of the workshop
+     */
+    @Override
+    public List<Device> getDeviceData() {
+        List<Device> devices = workshopManager.getAllDevices();
+        return devices == null ? Collections.emptyList() : devices;
+    }
+
+    /**
+     * GET DEVICE OF CLIENT: Returns the devices of the selected client
+     *
+     * @return List<Device> devices of the selected client
+     */
+    @Override
+    public List<Device> getDeviceOfClient() {
+        if (selectedClient != null) {
+            List<Device> devices = workshopManager.getDeviceOffClient(selectedClient);
+            return devices == null ? Collections.emptyList() : devices;
+        }
+        return Collections.emptyList();
+    }
+
+
+    /**
+     * GET CLIENT: Returns the selected client
+     *
+     * @return Client selected
+     */
+    @Override
+    public Person getClient() {
+        return selectedClient;
+    }
+
+    /**
+     * GET TECHNICIAN: Returns the selected technician
+     *
+     * @return Technician selected
      */
     @Override
     public Person getTechnician() {
         return selectedTechnician;
     }
 
-    //REPAIR SECTION:
-
     /**
-     * GET TECHNICIANS FOR SELECTION: Returns a list of technicians, or an empty list if technicians is null
+     * GET DEVICE: Returns the selected device
      *
-     * @return List of technicians
+     * @return Device selected
      */
     @Override
-    public List<Person> getTechniciansForSelection() {
-        List<Person> technicians = workshopManager.getAllTechnicians();
-        return technicians == null ? Collections.emptyList() : technicians;
+    public Device getDevice() {
+        return selectedDevice;
     }
 
-    @Override
-    public void onRepairTechniciansClick(Person technician) {
-        selectedTechnician = technician;
-        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
 
-    }
-
-    @Override
-    public void onClickRepairTechnician(Person technician) {
-        selectedTechnician = technician;
-        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
-    }
+    /*
+     * LISTENERS:
+     */
 
 
     /**
@@ -342,31 +372,25 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }, SPLASH_SCREEN_DELAY);
     }
 
-    @Override
-    public void onClick(Device device) {
-
-    }
-
-    @Override
-    public Device getDevice() {
-        return null;
-    }
-
-
+    /**
+     * ON SAVE ADD DEVICE: Saves the device
+     *
+     * @param device Device to save
+     */
     @Override
     public void onSaveAddDevice(Device device) {
+        if (device != null) {
+            //TODO: FALTA IMPLEMENTAR EN WORKSHOPMANAGER
+            // workshopManager.addDevice(device);
+            Toast.makeText(this, "Device saved: " + device.getModel(), Toast.LENGTH_SHORT).show();
+        }
     }
-
-
-    /*
-    Generic Listener
-     */
 
 
     /**
-     * NEW VERSION OF LISTENERS:
+     * ON ITEM CLICK: Handles the click on an item
      *
-     * @param item
+     * @param item Item that was clicked
      */
     @Override
     public void onItemClick(Person item) {
@@ -374,46 +398,34 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             selectedClient = item;
             ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
             navigateToFragment(clientDetailFragment, true);
-
-
             Toast.makeText(this, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
+        } else if (item instanceof Technician) {
+            selectedTechnician = item;
+            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
+            navigateToFragment(new TechnicianDetailFragment(), true);
         }
-    }
-
-    @Override
-    public List<Person> getClients() {
-        List<Person> clients = workshopManager.getAllClients();
-        return clients == null ? Collections.emptyList() : clients;
-    }
-
-    @Override
-    public List<Device> getDevices() {
-        List<Device> devices = workshopManager.getAllDevices();
-        return devices == null ? Collections.emptyList() : devices;
-    }
-
-    @Override
-    public List<Device> getDevicesOfClient() {
-        if (selectedClient != null) {
-            List<Device> devices = workshopManager.getDeviceOffClient(selectedClient);
-            return devices == null ? Collections.emptyList() : devices;
-        }
-        return Collections.emptyList();
     }
 
     /**
-     * GET Technicians: Returns a list of clients, or an empty list if clients is null
+     * ON DEVICE CLICK: Handles the click on a device
      *
-     * @return List of technicians
+     * @param device Device that was clicked
      */
     @Override
-    public List<Person> getTechnicians() {
-        List<Person> technicians = workshopManager.getAllTechnicians();
-        return technicians == null ? Collections.emptyList() : technicians;
+    public void onDeviceClick(Device device) {
+        selectedDevice = device;
+        Toast.makeText(this, "Device selected: " + device.getModel(), Toast.LENGTH_SHORT).show();
+        navigateToFragment(new DeviceDetailFragment(), true);
     }
 
+    /**
+     * ON ITEM REPAIR CLICK: Handles the click on an item
+     *
+     * @param item Item that was clicked
+     */
     @Override
-    public Person getClient() {
-        return selectedClient;
+    public void onItemClickRepair(Object item) {
+        selectedTechnician = (Person) item;
+        navigateToFragment(new DeviceFragment(), true);
     }
 }

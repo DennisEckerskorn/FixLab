@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.ClientsAdapter;
-import com.app.fixlab.listeners.IClientProvider;
+import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.models.persons.Person;
 
@@ -46,8 +46,8 @@ public class ClientListFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         // Get the listener for the client list fragment
-        IClientProvider dataProvider = (IClientProvider) requireActivity();
+        IdataProvider dataProvider = (IdataProvider) requireActivity();
         itemClickListener = (IonItemClickListenerGeneric<Person>) requireActivity();
-        clients = dataProvider.getClients();
+        clients = dataProvider.getClientData();
     }
 }

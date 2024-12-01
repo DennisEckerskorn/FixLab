@@ -11,30 +11,29 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
-import com.app.fixlab.listeners.OnClickListenerTechnicians;
+import com.app.fixlab.listeners.IOnItemRepairClickListener;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
 public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.TechnicianViewHolder> {
     private final List<Person> technicians;
-    private OnClickListenerTechnicians technicianListener;
-    private OnClickListenerTechnicianRepairSelection repairSelectionListener;
+    private IonItemClickListenerGeneric<Person> technicianListener;
+    private IOnItemRepairClickListener repairListener;
 
 
     public TechnicianAdapter(List<Person> technicians) {
         this.technicians = technicians;
     }
 
-    public void setListenerTechnicians(OnClickListenerTechnicians technicianListener) {
+    public void setListenerTechnicians(IonItemClickListenerGeneric<Person> technicianListener) {
         this.technicianListener = technicianListener;
     }
 
-    public void setListenerRepairSelection(OnClickListenerTechnicianRepairSelection repairSelectionListener) {
-        this.repairSelectionListener = repairSelectionListener;
+    public void setRepairListener(IOnItemRepairClickListener repairListener) {
+        this.repairListener = repairListener;
     }
 
     @NonNull
@@ -86,14 +85,19 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
                 if (availability == Technician.Availability.AVAILABLE) {
                     tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.neon_green));
                 } else {
-                    tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.red));                }
+                    tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.red));
+                }
             }
         }
 
         @Override
         public void onClick(View view) {
             if (technicianListener != null) {
-                technicianListener.onTechniciansClick(technician);
+                technicianListener.onItemClick(technician);
+            }
+
+            if (repairListener != null) {
+                repairListener.onItemClickRepair(technician);
             }
         }
     }

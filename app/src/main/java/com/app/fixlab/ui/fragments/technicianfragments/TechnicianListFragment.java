@@ -12,24 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.TechnicianAdapter;
-import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
-import com.app.fixlab.listeners.OnClickListenerTechnicians;
-import com.app.fixlab.listeners.OnClickRepairTechnician;
+import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.models.persons.Person;
 
 import java.util.List;
 
 public class TechnicianListFragment extends Fragment {
-
-    public interface ITechnicianListFragmentListener {
-        List<Person> getTechnicians();
-    }
-
     private List<Person> technicians;
-    private ITechnicianListFragmentListener fragmentListener;
-    private OnClickListenerTechnicians clickListener;
+    private IonItemClickListenerGeneric<Person> itemClickListener;
 
-    public TechnicianListFragment(){
+    public TechnicianListFragment() {
         super(R.layout.fragment_list);
     }
 
@@ -40,7 +33,7 @@ public class TechnicianListFragment extends Fragment {
 
         // Set the adapter for the recycler view
         TechnicianAdapter technicianAdapter = new TechnicianAdapter(technicians);
-        technicianAdapter.setListenerTechnicians(clickListener);
+        technicianAdapter.setListenerTechnicians(itemClickListener);
         rvList.setAdapter(technicianAdapter);
         rvList.setHasFixedSize(true);
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -49,13 +42,8 @@ public class TechnicianListFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try {
-            fragmentListener = (ITechnicianListFragmentListener) requireActivity();
-            clickListener = (OnClickListenerTechnicians) requireActivity();
-            technicians = fragmentListener.getTechnicians();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement both ITechnicianListFragmentListener and OnClickListenerTechnicians");
-        }
+        IdataProvider dataProvider = (IdataProvider) requireActivity();
+        itemClickListener = (IonItemClickListenerGeneric<Person>) requireActivity();
+        technicians = dataProvider.getTechnicianData();
     }
 }

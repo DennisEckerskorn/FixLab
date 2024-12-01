@@ -11,12 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.persons.Person;
 
 public class TechnicianDetailFragment extends Fragment {
-    public interface ITechniciantDetailFragmentListener {
-        Person getTechnician();
-    }
+    private IdataProvider technicianProvider;
 
     private Person selectedTechnician;
     private TextView tvNameDetailValue;
@@ -25,9 +24,7 @@ public class TechnicianDetailFragment extends Fragment {
     private TextView tvEmailDetailValue;
     private TextView tvPhoneDetailValue;
     private TextView tvTechnicianAddressDetailValue;
-    private TextView tvAvailabilityDetailValue;
-    //TODO: Implement device list
-    private ITechniciantDetailFragmentListener listener;
+
 
     public TechnicianDetailFragment() {
         super(R.layout.detail_technician_item);
@@ -43,7 +40,6 @@ public class TechnicianDetailFragment extends Fragment {
         tvEmailDetailValue = view.findViewById(R.id.tvTechnicianEmail);
         tvPhoneDetailValue = view.findViewById(R.id.tvTechnicianPhone);
         tvTechnicianAddressDetailValue = view.findViewById(R.id.tvTechnicianAddress);
-        tvAvailabilityDetailValue = view.findViewById(R.id.tvTechnicianAvailability);
 
         tvNameDetailValue.setText(selectedTechnician.getName());
         tvDniDetailValue.setText(selectedTechnician.getDni());
@@ -51,15 +47,14 @@ public class TechnicianDetailFragment extends Fragment {
         tvEmailDetailValue.setText(selectedTechnician.getEmail());
         tvPhoneDetailValue.setText(selectedTechnician.getPhoneNumber());
         tvTechnicianAddressDetailValue.setText(selectedTechnician.getAddress());
-        //TODO: Implement device list tvAvailabilityDetailValue.setText(selectedTechnician.getAvailability());
 
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        listener = (ITechniciantDetailFragmentListener) requireActivity();
-        selectedTechnician = listener.getTechnician();
+        technicianProvider = (IdataProvider) requireActivity();
+        selectedTechnician = technicianProvider.getTechnician();
         Toast.makeText(context, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
     }
 }
