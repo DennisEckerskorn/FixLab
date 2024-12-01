@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.listeners.OnClickListenerDevices;
@@ -53,7 +54,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
+public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, ClientListFragment.IClientListFragmentListener,
         MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians,
         TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
         TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician, OnClickListenerDevices, DeviceListFragment.IDeviceListFragmentListener, DeviceDetailFragment.IDeviceDetailFragmentListener, OnSaveAddDevice {
@@ -214,19 +215,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
     /**
      * ON CLICK: Sets the selected client
      *
-     * @param client Client that was clicked
-     */
-    @Override
-    public void onClick(Person client) {
-        selectedClient = client;
-        //Navegar al fragmento de detalle del cliente:
-        Toast.makeText(this, "Client selected: " + client.getName(), Toast.LENGTH_SHORT).show();
-        navigateToFragment(new ClientDetailFragment(), true);
-    }
-
-    /**
-     * ON CLICK: Sets the selected client
-     *
      * @param technician Technician that was clicked
      */
     @Override
@@ -348,7 +336,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
     }
 
 
-
     /**
      * ON SAVE ADD CLIENT: Saves the client
      */
@@ -405,4 +392,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
     }
 
 
+    /*
+    Generic Listener
+     */
+
+    @Override
+    public void onItemClick(Person item) {
+        if (item instanceof Client) {
+            selectedClient = item;
+            Toast.makeText(this, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
+            navigateToFragment(new ClientDetailFragment(), true);
+        }
+    }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.ClientsAdapter;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.models.persons.Person;
 
@@ -42,7 +43,7 @@ public class ClientListFragment extends Fragment {
 
         // Set the adapter for the recycler view
         ClientsAdapter clientsAdapter = new ClientsAdapter(clients);
-        clientsAdapter.setListener((OnClickListenerClients) fragmentListener);
+        clientsAdapter.setListener((IonItemClickListenerGeneric<Person>) fragmentListener);
         rvList.setAdapter(clientsAdapter);
         rvList.setHasFixedSize(true);
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

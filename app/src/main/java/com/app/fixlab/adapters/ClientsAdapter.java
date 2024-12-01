@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.models.persons.Person;
 
@@ -18,14 +19,13 @@ import java.util.List;
 
 public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientViewHolder> {
     private final List<Person> clients;
-    private OnClickListenerClients clientListener;
-
+    private IonItemClickListenerGeneric<Person> clientListener;
 
     public ClientsAdapter(List<Person> clients) {
         this.clients = clients;
     }
 
-    public void setListener(OnClickListenerClients clientListener) {
+    public void setListener(IonItemClickListenerGeneric<Person> clientListener) {
         this.clientListener = clientListener;
     }
 
@@ -72,7 +72,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
         @Override
         public void onClick(View view) {
             if (clientListener != null) {
-                clientListener.onClick(client);
+                clientListener.onItemClick(client);
             }
         }
     }
