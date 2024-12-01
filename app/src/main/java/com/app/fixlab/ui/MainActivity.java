@@ -14,7 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
-import com.app.fixlab.listeners.IDataProvider;
+import com.app.fixlab.listeners.IClientProvider;
+import com.app.fixlab.listeners.IDeviceProvider;
+import com.app.fixlab.listeners.ITechnicianProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnClickListenerDevices;
@@ -54,7 +56,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IDataProvider<Person>, ClientDetailFragment.IClientDetailFragmentListener,
+public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IClientProvider, IDeviceProvider, ITechnicianProvider, ClientDetailFragment.IClientDetailFragmentListener,
         MenuActionListener, OnSaveAddClient, OnClickListenerTechnicians,
         TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
         TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician, OnClickListenerDevices, DeviceListFragment.IDeviceListFragmentListener, DeviceDetailFragment.IDeviceDetailFragmentListener, OnSaveAddDevice {
@@ -266,16 +268,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      * GETTERS AND SETTERS:
      */
 
-    /**
-     * GET Technicians: Returns a list of clients, or an empty list if clients is null
-     *
-     * @return List of technicians
-     */
-    @Override
-    public List<Person> getTechnicians() {
-        List<Person> technicians = workshopManager.getAllTechnicians();
-        return technicians == null ? Collections.emptyList() : technicians;
-    }
 
     /**
      * GET Person (technician) from TechnicianDetailFragment
@@ -360,10 +352,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         return null;
     }
 
-    @Override
-    public List<Device> getDevices() {
-        return workshopManager.getAllDevices();
-    }
 
     @Override
     public void onSaveAddDevice(Device device) {
@@ -393,9 +381,35 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     @Override
-    public List<Person> getData() {
+    public List<Person> getClients() {
         List<Person> clients = workshopManager.getAllClients();
         return clients == null ? Collections.emptyList() : clients;
+    }
+
+    @Override
+    public List<Device> getDevices() {
+        List<Device> devices = workshopManager.getAllDevices();
+        return devices == null ? Collections.emptyList() : devices;
+    }
+
+    @Override
+    public List<Device> getDevicesOfClient() {
+        if (selectedClient != null) {
+            List<Device> devices = workshopManager.getDeviceOffClient(selectedClient);
+            return devices == null ? Collections.emptyList() : devices;
+        }
+        return Collections.emptyList();
+    }
+
+    /**
+     * GET Technicians: Returns a list of clients, or an empty list if clients is null
+     *
+     * @return List of technicians
+     */
+    @Override
+    public List<Person> getTechnicians() {
+        List<Person> technicians = workshopManager.getAllTechnicians();
+        return technicians == null ? Collections.emptyList() : technicians;
     }
 
     @Override

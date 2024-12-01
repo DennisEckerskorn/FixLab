@@ -20,14 +20,13 @@ public class WorkshopManager {
     }
 
     /**
-     *
      * @param person can be a instance of Person
      * @return true if added successfully
      */
-    public boolean addPerson(Person person){
-        if (person instanceof Technician){
+    public boolean addPerson(Person person) {
+        if (person instanceof Technician) {
             allTechnicians.add(person);
-        } else if(person instanceof Client) {
+        } else if (person instanceof Client) {
             allClients.add(person);
         }
         allDevices.addAll(person.getDevices());
@@ -35,7 +34,6 @@ public class WorkshopManager {
     }
 
     /**
-     *
      * @param person can be a instance of Person
      * @return true if removed successfully or false if not exists
      */
@@ -53,34 +51,32 @@ public class WorkshopManager {
     }
 
     /**
-     *
      * @param name String name of client
      * @return all clients by that name or null if there is no similar names
      */
-    public List<Person> getClientsByName(String name){
+    public List<Person> getClientsByName(String name) {
         List<Person> results = new ArrayList<>();
 
-        for (int i = 0; i < allClients.size() ; i++) {
-            if(allClients.get(i).getName().equals(name)){
+        for (int i = 0; i < allClients.size(); i++) {
+            if (allClients.get(i).getName().equals(name)) {
                 results.add(allClients.get(i));
             }
         }
-        if (results.isEmpty()){
+        if (results.isEmpty()) {
             return null;
         }
         return results;
     }
 
     /**
-     *
      * @param dni String dni of client
      * @return all clients by that name or null if dni doesnt exist
      */
 
-    public Person getClientsByDNI(String dni){
+    public Person getClientsByDNI(String dni) {
         Person result = null;
-        for (int i = 0; i < allClients.size() ; i++) {
-            if(allClients.get(i).getDni().equals(dni)){
+        for (int i = 0; i < allClients.size(); i++) {
+            if (allClients.get(i).getDni().equals(dni)) {
                 result = allClients.get(i);
             }
         }
@@ -88,16 +84,15 @@ public class WorkshopManager {
     }
 
     /**
-     *
      * @param device device for search
      * @return first Client with the same device or null if the device doesnt exist
      */
-    public Person getClientByDevice(Device device){
-        Person client=null;
-        for (int i = 0; i < allClients.size() ; i++) {
+    public Person getClientByDevice(Device device) {
+        Person client = null;
+        for (int i = 0; i < allClients.size(); i++) {
             for (int j = 0; j < allClients.get(i).getDevices().size(); j++) {
                 //si el dispositivo device es igual al dispositivo(j) del cliente (i) devuelve
-                if(device.equals(allClients.get(i).getDevices().get(j))){
+                if (device.equals(allClients.get(i).getDevices().get(j))) {
                     client = allClients.get(i);
                 }
             }
@@ -106,14 +101,13 @@ public class WorkshopManager {
     }
 
     /**
-     *
      * @param model String that contains the same model name
      * @return list of clients that have the exact model name or null if model doesnt exist
      */
-    public List<Person> getClientsByDeviceModel(String model){
+    public List<Person> getClientsByDeviceModel(String model) {
         List<Device> devices = new ArrayList<>();
         for (int i = 0; i < allDevices.size(); i++) {
-            if(model.equals(allDevices.get(i).getModel())){
+            if (model.equals(allDevices.get(i).getModel())) {
                 devices.add(allDevices.get(i));
             }
         }
@@ -121,24 +115,24 @@ public class WorkshopManager {
         for (int i = 0; i < devices.size(); i++) {
             result.add(getClientByDevice(devices.get(i)));
         }
-        if(result.isEmpty())
+        if (result.isEmpty())
             return null;
         return result;
     }
+
     /**
-     *
      * @param serialNumber String that contains the same serial number
      * @return first client that have the exact model serial number or null if model doesnt exist
      */
-    public Person getClientByDeviceSerialNumber(String serialNumber){
+    public Person getClientByDeviceSerialNumber(String serialNumber) {
         Device device = null;
         for (int i = 0; i < allDevices.size(); i++) {
-            if(serialNumber.equals(allDevices.get(i).getSerialNumber())){
+            if (serialNumber.equals(allDevices.get(i).getSerialNumber())) {
                 device = allDevices.get(i);
             }
         }
-        if (device != null){
-            return  getClientByDevice(device);
+        if (device != null) {
+            return getClientByDevice(device);
         }
         return null;
     }
@@ -153,5 +147,18 @@ public class WorkshopManager {
 
     public List<Person> getAllTechnicians() {
         return allTechnicians;
+    }
+
+    /**
+     * Method to obtain all devices assigned to each client.
+     *
+     * @param client Person client
+     * @return List<Device> list of devices of each client.
+     */
+    public List<Device> getDeviceOffClient(Person client) {
+        if (client instanceof Client) {
+            return client.getDevices();
+        }
+        return new ArrayList<>();
     }
 }
