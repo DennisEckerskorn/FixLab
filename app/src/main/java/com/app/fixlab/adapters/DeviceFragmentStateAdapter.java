@@ -29,6 +29,7 @@ public class DeviceFragmentStateAdapter extends FragmentStateAdapter {
         return switch (position) {
             case 0 -> new DeviceListFragment();
             case 1 -> new DevicesFormAddFragment();
+//            case 2 -> new
             default -> throw new RuntimeException("Invalid fragment:");
         };
     }
