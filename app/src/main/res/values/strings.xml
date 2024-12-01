@@ -42,5 +42,7 @@
     <string name="condition_good_condition">In good condition</string>
     <string name="condition_scratched">Scratched</string>
     <string name="condition_defective">Defective</string>
-    <string name="condition_destroyed">Destroyed</string>"
+    <string name="condition_destroyed">Destroyed</string>
+    <string name="dni">DNI:</string>
+    <string name="availability">Availability:</string>"
 </resources>

@@ -14,8 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.fixlab.R;
+import com.app.fixlab.listeners.IDataProvider;
+import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.MenuActionListener;
-import com.app.fixlab.listeners.OnClickListenerClients;
 import com.app.fixlab.listeners.OnClickListenerDevices;
 import com.app.fixlab.listeners.OnClickListenerTechnicianRepairSelection;
 import com.app.fixlab.listeners.OnClickListenerTechnicians;
@@ -53,8 +54,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnClickListenerClients, ClientListFragment.IClientListFragmentListener,
-        MenuActionListener, ClientDetailFragment.IClientDetailFragmentListener, OnSaveAddClient, OnClickListenerTechnicians,
+public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IDataProvider<Person>, ClientDetailFragment.IClientDetailFragmentListener,
+        MenuActionListener, OnSaveAddClient, OnClickListenerTechnicians,
         TechnicianDetailFragment.ITechniciantDetailFragmentListener, TechnicianListFragment.ITechnicianListFragmentListener, OnSaveAddTechnician, OnSplashDelayFinished,
         TechnicianSelectionFragment.ITechnicianSelectionFragmentListener, OnClickListenerTechnicianRepairSelection, OnClickRepairTechnician, OnClickListenerDevices, DeviceListFragment.IDeviceListFragmentListener, DeviceDetailFragment.IDeviceDetailFragmentListener, OnSaveAddDevice {
     private Person selectedClient;
@@ -214,19 +215,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
     /**
      * ON CLICK: Sets the selected client
      *
-     * @param client Client that was clicked
-     */
-    @Override
-    public void onClick(Person client) {
-        selectedClient = client;
-        //Navegar al fragmento de detalle del cliente:
-        Toast.makeText(this, "Client selected: " + client.getName(), Toast.LENGTH_SHORT).show();
-        navigateToFragment(new ClientDetailFragment(), true);
-    }
-
-    /**
-     * ON CLICK: Sets the selected client
-     *
      * @param technician Technician that was clicked
      */
     @Override
@@ -279,28 +267,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
      */
 
     /**
-     * GET CLIENTS: Returns a list of clients, or an empty list if clients is null
-     *
-     * @return List of clients
-     */
-    @Override
-    public List<Person> getClients() {
-        List<Person> clients = workshopManager.getAllClients();
-        return clients == null ? Collections.emptyList() : clients;
-    }
-
-
-    /**
-     * GET Person (client) from ClientDetailFragment
-     *
-     * @return
-     */
-    @Override
-    public Person getClient() {
-        return selectedClient;
-    }
-
-    /**
      * GET Technicians: Returns a list of clients, or an empty list if clients is null
      *
      * @return List of technicians
@@ -336,13 +302,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
 
     @Override
     public void onRepairTechniciansClick(Person technician) {
+        selectedTechnician = technician;
         Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onClickRepairTechnician(Person technician) {
-
+        selectedTechnician = technician;
+        Toast.makeText(this, "Technician selected: " + technician.getName(), Toast.LENGTH_SHORT).show();
     }
+
 
     /**
      * ON SAVE ADD CLIENT: Saves the client
@@ -397,5 +367,39 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerCl
 
     @Override
     public void onSaveAddDevice(Device device) {
+    }
+
+
+    /*
+    Generic Listener
+     */
+
+
+    /**
+     * NEW VERSION OF LISTENERS:
+     *
+     * @param item
+     */
+    @Override
+    public void onItemClick(Person item) {
+        if (item instanceof Client) {
+            selectedClient = item;
+            ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
+            navigateToFragment(clientDetailFragment, true);
+
+
+            Toast.makeText(this, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public List<Person> getData() {
+        List<Person> clients = workshopManager.getAllClients();
+        return clients == null ? Collections.emptyList() : clients;
+    }
+
+    @Override
+    public Person getClient() {
+        return selectedClient;
     }
 }
