@@ -3,6 +3,7 @@ package com.app.fixlab.ui.fragments.devicefragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Person;
+import com.app.fixlab.ui.MainActivity;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 
 public class DeviceDetailFragment extends Fragment {
@@ -30,7 +32,7 @@ public class DeviceDetailFragment extends Fragment {
     //TODO: Implement device list
     //private TextView tvClientDevicesDetailValue;
     public DeviceDetailFragment() {
-        super(R.layout.detail_client_item);
+        super(R.layout.detail_device_item);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class DeviceDetailFragment extends Fragment {
         tvDeviceCondition = view.findViewById(R.id.tvDeviceCondition);
         tvDeviceStatus = view.findViewById(R.id.tvDeviceStatus);
         tvDeviceDescription = view.findViewById(R.id.tvDeviceDescription);
-/*
+
         //TODO: ALGUN TEXTVIEW FALLA Y DA NULL POINTER EN ESTA PARTE:
         if (selectedDevice != null) {
             tvDeviceModel.setText(selectedDevice.getModel());
@@ -54,7 +56,16 @@ public class DeviceDetailFragment extends Fragment {
             tvDeviceDescription.setText(selectedDevice.getDescription());
         }
         //TODO: Implement device list
- */
+
+
+
+        //Implementacion del boton de modificar
+        Button btnModify = view.findViewById(R.id.btnModifyDevice);
+        btnModify.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity){
+                ((MainActivity) getActivity()).navigateToFragment(new DeviceModifyFragment(), true);
+            }
+        });
     }
 
     @Override

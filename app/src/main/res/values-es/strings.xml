@@ -11,12 +11,7 @@
     <string name="modify_name">Modificar</string>
     <string name="delete_name">Eliminar</string>
     <string name="client_name">Cliente</string>
-    <string name="name">Nombre</string>
     <string name="client_info">Información del cliente</string>
-    <string name="client_phone">Teléfono</string>
-    <string name="client_email">Email</string>
-    <string name="client_address">Dirección</string>
-    <string name="client_devices">Dispositivos</string>
     <string name="save_client">Guardar cliente</string>
     <string name="modify_client">Modificar cliente</string>
     <string name="repaired_list_name">Lista Reparados</string>
@@ -37,6 +32,7 @@
     <string name="status_waiting_for_parts">Esperando piezas</string>
     <string name="status_finished">Terminado</string>
     <string name="technician_info">Informacion del Tecnico</string>
+    <string name="modify_technician">Modificar Tecnico</string>
     <string name="assigned_devices">Dispositivos asignados</string>
     <string name="condition_new">Nuevo</string>
     <string name="condition_used">Usado</string>
@@ -47,5 +43,12 @@
     <string name="condition_defective">Defectuoso</string>
     <string name="condition_destroyed">Destruido</string>
     <string name="dni">DNI:</string>
+    <string name="name">Nombre</string>
+    <string name="surname">Apellidos</string>
+    <string name="email">Email</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
     <string name="availability">Disponibilidad:</string>
 </resources>

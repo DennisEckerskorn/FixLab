@@ -11,11 +11,6 @@
     <string name="delete_name">Delete</string>
     <string name="client_info">Client info</string>
     <string name="client_name">Client</string>
-    <string name="name">Name</string>
-    <string name="client_phone">Phone</string>
-    <string name="client_email">Email</string>
-    <string name="client_address">Address</string>
-    <string name="client_devices">Devices</string>
     <string name="save_client">Save client</string>
     <string name="modify_client">Modify client</string>
     <string name="repaired_list_name">Repaired List</string>
@@ -36,6 +31,7 @@
     <string name="status_waiting_for_parts">Waiting for parts</string>
     <string name="status_finished">Finished</string>
     <string name="technician_info">Technician info</string>
+    <string name="modify_technician">Modify technician</string>
     <string name="assigned_devices">Assigned devices</string>
     <string name="condition_new">New</string>
     <string name="condition_used">Used</string>
@@ -45,6 +41,13 @@
     <string name="condition_scratched">Scratched</string>
     <string name="condition_defective">Defective</string>
     <string name="condition_destroyed">Destroyed</string>
-    <string name="dni">DNI:</string>
+    <string name="dni">DNI</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <string name="availability">Availability:</string>"
 </resources>

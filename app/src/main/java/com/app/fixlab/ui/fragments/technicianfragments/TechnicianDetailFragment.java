@@ -3,6 +3,7 @@ package com.app.fixlab.ui.fragments.technicianfragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.persons.Person;
+import com.app.fixlab.ui.MainActivity;
 
 public class TechnicianDetailFragment extends Fragment {
     private IdataProvider technicianProvider;
@@ -47,6 +49,13 @@ public class TechnicianDetailFragment extends Fragment {
         tvEmailDetailValue.setText(selectedTechnician.getEmail());
         tvPhoneDetailValue.setText(selectedTechnician.getPhoneNumber());
         tvTechnicianAddressDetailValue.setText(selectedTechnician.getAddress());
+
+        Button btnModifyTechnician = view.findViewById(R.id.btnModifyTechnician);
+        btnModifyTechnician.setOnClickListener(v -> {
+           if (getActivity() instanceof  MainActivity){
+                ((MainActivity) getActivity()).navigateToFragment(new TechnicianModifyFragment(), true);
+            }
+        });
 
     }
 

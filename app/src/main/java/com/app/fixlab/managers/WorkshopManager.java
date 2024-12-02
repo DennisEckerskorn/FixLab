@@ -51,6 +51,26 @@ public class WorkshopManager {
     }
 
     /**
+     * @param device can be a instance of Device
+     * @return true if added successfully
+     */
+    public boolean addDevice(Device device) {
+        allDevices.add(device);
+        return true;
+    }
+    /**
+     * @param device can be a instance of Device
+     * @return true if removed successfully or false if not exists
+     */
+    public boolean removeDevice(Device device) {
+        if (allDevices.contains(device)) {
+            allDevices.remove(device);
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * @param name String name of client
      * @return all clients by that name or null if there is no similar names
      */

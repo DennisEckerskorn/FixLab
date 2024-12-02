@@ -21,6 +21,7 @@ import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.ui.MainActivity;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceModifyFragment;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class ClientModifyFragment extends Fragment {
     Button btnSave;
 
     public ClientModifyFragment() {
-        super(R.layout.fragment_modify);
+        super(R.layout.fragment_modify_client);
     }
 
     @Override
@@ -65,8 +66,9 @@ public class ClientModifyFragment extends Fragment {
             etEmail.setText(selectedPerson.getEmail());
             etPhone.setText(selectedPerson.getPhoneNumber());
             etAddress.setText(selectedPerson.getAddress());
+
             DevicesAdapter devicesAdapter = new DevicesAdapter(devices);
-            devicesAdapter.setListener(itemClickListener);
+            devicesAdapter.setListener(device -> navigateToDeviceModifyFragment(device));
             rvDevices.setAdapter(devicesAdapter);
             rvDevices.setHasFixedSize(true);
             rvDevices.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -136,6 +138,13 @@ public class ClientModifyFragment extends Fragment {
             etAddress.getText().toString();
         }
         return true;
+    }
+    private void navigateToDeviceModifyFragment(Device device) {
+        if (getActivity() instanceof MainActivity) {
+            DeviceModifyFragment deviceModifyFragment = new DeviceModifyFragment();
+            deviceModifyFragment.setSelectedDevice(device); // Pasar el dispositivo seleccionado
+            ((MainActivity) getActivity()).navigateToFragment(deviceModifyFragment, true);
+        }
     }
 
     @Override
