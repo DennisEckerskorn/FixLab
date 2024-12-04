@@ -5,29 +5,28 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_background">
+    android:background="@color/background_color">
 
     <!-- AppBar con Toolbar y TabLayout -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="@color/background_color"
         app:elevation="0dp">
 
         <!-- Toolbar -->
-        <include layout="@layout/toolbar" />
 
         <!-- TabLayout -->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/layoutTab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@color/background_color"
             app:tabMode="fixed"
-            app:tabTextColor="#FFFFFFFF"
-            app:tabSelectedTextColor="#FF8C00"
-            app:tabIndicatorColor="#FF8C00"
+            app:tabTextColor="@color/text_color"
+            app:tabSelectedTextColor="@color/orange"
+            app:tabIndicatorColor="@color/orange"
             app:tabGravity="fill">
 
             <!-- Pestañas -->

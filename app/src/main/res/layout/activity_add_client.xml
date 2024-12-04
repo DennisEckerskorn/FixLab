@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/splash_background"
+        android:background="@color/background_color"
         android:orientation="vertical"
         android:padding="16dp">
         <com.google.android.material.textfield.TextInputLayout
@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="DNI"
+            android:textColorHint="@color/text_color"
             app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Nombre"
+            android:textColorHint="@color/text_color"
             app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -53,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Apellidos"
+            android:textColorHint="@color/text_color"
             app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -69,7 +72,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Email">
+            android:hint="Email"
+            android:textColorHint="@color/text_color"
+            app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieEmail"
@@ -85,7 +90,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Teléfono">
+            android:hint="Teléfono"
+            android:textColorHint="@color/text_color"
+            app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieTelefono"
@@ -101,7 +108,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Dirección">
+            android:hint="Dirección"
+            android:textColorHint="@color/text_color"
+            app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieDireccion"
@@ -117,7 +126,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Nombre de usuario">
+            android:hint="Nombre de usuario"
+            android:textColorHint="@color/text_color"
+            app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieUsername"
@@ -134,7 +145,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Contraseña"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/text_color"
+            app:boxBackgroundMode="outline">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiePassword"

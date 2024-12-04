@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/background_color">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -12,16 +12,14 @@
         android:layout_height="wrap_content"
         app:elevation="0dp">
 
-        <include layout="@layout/toolbar"/>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/layoutTab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:tabTextColor="#FFFFFF"
-            app:tabSelectedTextColor="#FF8C00"
-            app:tabIndicatorColor="#FF8C00"
+            android:background="@color/background_color"
+            app:tabTextColor="@color/text_color"
+            app:tabSelectedTextColor="@color/orange"
+            app:tabIndicatorColor="@color/orange"
             app:tabGravity="fill">
 
             <com.google.android.material.tabs.TabItem
@@ -43,6 +41,6 @@
         android:id="@+id/vp2Client"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

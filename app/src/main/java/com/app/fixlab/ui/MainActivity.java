@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             currentRepair = (Repair) savedInstanceState.getSerializable(REPAIR_KEY);
         }
 
-        toolbarSettings();
+        // toolbarSettings();
     }
 
     @Override
@@ -219,10 +219,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     /**
      * TOOLBAR SETTINGS: Sets the toolbar
      */
-    private void toolbarSettings() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
+//    private void toolbarSettings() {
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//    }
 
     /*
      * MENU ACTION LISTENERS:
