@@ -450,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onItemClickRepair(Object item) {
         if (item instanceof Technician) {
             selectedTechnician = (Person) item;
-            Repair repair = new Repair(selectedTechnician, null);
+            Repair repair = new Repair(selectedTechnician, null, null);
             this.currentRepair = repair;
             navigateToFragment(new RepairedDeviceListFragment(), true);
             Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
@@ -460,7 +460,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON REPAIRED DEVICE CLICK: Handles the click on a repaired device TODO: IMPLEMENTAR PARA FRAGMENT REPAIREDDEVICESLISTFRAGMENT
+     * ON REPAIRED DEVICE CLICK: Handles the click on a repaired device
      *
      * @param device Device that was repaired
      */
@@ -468,9 +468,11 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onRepairedDeviceClick(Device device) {
         Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
         selectedDevice = device;
+        selectedClient = workshopManager.getClientByDevice(selectedDevice);
 
         if (currentRepair != null) {
             currentRepair.setDevice(selectedDevice);
+            currentRepair.setClient((Client) selectedClient);
             currentRepair.setStatus(Repair.RepairStatus.PENDING);
             Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
             navigateToFragment(new DiagnosisFragment(), true);
@@ -522,9 +524,17 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
+    //TODO: Marcar dispositivo como COMPLETED y que se cambie en Devices
     @Override
     public void OnRepairCompleted() {
-
+        if (currentRepair != null) {
+            currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
+            currentRepair.getDevice().setStatus(DeviceStatus.COMPLETED);
+            Toast.makeText(this, "Reparación completada", Toast.LENGTH_SHORT).show();
+            navigateToFragment(new MainMenuFragment(), false);
+        } else {
+            Toast.makeText(this, "No se puede completar la reparación", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

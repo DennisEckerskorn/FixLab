@@ -14,10 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
+import com.app.fixlab.adapters.CompletedCheckListAdapter;
 import com.app.fixlab.adapters.DiagnosisCheckListAdapter;
 import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.models.repair.Diagnosis;
 import com.app.fixlab.models.repair.Repair;
+
+import java.util.List;
 
 public class RepairSummaryFragment extends Fragment {
     private Repair currentRepair;
@@ -36,46 +40,56 @@ public class RepairSummaryFragment extends Fragment {
         TextView tvSummaryDevice = view.findViewById(R.id.tvSummaryDevice);
         RecyclerView rvSummaryDiagnosis = view.findViewById(R.id.rvSummaryDiagnosis);
         TextView etSummaryRepairResult = view.findViewById(R.id.etSummaryRepairResult);
+        TextView tvDiagnosisDescriptionSummary = view.findViewById(R.id.tvDiagnosisDescriptionSummary);
+        TextView tvDiagnosisCostSummary = view.findViewById(R.id.tvDiagnosisCostSummary);
+        TextView tvDiagnosisTimeSummary = view.findViewById(R.id.tvDiagnosisTimeSummary);
         Button btnSummaryCompleteRepair = view.findViewById(R.id.btnSummaryCompleteRepair);
 
 
         if (currentRepair != null) {
             if (currentRepair.getTechnician() != null) {
-                tvSummaryTechnician.setText("Técnico: " + currentRepair.getTechnician().getName());
+                tvSummaryTechnician.setText(getString(R.string.technician) + ": " + currentRepair.getTechnician().getName());
             }
-            //if(currentRepair.getClient() != null) {
-            //  tvSummaryClient.setText("Cliente: " + currentRepair.getClient().getName());
-            //}
+
+            if (currentRepair.getClient() != null) {
+                tvSummaryClient.setText(getString(R.string.client) + ": " + currentRepair.getClient().getName());
+            }
 
             if (currentRepair.getDevice() != null) {
-                tvSummaryDevice.setText("Dispositivo: " + currentRepair.getDevice().getModel());
+                tvSummaryDevice.setText(getString(R.string.device) + currentRepair.getDevice().getModel());
+            }
+
+            if (currentRepair.getDiagnosis() != null) {
+                tvDiagnosisDescriptionSummary.setText(getString(R.string.description) + ": " + currentRepair.getDiagnosis().getDescription());
+                tvDiagnosisCostSummary.setText(getString(R.string.cost) + ": " + currentRepair.getDiagnosis().getEstimatedCost());
+                tvDiagnosisTimeSummary.setText(getString(R.string.time_needed) + ": " + currentRepair.getDiagnosis().getEstimatedTime());
             }
 
         }
 
-
-        DiagnosisCheckListAdapter diagnosisCheckListAdapter = new DiagnosisCheckListAdapter();
         if (currentRepair != null && currentRepair.getDiagnosis() != null) {
-            diagnosisCheckListAdapter.setOnCheckChangedListener(null); //No hacen falta cambios
-            diagnosisCheckListAdapter.notifyDataSetChanged();
+            List<Diagnosis.DiagnosisCheckItem> completedCheckItems = currentRepair.getDiagnosis().getCompletedCheckItems();
+            CompletedCheckListAdapter adapter = new CompletedCheckListAdapter(completedCheckItems);
+            rvSummaryDiagnosis.setAdapter(adapter);
+            rvSummaryDiagnosis.setHasFixedSize(true);
+            rvSummaryDiagnosis.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         }
-        rvSummaryDiagnosis.setAdapter(diagnosisCheckListAdapter);
-        rvSummaryDiagnosis.setHasFixedSize(true);
-        rvSummaryDiagnosis.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         //Boton
         btnSummaryCompleteRepair.setOnClickListener(v -> {
             String repairResult = etSummaryRepairResult.getText().toString();
-            if (currentRepair.getRepairResult().isEmpty()) {
+
+            if (repairResult.isEmpty()) {
                 Toast.makeText(getContext(), "Debes escribir una descripción de la reparación", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Reparación completada", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             if (currentRepair != null) {
                 currentRepair.setRepairResult(repairResult);
-                currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
-                Toast.makeText(getContext(), "Reparación completada", Toast.LENGTH_SHORT).show();
+            }
+
+            if (repairClickListener != null) {
+                repairClickListener.OnRepairCompleted();
             }
         });
     }
@@ -85,6 +99,7 @@ public class RepairSummaryFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         IdataProvider dataProvider = (IdataProvider) requireActivity();
+        repairClickListener = (IOnItemRepairClickListener) requireActivity();
         currentRepair = dataProvider.getRepair();
 
     }

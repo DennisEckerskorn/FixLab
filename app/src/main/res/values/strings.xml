@@ -49,5 +49,15 @@
     <string name="address">Address</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="availability">Availability:</string>"
+    <string name="availability">Availability:</string>
+    <string name="technician">Technician:</string>
+    <string name="client">Client:</string>
+    <string name="device">Device:</string>
+    <string name="diagnosis">Diagnosis:</string>
+    <string name="repair_done">Repair realized:</string>
+    <string name="repair_hint_summary">Describe the Repair:</string>
+    <string name="btn_save_repair_summary">Mark Repair as Done</string>
+    <string name="cost">Cost</string>
+    <string name="time_needed">Time needed</string>
+    <string name="btn_save_diagnosis">Save Diagnosis</string>"
 </resources>

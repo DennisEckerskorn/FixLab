@@ -1,6 +1,7 @@
 package com.app.fixlab.models.repair;
 
 import com.app.fixlab.models.devices.Device;
+import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
 public class Repair implements Serializable {
     private Person technician;
     private Device device;
+    private Client client;
     private Diagnosis diagnosis;
     private RepairStatus status;
     private final Date repairDate;
@@ -25,9 +27,10 @@ public class Repair implements Serializable {
         CANCELLED
     }
 
-    public Repair(Person technician, Device device) {
+    public Repair(Person technician, Device device, Client client) {
         this.technician = technician;
         this.device = device;
+        this.client = client;
         this.status = RepairStatus.PENDING;
         this.repairDate = new Date();
     }
@@ -76,6 +79,14 @@ public class Repair implements Serializable {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public void setStatus(RepairStatus status) {

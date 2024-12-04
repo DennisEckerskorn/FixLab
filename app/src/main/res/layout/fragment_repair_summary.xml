@@ -14,7 +14,7 @@
             android:id="@+id/tvSummaryTechnician"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Técnico: "
+            android:text="@string/technician"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -23,7 +23,7 @@
             android:id="@+id/tvSummaryClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cliente: "
+            android:text="@string/client"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -32,17 +32,41 @@
             android:id="@+id/tvSummaryDevice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dispositivo: "
+            android:text="@string/device"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <!-- Lista de Diagnóstico -->
         <TextView
+            android:id="@+id/tvDiagnosisDescriptionSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDiagnosisCostSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cost"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDiagnosisTimeSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/time_needed"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/tvDiagLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Diagnóstico:"
+            android:text="@string/diagnosis"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -58,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Reparación realizada:"
+            android:text="@string/repair_done"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -66,7 +90,7 @@
             android:id="@+id/etSummaryRepairResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Describe la reparación realizada"
+            android:hint="@string/repair_hint_summary"
             android:layout_marginTop="8dp"
             android:inputType="textMultiLine" />
 
@@ -75,7 +99,7 @@
             android:id="@+id/btnSummaryCompleteRepair"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Marcar como completada"
+            android:text="@string/btn_save_repair_summary"
             android:layout_marginTop="16dp" />
     </LinearLayout>
 </ScrollView>

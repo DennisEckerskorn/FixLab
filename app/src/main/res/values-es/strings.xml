@@ -51,4 +51,14 @@
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="availability">Disponibilidad:</string>
+    <string name="technician">Técnico:</string>
+    <string name="client">Cliente:</string>
+    <string name="device">Dispositivo:</string>
+    <string name="diagnosis">Diagnóstico:</string>
+    <string name="repair_done">Reparación realizada:</string>
+    <string name="repair_hint_summary">Describe la reparación:</string>
+    <string name="btn_save_repair_summary">Marcar la reparación como Finalizada</string>
+    <string name="cost">Coste</string>
+    <string name="time_needed">Tiempo necesario</string>
+    <string name="btn_save_diagnosis">Guardar Diagnóstico</string>
 </resources>
