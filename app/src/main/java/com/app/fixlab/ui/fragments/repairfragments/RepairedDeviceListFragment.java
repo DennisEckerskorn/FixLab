@@ -1,4 +1,4 @@
-package com.app.fixlab.ui.fragments.devicefragments;
+package com.app.fixlab.ui.fragments.repairfragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,8 +14,6 @@ import com.app.fixlab.R;
 import com.app.fixlab.adapters.DevicesAdapter;
 import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IdataProvider;
-import com.app.fixlab.listeners.IonItemClickListenerGeneric;
-import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
 
 import java.util.List;
@@ -23,7 +21,6 @@ import java.util.List;
 
 public class RepairedDeviceListFragment extends Fragment {
     private IOnItemRepairClickListener repairDeviceClickListener;
-    private IdataProvider dataProvider;
     private List<Device> devices;
 
     public RepairedDeviceListFragment() {
@@ -33,7 +30,7 @@ public class RepairedDeviceListFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        dataProvider = (IdataProvider) requireActivity();
+        IdataProvider dataProvider = (IdataProvider) requireActivity();
         repairDeviceClickListener = (IOnItemRepairClickListener) requireActivity();
         devices = dataProvider.getDeviceData();
     }

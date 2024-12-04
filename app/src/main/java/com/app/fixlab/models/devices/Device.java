@@ -25,7 +25,7 @@ public class Device implements Serializable {
         this.brand = brand;
         this.type = type;
         this.condition = condition;
-        this.status = DeviceStatus.RECIVED;
+        this.status = DeviceStatus.PENDING;
     }
     public void setStatus(DeviceStatus status) {
         this.status = status;
@@ -72,19 +72,19 @@ public class Device implements Serializable {
     public int getStatusString() {
         int status = -1;
         switch (this.getStatus()){
-            case RECIVED:
+            case PENDING:
                 status = R.string.status_recived;
                 break;
-            case IN_REPARATION:
+            case COMPLETED:
                 status = R.string.status_in_reparation;
                 break;
-            case IN_REVISION:
+            case IN_PROGRESS:
                 status = R.string.status_in_revision;
                 break;
-            case FIXED:
+            case NEEDS_PARTS:
                 status = R.string.status_fixed;
                 break;
-            case WAITING_FOR_PARTS:
+            case UNREPAIRABLE:
                 status = R.string.status_waiting_for_parts;
                 break;
             default:

@@ -5,26 +5,58 @@ import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 public class Repair implements Serializable {
     private Person technician;
     private Device device;
+    private Diagnosis diagnosis;
     private RepairStatus status;
+    private final Date repairDate;
+    private String repairResult;
+
 
     public enum RepairStatus {
         PENDING,
+        DIAGNOSED,
         IN_PROGRESS,
-        COMPLETED
+        COMPLETED,
+        CANCELLED
     }
 
     public Repair(Person technician, Device device) {
         this.technician = technician;
         this.device = device;
-        this.status = status;
+        this.status = RepairStatus.PENDING;
+        this.repairDate = new Date();
     }
 
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
+    }
 
+    public void setDiagnosis(Diagnosis diagnosis) {
+        this.diagnosis = diagnosis;
+        if (diagnosis != null) {
+            this.status = RepairStatus.DIAGNOSED;
+        }
+    }
+
+    public String getRepairResult() {
+        return repairResult;
+    }
+
+    public void setRepairResult(String repairResult) {
+        this.repairResult = repairResult;
+        if (repairResult != null) {
+            this.status = RepairStatus.COMPLETED;
+        }
+    }
+
+    public Date getRepairDate() {
+        return repairDate;
+    }
 
     public Person getTechnician() {
         return technician;
