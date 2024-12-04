@@ -27,6 +27,7 @@ public class Device implements Serializable {
         this.condition = condition;
         this.status = DeviceStatus.PENDING;
     }
+
     public void setStatus(DeviceStatus status) {
         this.status = status;
     }
@@ -51,13 +52,14 @@ public class Device implements Serializable {
     public String getBrand() {
         return brand;
     }
+
     public DeviceStatus getStatus() {
         return status;
     }
 
-    public int getConditionString(){
+    public int getConditionString() {
         int condition = -1;
-        switch (this.getCondition()){
+        switch (this.getCondition()) {
             case NEW -> condition = R.string.condition_new;
             case USED -> condition = R.string.condition_used;
             case REPAIRED -> condition = R.string.condition_repaired;
@@ -69,9 +71,11 @@ public class Device implements Serializable {
         }
         return condition;
     }
+
+    //TODO: ADAPTAR AL ENUMERADO
     public int getStatusString() {
         int status = -1;
-        switch (this.getStatus()){
+        switch (this.getStatus()) {
             case PENDING:
                 status = R.string.status_recived;
                 break;
@@ -97,9 +101,9 @@ public class Device implements Serializable {
         return type;
     }
 
-    public int getTypeString(){
+    public int getTypeString() {
         int type = -1;
-        switch (this.getType()){
+        switch (this.getType()) {
             case LAPTOP:
                 type = R.drawable.device_type_laptop;
                 break;
@@ -148,7 +152,7 @@ public class Device implements Serializable {
     }
 
     /**
-    TOSTRING:
+     * TOSTRING:
      **/
 
     @Override
@@ -158,7 +162,7 @@ public class Device implements Serializable {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +
-               // ", condition=" + condition +
+                // ", condition=" + condition +
                 ", type=" + type +
                 '}';
     }

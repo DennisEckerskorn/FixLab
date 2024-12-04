@@ -58,6 +58,7 @@ public class WorkshopManager {
         allDevices.add(device);
         return true;
     }
+
     /**
      * @param device can be a instance of Device
      * @return true if removed successfully or false if not exists
@@ -167,18 +168,5 @@ public class WorkshopManager {
 
     public List<Person> getAllTechnicians() {
         return allTechnicians;
-    }
-
-    /**
-     * Method to obtain all devices assigned to each client.
-     *
-     * @param client Person client
-     * @return List<Device> list of devices of each client.
-     */
-    public List<Device> getDeviceOffClient(Person client) {
-        if (client instanceof Client) {
-            return client.getDevices();
-        }
-        return new ArrayList<>();
     }
 }

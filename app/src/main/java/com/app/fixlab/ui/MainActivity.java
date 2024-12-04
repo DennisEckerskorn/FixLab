@@ -44,6 +44,7 @@ import com.app.fixlab.ui.fragments.SplashFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
 import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
+import com.app.fixlab.ui.fragments.repairfragments.RepairSummaryFragment;
 import com.app.fixlab.ui.fragments.repairfragments.RepairedDeviceListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
@@ -306,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     @Override
     public List<Device> getDeviceOfClient() {
         if (selectedClient != null) {
-            List<Device> devices = workshopManager.getDeviceOffClient(selectedClient);
+            List<Device> devices = selectedClient.getDevices();
             return devices == null ? Collections.emptyList() : devices;
         }
         return Collections.emptyList();
@@ -480,6 +481,12 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
     }
 
+    /**
+     * ON CHECKED CHANGE: Handles the change of a checked item
+     *
+     * @param item      Item that was checked
+     * @param isChecked Whether the item is checked or not
+     */
     @Override
     public void onCheckedChange(Diagnosis.DiagnosisCheckItem item, boolean isChecked) {
         if (currentRepair != null && currentRepair.getDiagnosis() != null) {
@@ -492,6 +499,11 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
+    /**
+     * ON SAVE DIAGNOSIS: Saves the diagnosis
+     *
+     * @param diagnosis Diagnosis to save
+     */
     @Override
     public void onSaveDiagnosis(Diagnosis diagnosis) {
         if (currentRepair != null && currentRepair.getDiagnosis() != null) {
@@ -504,11 +516,22 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             currentRepair.setStatus(Repair.RepairStatus.IN_PROGRESS);
 
             Toast.makeText(this, "Diagnosis saved successfully", Toast.LENGTH_SHORT).show();
+            navigateToFragment(new RepairSummaryFragment(), true);
         } else {
             Toast.makeText(this, "Diagnosis not saved", Toast.LENGTH_SHORT).show();
         }
     }
 
+    @Override
+    public void OnRepairCompleted() {
+
+    }
+
+    /**
+     * ON CLIENT MODIFY: Handles the modification of a client
+     *
+     * @param updatedClient Client to modify
+     */
     @Override
     public void onClientModify(Client updatedClient) {
         if (updatedClient != null) {
@@ -530,6 +553,11 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
+    /**
+     * ON TECHNICIAN MODIFY: Handles the modification of a technician
+     *
+     * @param updatedTechnician Technician to modify
+     */
     @Override
     public void onTechnicianModify(Technician updatedTechnician) {
         //TODO: IMPLEMENTAR
@@ -545,6 +573,11 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
+    /**
+     * ON DEVICE MODIFY: Handles the modification of a device
+     *
+     * @param updatedDevice Device to modify
+     */
     @Override
     public void onDeviceModify(Device updatedDevice) {
         //TODO: IMPLEMENTAR

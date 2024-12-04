@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Técnico -->
+        <TextView
+            android:id="@+id/tvSummaryTechnician"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Técnico: "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Cliente -->
+        <TextView
+            android:id="@+id/tvSummaryClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cliente: "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Dispositivo -->
+        <TextView
+            android:id="@+id/tvSummaryDevice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dispositivo: "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Lista de Diagnóstico -->
+        <TextView
+            android:id="@+id/tvDiagLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Diagnóstico:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSummaryDiagnosis"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Campo para la reparación realizada -->
+        <TextView
+            android:id="@+id/tvRepairRealizedLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Reparación realizada:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etSummaryRepairResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Describe la reparación realizada"
+            android:layout_marginTop="8dp"
+            android:inputType="textMultiLine" />
+
+        <!-- Botón para completar la reparación -->
+        <Button
+            android:id="@+id/btnSummaryCompleteRepair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marcar como completada"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</ScrollView>
