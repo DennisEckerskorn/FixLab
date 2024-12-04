@@ -430,6 +430,23 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
+     * ON ITEM REPAIR CLICK: Handles the click on an item
+     *
+     * @param item Item that was clicked
+     */
+    @Override
+    public void onItemClickRepair(Object item) {
+        if (item instanceof Technician) {
+            selectedTechnician = (Person) item;
+            this.currentRepair = new Repair(selectedTechnician, null, null);
+            navigateToFragment(new RepairedDeviceListFragment(), true);
+            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
      * ON DEVICE CLICK: Handles the click on a device
      *
      * @param device Device that was clicked
@@ -442,24 +459,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON ITEM REPAIR CLICK: Handles the click on an item
-     *
-     * @param item Item that was clicked
-     */
-    @Override
-    public void onItemClickRepair(Object item) {
-        if (item instanceof Technician) {
-            selectedTechnician = (Person) item;
-            Repair repair = new Repair(selectedTechnician, null, null);
-            this.currentRepair = repair;
-            navigateToFragment(new RepairedDeviceListFragment(), true);
-            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
      * ON REPAIRED DEVICE CLICK: Handles the click on a repaired device
      *
      * @param device Device that was repaired
@@ -468,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onRepairedDeviceClick(Device device) {
         Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
         selectedDevice = device;
+        selectedDevice.setStatus(DeviceStatus.IN_PROGRESS);
         selectedClient = workshopManager.getClientByDevice(selectedDevice);
 
         if (currentRepair != null) {
