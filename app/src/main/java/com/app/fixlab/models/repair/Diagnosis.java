@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Diagnosis implements Serializable {
-    private final String description;
-    private final String estimatedCost;
-    private final String estimatedTime;
+    private String description;
+    private String estimatedCost;
+    private String estimatedTime;
     private final Date diagnosisDate;
     private DeviceStatus status;
     private Map<DiagnosisCheckItem, Boolean> checkList;
@@ -58,14 +58,24 @@ public class Diagnosis implements Serializable {
         return description;
     }
 
-
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getEstimatedCost() {
         return estimatedCost;
     }
 
+    public void setEstimatedCost(String estimatedCost) {
+        this.estimatedCost = estimatedCost;
+    }
+
     public String getEstimatedTime() {
         return estimatedTime;
+    }
+
+    public void setEstimatedTime(String estimatedTime) {
+        this.estimatedTime = estimatedTime;
     }
 
     public Date getDiagnosisDate() {

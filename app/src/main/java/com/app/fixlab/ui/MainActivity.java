@@ -24,6 +24,7 @@ import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.listeners.OnSaveAddClient;
 import com.app.fixlab.listeners.OnSaveAddDevice;
 import com.app.fixlab.listeners.OnSaveAddTechnician;
+import com.app.fixlab.listeners.OnSaveDiagnosis;
 import com.app.fixlab.listeners.OnSplashDelayFinished;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
@@ -58,7 +59,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IdataProvider, IOnItemRepairClickListener, OnDeviceClickListener,
         MenuActionListener, OnSaveAddClient, OnSaveAddTechnician, OnSplashDelayFinished,
-        OnSaveAddDevice, OnModifyListener, OnCheckedChangeListener {
+        OnSaveAddDevice, OnModifyListener, OnCheckedChangeListener, OnSaveDiagnosis {
     private Person selectedClient;
     private Person selectedTechnician;
     private Device selectedDevice;
@@ -491,9 +492,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
-    public void saveDiagnosis(String description, String estimatedCost, String estimatedTime) {
+    @Override
+    public void onSaveDiagnosis(Diagnosis diagnosis) {
         if (currentRepair != null && currentRepair.getDiagnosis() != null) {
-            Diagnosis diagnosis = currentRepair.getDiagnosis();
+            currentRepair.setDiagnosis(diagnosis);
 
             if (currentRepair.getDevice() != null) {
                 currentRepair.getDevice().setStatus(DeviceStatus.IN_REPAIR);
@@ -580,5 +582,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             navigateToFragment(new DeviceDetailFragment(), false);
         }
     }
+
 
 }
