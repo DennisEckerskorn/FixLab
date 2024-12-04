@@ -150,13 +150,15 @@
                 </LinearLayout>
 
                 <!-- Botón Guardar -->
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/btnSaveDeviceEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/modify_name"
-                    style="@style/Widget.MaterialComponents.Button"/>
+                    android:textStyle="bold"
+                    android:background="@drawable/enter_button_background"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
