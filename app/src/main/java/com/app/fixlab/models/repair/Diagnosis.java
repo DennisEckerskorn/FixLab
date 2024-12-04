@@ -58,6 +58,8 @@ public class Diagnosis implements Serializable {
         return description;
     }
 
+
+
     public String getEstimatedCost() {
         return estimatedCost;
     }

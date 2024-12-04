@@ -28,6 +28,7 @@ import com.app.fixlab.listeners.OnSplashDelayFinished;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.devices.DeviceCondition;
+import com.app.fixlab.models.devices.DeviceStatus;
 import com.app.fixlab.models.devices.DeviceType;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
@@ -480,7 +481,30 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
     @Override
     public void onCheckedChange(Diagnosis.DiagnosisCheckItem item, boolean isChecked) {
+        if (currentRepair != null && currentRepair.getDiagnosis() != null) {
+            currentRepair.getDiagnosis().setCheckItem(item, isChecked);
 
+            if (currentRepair.getDiagnosis().isAllCheckItemsCompleted()) {
+                currentRepair.setStatus(Repair.RepairStatus.DIAGNOSED);
+                Toast.makeText(this, "Diagnosis completed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void saveDiagnosis(String description, String estimatedCost, String estimatedTime) {
+        if (currentRepair != null && currentRepair.getDiagnosis() != null) {
+            Diagnosis diagnosis = currentRepair.getDiagnosis();
+
+            if (currentRepair.getDevice() != null) {
+                currentRepair.getDevice().setStatus(DeviceStatus.IN_REPAIR);
+            }
+
+            currentRepair.setStatus(Repair.RepairStatus.IN_PROGRESS);
+
+            Toast.makeText(this, "Diagnosis saved successfully", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Diagnosis not saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
