@@ -18,6 +18,7 @@ import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.MenuActionListener;
+import com.app.fixlab.listeners.OnCheckedChangeListener;
 import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.listeners.OnSaveAddClient;
@@ -31,6 +32,7 @@ import com.app.fixlab.models.devices.DeviceType;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
+import com.app.fixlab.models.repair.Diagnosis;
 import com.app.fixlab.models.repair.Repair;
 import com.app.fixlab.parsers.GeneralJSONParser;
 import com.app.fixlab.ui.fragments.MainMenuFragment;
@@ -39,6 +41,7 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
+import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
 import com.app.fixlab.ui.fragments.repairfragments.RepairedDeviceListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
@@ -54,7 +57,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IdataProvider, IOnItemRepairClickListener, OnDeviceClickListener,
         MenuActionListener, OnSaveAddClient, OnSaveAddTechnician, OnSplashDelayFinished,
-        OnSaveAddDevice, OnModifyListener {
+        OnSaveAddDevice, OnModifyListener, OnCheckedChangeListener {
     private Person selectedClient;
     private Person selectedTechnician;
     private Device selectedDevice;
@@ -338,6 +341,15 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         return selectedDevice;
     }
 
+    /**
+     * GET REPAIR: Returns the current repair
+     *
+     * @return Repair current
+     */
+    @Override
+    public Repair getRepair() {
+        return currentRepair;
+    }
 
     /*
      * LISTENERS:
@@ -454,13 +466,21 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
         selectedDevice = device;
 
-        if(currentRepair != null) {
+        if (currentRepair != null) {
             currentRepair.setDevice(selectedDevice);
             currentRepair.setStatus(Repair.RepairStatus.PENDING);
             Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
+            navigateToFragment(new DiagnosisFragment(), true);
         } else {
             Toast.makeText(this, "No device selected", Toast.LENGTH_SHORT).show();
         }
+
+
+    }
+
+    @Override
+    public void onCheckedChange(Diagnosis.DiagnosisCheckItem item, boolean isChecked) {
+
     }
 
     @Override
@@ -486,7 +506,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
     @Override
     public void onTechnicianModify(Technician updatedTechnician) {
-    //TODO: IMPLEMENTAR
+        //TODO: IMPLEMENTAR
         if (selectedTechnician != null) {
             // Actualizar el técnico en el WorkshopManager
             workshopManager.removePerson(selectedTechnician);
@@ -501,13 +521,13 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
     @Override
     public void onDeviceModify(Device updatedDevice) {
-    //TODO: IMPLEMENTAR
-        if (selectedClient != null ){
+        //TODO: IMPLEMENTAR
+        if (selectedClient != null) {
 
             //Buscar el dispositivo en el cliente y actualizarlo
             List<Device> clientDevices = selectedClient.getDevices();
-            for(int i = 0; i < clientDevices.size(); i++){
-                if(clientDevices.get(i).getModel().equals(selectedDevice.getModel())){
+            for (int i = 0; i < clientDevices.size(); i++) {
+                if (clientDevices.get(i).getModel().equals(selectedDevice.getModel())) {
                     clientDevices.set(i, updatedDevice);
                     break;
                 }
@@ -519,15 +539,15 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             fragmentManager.popBackStack();
             navigateToFragment(new DeviceDetailFragment(), false);
         }
-        if (selectedTechnician != null){
+        if (selectedTechnician != null) {
             //Buscar el dispositivos asignados al técnico y actualizarlo
             List<Device> technicianDevices = selectedTechnician.getDevices();
-            for(int i = 0; i < technicianDevices.size(); i++){
-                if(technicianDevices.get(i).getModel().equals(selectedDevice.getModel())){
+            for (int i = 0; i < technicianDevices.size(); i++) {
+                if (technicianDevices.get(i).getModel().equals(selectedDevice.getModel())) {
                     technicianDevices.set(i, updatedDevice);
                     break;
                 }
-                }
+            }
             //Actualizar el dispositivo en el workshopManager
             workshopManager.removeDevice(selectedDevice);
             workshopManager.addDevice(updatedDevice);
@@ -536,4 +556,5 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             navigateToFragment(new DeviceDetailFragment(), false);
         }
     }
+
 }
