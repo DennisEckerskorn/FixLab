@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
-import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.ui.MainActivity;
 
@@ -67,7 +66,7 @@ public class TechnicianDetailFragment extends Fragment {
         Button btnModifyTechnician = view.findViewById(R.id.btnModifyTechnician);
         btnModifyTechnician.setOnClickListener(v -> {
            if (getActivity() instanceof  MainActivity){
-                ((MainActivity) getActivity()).navigateToFragment(new TechnicianModifyFragment(), true);
+                ((MainActivity) getActivity()).replaceFragment(new TechnicianModifyFragment(), true);
             }
         });
 

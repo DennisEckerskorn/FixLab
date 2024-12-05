@@ -14,9 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.devices.Device;
-import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.ui.MainActivity;
-import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 
 public class DeviceDetailFragment extends Fragment {
 
@@ -63,7 +61,7 @@ public class DeviceDetailFragment extends Fragment {
         Button btnModify = view.findViewById(R.id.btnModifyDevice);
         btnModify.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity){
-                ((MainActivity) getActivity()).navigateToFragment(new DeviceModifyFragment(), true);
+                ((MainActivity) getActivity()).replaceFragment(new DeviceModifyFragment(), true);
             }
         });
     }
