@@ -31,7 +31,6 @@ public class ClientModifyFragment extends Fragment {
     private TextInputEditText etName, etEmail, etPhone, etAddress;
     private RecyclerView rvDevices;
     private OnModifyListener modifyListener;
-    private List<Device> devices;
     private OnDeviceClickListener itemClickListener;
     Button btnSave;
 
@@ -67,8 +66,8 @@ public class ClientModifyFragment extends Fragment {
             etPhone.setText(selectedPerson.getPhoneNumber());
             etAddress.setText(selectedPerson.getAddress());
 
-            DevicesAdapter devicesAdapter = new DevicesAdapter(devices);
-            devicesAdapter.setListener(device -> navigateToDeviceModifyFragment(device));
+            DevicesAdapter devicesAdapter = new DevicesAdapter(selectedPerson.getDevices());
+            devicesAdapter.setListener(this::navigateToDeviceModifyFragment);
             rvDevices.setAdapter(devicesAdapter);
             rvDevices.setHasFixedSize(true);
             rvDevices.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -113,11 +112,6 @@ public class ClientModifyFragment extends Fragment {
 
     private void saveChanges() {
         if (modifyListener != null && selectedPerson != null) {
-            // Verificar si los datos han cambiado
-            if (!hasClientChanged()) {
-                Toast.makeText(getContext(), "No se han realizado cambios.", Toast.LENGTH_SHORT).show();
-                return;
-            }
 
             Client updatedClient = new Client(
                     selectedPerson.getDni(),
@@ -129,16 +123,14 @@ public class ClientModifyFragment extends Fragment {
                     selectedPerson.getUsername(),
                     selectedPerson.getPassword()
             );
-            modifyListener.onClientModify(updatedClient);
+            if (updatedClient.equals(selectedPerson)){
+                Toast.makeText(getContext(), "No se han realizado cambios.", Toast.LENGTH_SHORT).show();
+            }else {
+                modifyListener.onClientModify(updatedClient);
+            }
         }
     }
 
-    private boolean hasClientChanged() {
-        if (etName.getText().toString().equals(selectedPerson.getName()) && etEmail.getText().toString().equals(selectedPerson) && etPhone.getText().toString().equals(selectedPerson.getPhoneNumber())) {
-            etAddress.getText().toString();
-        }
-        return true;
-    }
     private void navigateToDeviceModifyFragment(Device device) {
         if (getActivity() instanceof MainActivity) {
             DeviceModifyFragment deviceModifyFragment = new DeviceModifyFragment();
@@ -152,8 +144,6 @@ public class ClientModifyFragment extends Fragment {
         super.onAttach(context);
         try {
             itemClickListener = (OnDeviceClickListener) requireActivity();
-            IdataProvider dataProvider = (IdataProvider) requireActivity();
-            devices = dataProvider.getDeviceOfClient();
             modifyListener = (OnModifyListener) requireActivity();
             selectedPerson = ((MainActivity) requireActivity()).getClient();
         } catch (ClassCastException e) {

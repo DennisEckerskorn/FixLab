@@ -92,8 +92,14 @@ public class DeviceModifyFragment extends Fragment {
 
             //Volvemos al fragment anterior
             if (getActivity() != null) {
-                getActivity().onBackPressed();
+                getActivity().getSupportFragmentManager().popBackStack();
             }
+        }
+    }
+
+    public void setSelectedDevice(Device device) {
+        if (device != null) {
+            this.selectedDevice = device;
         }
     }
 
@@ -102,13 +108,11 @@ public class DeviceModifyFragment extends Fragment {
         super.onAttach(context);
         try {
             modifyListener = (OnModifyListener) requireActivity();
-            selectedDevice = ((MainActivity) requireActivity()).getDevice();
+            if (selectedDevice == null) {
+                selectedDevice = ((MainActivity) requireActivity()).getDevice();
+            }
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnDeviceModifyListener");
         }
-    }
-
-    public void setSelectedDevice(Device device) {
-        this.selectedDevice = device;
     }
 }
