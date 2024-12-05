@@ -89,11 +89,6 @@ public class DeviceModifyFragment extends Fragment {
                     selectedDevice.getCondition()
             );
             modifyListener.onDeviceModify(updatedDevice);
-
-            //Volvemos al fragment anterior
-            if (getActivity() != null) {
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
         }
     }
 

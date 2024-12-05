@@ -570,7 +570,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onTechnicianModify(Technician updatedTechnician) {
-        //TODO: IMPLEMENTAR
         if (selectedTechnician != null) {
             // Actualizar el técnico en el WorkshopManager
             workshopManager.removePerson(selectedTechnician);
@@ -590,14 +589,21 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onDeviceModify(Device updatedDevice) {
-        if (selectedClient == null) {
-            Toast.makeText(this, "No client selected", Toast.LENGTH_SHORT).show();
-            return;
+        // Obtenemos el cliente al que pertenece el dispositivo
+
+        List<Person> clients = workshopManager.getAllClients();
+
+        for (Person client : clients) {
+            List<Device> clientDevices = client.getDevices();
+            for (Device device : clientDevices) {
+                if (device.getModel().equals(selectedDevice.getModel())) {
+                    selectedClient = client;
+                    break;
+                }
+            }
         }
 
         List<Device> clientDevices = selectedClient.getDevices();
-
-
         // Buscar el dispositivo en el cliente y actualizarlo
         for (int i = 0; i < clientDevices.size(); i++) {
             Device currentDevice = clientDevices.get(i);
@@ -610,11 +616,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         // Actualizar el dispositivo en el workshopManager
         workshopManager.removeDevice(selectedDevice);
         workshopManager.addDevice(updatedDevice);
+        selectedDevice = updatedDevice;
 
         Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
         fragmentManager.popBackStack();
         navigateToFragment(new DeviceDetailFragment(), false);
     }
-
-
 }
