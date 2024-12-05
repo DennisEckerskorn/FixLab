@@ -10,4 +10,5 @@ public interface MenuActionListener {
     void onTechniciansSelected();
 
     void onStartReparationSelected();
+
 }

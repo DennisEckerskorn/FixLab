@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.DevicesAdapter;
 import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.listeners.MenuActionListener;
+import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Person;
@@ -27,6 +29,7 @@ public class ClientDetailFragment extends Fragment {
     private Person selectedClient;
     private List<Device> devices;
     private OnDeviceClickListener itemClickListener;
+    private OnDeleteListener buttonListener;
 
     public ClientDetailFragment() {
         super(R.layout.detail_client_item);
@@ -58,8 +61,14 @@ public class ClientDetailFragment extends Fragment {
             tvEmailDetailValue.setText(selectedClient.getEmail());
             tvClientAddressDetailValue.setText(selectedClient.getAddress());
         }
-
+        Button btnDelete = view.findViewById(R.id.btnDelete);
         Button btnModify = view.findViewById(R.id.btnModify);
+
+
+        btnDelete.setOnClickListener(v -> {
+            buttonListener.onDeleteClient();
+        });
+
         btnModify.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity){
                 ((MainActivity) getActivity()).replaceFragment(new ClientModifyFragment(), true);
@@ -72,6 +81,7 @@ public class ClientDetailFragment extends Fragment {
         super.onAttach(context);
         IdataProvider dataProvider = (IdataProvider) requireActivity();
         itemClickListener = (OnDeviceClickListener) requireActivity();
+        buttonListener = (OnDeleteListener) requireActivity();
         devices = dataProvider.getDeviceOfClient();
         selectedClient = dataProvider.getClient();
         Toast.makeText(context, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();

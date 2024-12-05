@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.adapters.CompletedCheckListAdapter;
-import com.app.fixlab.adapters.DiagnosisCheckListAdapter;
 import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.repair.Diagnosis;
@@ -89,7 +88,7 @@ public class RepairSummaryFragment extends Fragment {
             }
 
             if (repairClickListener != null) {
-                repairClickListener.OnRepairCompleted();
+                repairClickListener.onRepairCompleted();
             }
         });
     }

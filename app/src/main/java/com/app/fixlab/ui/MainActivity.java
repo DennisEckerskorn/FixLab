@@ -18,6 +18,7 @@ import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnCheckedChangeListener;
+import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.listeners.OnSaveAddClient;
@@ -40,6 +41,7 @@ import com.app.fixlab.ui.fragments.MainMenuFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
+import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
 import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
@@ -59,7 +61,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IonItemClickListenerGeneric<Person>, IdataProvider, IOnItemRepairClickListener, OnDeviceClickListener,
         MenuActionListener, OnSaveAddClient, OnSaveAddTechnician, OnSplashDelayFinished,
-        OnSaveAddDevice, OnModifyListener, OnCheckedChangeListener, OnSaveDiagnosis {
+        OnSaveAddDevice, OnModifyListener, OnCheckedChangeListener, OnSaveDiagnosis, OnDeleteListener {
     private Person selectedClient;
     private Person selectedTechnician;
     private Device selectedDevice;
@@ -527,7 +529,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
     //TODO: Marcar dispositivo como COMPLETED y que se cambie en Devices
     @Override
-    public void OnRepairCompleted() {
+    public void onRepairCompleted() {
         if (currentRepair != null) {
             currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
             currentRepair.getDevice().setStatus(DeviceStatus.COMPLETED);
@@ -618,4 +620,11 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
 
+    @Override
+    public void onDeleteClient() {
+        fragmentManager.popBackStack();
+        replaceFragment(new ClientListFragment(), false);
+        workshopManager.removePerson(selectedClient);
+
+    }
 }

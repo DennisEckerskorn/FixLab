@@ -37,6 +37,7 @@ public class WorkshopManager {
      * @param person can be a instance of Person
      * @return true if removed successfully or false if not exists
      */
+
     public boolean removePerson(Person person) {
         if (person instanceof Technician && allTechnicians.contains(person)) {
             allTechnicians.remove(person);
