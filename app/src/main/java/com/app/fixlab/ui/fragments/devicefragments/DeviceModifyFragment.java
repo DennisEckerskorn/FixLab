@@ -97,20 +97,12 @@ public class DeviceModifyFragment extends Fragment {
         }
     }
 
-    public void setSelectedDevice(Device device) {
-        if (device != null) {
-            this.selectedDevice = device;
-        }
-    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
             modifyListener = (OnModifyListener) requireActivity();
-            if (selectedDevice == null) {
-                selectedDevice = ((MainActivity) requireActivity()).getDevice();
-            }
+            selectedDevice = ((MainActivity) requireActivity()).getDevice();
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnDeviceModifyListener");
         }

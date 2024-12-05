@@ -590,40 +590,30 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onDeviceModify(Device updatedDevice) {
-        //TODO: IMPLEMENTAR
-        if (selectedClient != null) {
+        if (selectedClient == null) {
+            Toast.makeText(this, "No client selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            //Buscar el dispositivo en el cliente y actualizarlo
-            List<Device> clientDevices = selectedClient.getDevices();
-            for (int i = 0; i < clientDevices.size(); i++) {
-                if (clientDevices.get(i).getModel().equals(selectedDevice.getModel())) {
-                    clientDevices.set(i, updatedDevice);
-                    break;
-                }
+        List<Device> clientDevices = selectedClient.getDevices();
+
+
+        // Buscar el dispositivo en el cliente y actualizarlo
+        for (int i = 0; i < clientDevices.size(); i++) {
+            Device currentDevice = clientDevices.get(i);
+            if (currentDevice != null && currentDevice.getModel() != null &&
+                    currentDevice.getModel().equals(selectedDevice.getModel())) {
+                clientDevices.set(i, updatedDevice);
+                break;
             }
-            //Actualizar el dispositivo en el workshopManager
-            workshopManager.removeDevice(selectedDevice);
-            workshopManager.addDevice(updatedDevice);
-            Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
-            fragmentManager.popBackStack();
-            navigateToFragment(new DeviceDetailFragment(), false);
         }
-        if (selectedTechnician != null) {
-            //Buscar el dispositivos asignados al técnico y actualizarlo
-            List<Device> technicianDevices = selectedTechnician.getDevices();
-            for (int i = 0; i < technicianDevices.size(); i++) {
-                if (technicianDevices.get(i).getModel().equals(selectedDevice.getModel())) {
-                    technicianDevices.set(i, updatedDevice);
-                    break;
-                }
-            }
-            //Actualizar el dispositivo en el workshopManager
-            workshopManager.removeDevice(selectedDevice);
-            workshopManager.addDevice(updatedDevice);
-            Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
-            fragmentManager.popBackStack();
-            navigateToFragment(new DeviceDetailFragment(), false);
-        }
+        // Actualizar el dispositivo en el workshopManager
+        workshopManager.removeDevice(selectedDevice);
+        workshopManager.addDevice(updatedDevice);
+
+        Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
+        fragmentManager.popBackStack();
+        navigateToFragment(new DeviceDetailFragment(), false);
     }
 
 

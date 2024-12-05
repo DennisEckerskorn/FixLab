@@ -43,7 +43,7 @@
     <string name="condition_defective">Defectuoso</string>
     <string name="condition_destroyed">Destruido</string>
     <string name="dni">DNI:</string>
-    <string name="name">Nombre</string>
+    <string name="name">Nombre:</string>
     <string name="surname">Apellidos</string>
     <string name="email">Email</string>
     <string name="phone">Teléfono</string>
@@ -51,8 +51,8 @@
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="availability">Disponibilidad:</string>
-    <string name="technician">Técnico:</string>
-    <string name="client">Cliente:</string>
+    <string name="technician">Técnico</string>
+    <string name="client">Cliente</string>
     <string name="device">Dispositivo:</string>
     <string name="diagnosis">Diagnóstico:</string>
     <string name="repair_done">Reparación realizada:</string>

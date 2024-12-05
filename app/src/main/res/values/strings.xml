@@ -42,7 +42,7 @@
     <string name="condition_defective">Defective</string>
     <string name="condition_destroyed">Destroyed</string>
     <string name="dni">DNI</string>
-    <string name="name">Name</string>
+    <string name="name">Name:</string>
     <string name="surname">Surname</string>
     <string name="email">Email</string>
     <string name="phone">Phone</string>
@@ -50,9 +50,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="availability">Availability:</string>
-    <string name="technician">Technician:</string>
-    <string name="client">Client:</string>
-    <string name="device">Device:</string>
+    <string name="technician">Technician</string>
+    <string name="client">Client</string>
+    <string name="device">Device</string>
     <string name="diagnosis">Diagnosis:</string>
     <string name="repair_done">Repair realized:</string>
     <string name="repair_hint_summary">Describe the Repair:</string>

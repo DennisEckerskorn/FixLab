@@ -24,26 +24,27 @@
             android:id="@+id/tvDiagnosisItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:textSize="16sp"
-            android:textColor="?android:attr/textColorPrimary"
+            android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/checkBoxDiagnosis"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Diagnosis item"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Diagnosis item" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
+        <CheckBox
             android:id="@+id/checkBoxDiagnosis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="212dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="11dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintHorizontal_bias="0.866"
+            app:layout_constraintStart_toEndOf="@+id/tvDiagnosisItem"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

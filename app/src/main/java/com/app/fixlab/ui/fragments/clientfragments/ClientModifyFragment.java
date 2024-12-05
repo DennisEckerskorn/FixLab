@@ -56,7 +56,6 @@ public class ClientModifyFragment extends Fragment {
         etEmail = view.findViewById(R.id.etEditEmail);
         etPhone = view.findViewById(R.id.etEditPhone);
         etAddress = view.findViewById(R.id.etEditAddress);
-        rvDevices = view.findViewById(R.id.rvModifyClientDevices);
     }
 
     private void setupInitialData() {
@@ -65,13 +64,6 @@ public class ClientModifyFragment extends Fragment {
             etEmail.setText(selectedPerson.getEmail());
             etPhone.setText(selectedPerson.getPhoneNumber());
             etAddress.setText(selectedPerson.getAddress());
-
-            DevicesAdapter devicesAdapter = new DevicesAdapter(selectedPerson.getDevices());
-            devicesAdapter.setListener(this::navigateToDeviceModifyFragment);
-            rvDevices.setAdapter(devicesAdapter);
-            rvDevices.setHasFixedSize(true);
-            rvDevices.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-            devicesAdapter.notifyDataSetChanged();
         }
     }
 
@@ -87,8 +79,20 @@ public class ClientModifyFragment extends Fragment {
         String phone = etPhone.getText().toString().trim();
         String address = etAddress.getText().toString().trim();
 
+
+
         if (name.isEmpty()) {
             etName.setError("El nombre es obligatorio");
+            isValid = false;
+        }
+        //Si el nombre del cliente contiene numeros o caracteres especiales se muestra un error
+        if (!name.matches("^[a-zA-Z ]+$")) {
+            etName.setError("El nombre solo puede contener letras");
+            isValid = false;
+        }
+        //Si el nombre del cliente contine menos de 2 caracteres se muestra un error
+        if (name.length() < 2) {
+            etName.setError("El nombre debe tener al menos 2 caracteres");
             isValid = false;
         }
 
@@ -97,11 +101,24 @@ public class ClientModifyFragment extends Fragment {
             isValid = false;
         }
 
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Email válido es requerido");
+            isValid = false;
+        }
+
         if (phone.isEmpty()) {
             etPhone.setError("El teléfono es obligatorio");
             isValid = false;
         }
-
+        if (phone.length() != 11) {
+            etPhone.setError("El teléfono debe contener el simbolo + y 10 dígitos");
+            isValid = false;
+        }
+        // el telefono solo puede contener numeros y sibolo más
+        if (!phone.matches("^[0-9+]*$")) {
+            etPhone.setError("El teléfono solo puede contener el símbolo + y números");
+            isValid = false;
+        }
         if (address.isEmpty()) {
             etAddress.setError("La dirección es obligatoria");
             isValid = false;
@@ -123,19 +140,7 @@ public class ClientModifyFragment extends Fragment {
                     selectedPerson.getUsername(),
                     selectedPerson.getPassword()
             );
-            if (updatedClient.equals(selectedPerson)){
-                Toast.makeText(getContext(), "No se han realizado cambios.", Toast.LENGTH_SHORT).show();
-            }else {
-                modifyListener.onClientModify(updatedClient);
-            }
-        }
-    }
-
-    private void navigateToDeviceModifyFragment(Device device) {
-        if (getActivity() instanceof MainActivity) {
-            DeviceModifyFragment deviceModifyFragment = new DeviceModifyFragment();
-            deviceModifyFragment.setSelectedDevice(device); // Pasar el dispositivo seleccionado
-            ((MainActivity) getActivity()).navigateToFragment(deviceModifyFragment, true);
+            modifyListener.onClientModify(updatedClient);
         }
     }
 
