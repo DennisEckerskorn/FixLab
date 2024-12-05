@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -67,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     private Repair currentRepair;
     private WorkshopManager workshopManager;
     private FragmentManager fragmentManager;
+    //private boolean detailAvailable;
     private static final long SPLASH_SCREEN_DELAY = 3000;
     private static final String CLIENT_KEY = "SELECTED_CLIENT";
     private static final String TECHNICIAN_KEY = "SELECTED_TECHNICIAN";
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //detailAvailable = findViewById(R.id.fcvDetail) != null;
         if (savedInstanceState == null) {
             fragmentManager = getSupportFragmentManager();
             workshopManager = new WorkshopManager();
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             selectedClient = null;
             selectedTechnician = null;
             selectedDevice = null;
-            navigateToFragment(new SplashFragment(), false);
+            replaceFragment(new SplashFragment(), false);
         } else {
             selectedClient = (Person) savedInstanceState.getSerializable(CLIENT_KEY);
             selectedTechnician = (Person) savedInstanceState.getSerializable(TECHNICIAN_KEY);
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      * @param fragment       Fragment to navigate to
      * @param addToBackStack Whether to add the fragment to the back stack, or not
      */
-    public void navigateToFragment(Fragment fragment, boolean addToBackStack) {
+    public void replaceFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction()
                 .replace(R.id.fcvMain, fragment);
         if (addToBackStack) {
@@ -233,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onClientsSelected() {
-        navigateToFragment(new ClientFragment(), true);
+        replaceFragment(new ClientFragment(), true);
     }
 
     /**
@@ -241,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onDevicesSelected() {
-        navigateToFragment(new DeviceFragment(), true);
+        replaceFragment(new DeviceFragment(), true);
     }
 
     /**
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onTechniciansSelected() {
-        navigateToFragment(new TechnicianFragment(), true);
+        replaceFragment(new TechnicianFragment(), true);
     }
 
     /**
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onStartReparationSelected() {
-        navigateToFragment(new TechnicianSelectionFragment(), true);
+        replaceFragment(new TechnicianSelectionFragment(), true);
     }
 
 
@@ -391,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     @Override
     public void onSPlashDelayFinished() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            navigateToFragment(new MainMenuFragment(), false);
+            replaceFragment(new MainMenuFragment(), false);
         }, SPLASH_SCREEN_DELAY);
     }
 
@@ -420,12 +421,12 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         if (item instanceof Client) {
             selectedClient = item;
             ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
-            navigateToFragment(clientDetailFragment, true);
+            replaceFragment(clientDetailFragment, true);
             Toast.makeText(this, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
         } else if (item instanceof Technician) {
             selectedTechnician = item;
             Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
-            navigateToFragment(new TechnicianDetailFragment(), true);
+            replaceFragment(new TechnicianDetailFragment(), true);
         }
     }
 
@@ -439,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         if (item instanceof Technician) {
             selectedTechnician = (Person) item;
             this.currentRepair = new Repair(selectedTechnician, null, null);
-            navigateToFragment(new RepairedDeviceListFragment(), true);
+            replaceFragment(new RepairedDeviceListFragment(), true);
             Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
@@ -455,7 +456,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onDeviceClick(Device device) {
         selectedDevice = device;
         Toast.makeText(this, "Device selected: " + device.getModel(), Toast.LENGTH_SHORT).show();
-        navigateToFragment(new DeviceDetailFragment(), true);
+        replaceFragment(new DeviceDetailFragment(), true);
     }
 
     /**
@@ -475,7 +476,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             currentRepair.setClient((Client) selectedClient);
             currentRepair.setStatus(Repair.RepairStatus.PENDING);
             Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
-            navigateToFragment(new DiagnosisFragment(), true);
+            replaceFragment(new DiagnosisFragment(), true);
         } else {
             Toast.makeText(this, "No device selected", Toast.LENGTH_SHORT).show();
         }
@@ -518,7 +519,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             currentRepair.setStatus(Repair.RepairStatus.IN_PROGRESS);
 
             Toast.makeText(this, "Diagnosis saved successfully", Toast.LENGTH_SHORT).show();
-            navigateToFragment(new RepairSummaryFragment(), true);
+            replaceFragment(new RepairSummaryFragment(), true);
         } else {
             Toast.makeText(this, "Diagnosis not saved", Toast.LENGTH_SHORT).show();
         }
@@ -531,7 +532,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
             currentRepair.getDevice().setStatus(DeviceStatus.COMPLETED);
             Toast.makeText(this, "Reparación completada", Toast.LENGTH_SHORT).show();
-            navigateToFragment(new MainMenuFragment(), false);
+            replaceFragment(new MainMenuFragment(), false);
         } else {
             Toast.makeText(this, "No se puede completar la reparación", Toast.LENGTH_SHORT).show();
         }
@@ -559,7 +560,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
             // Reemplazar el fragmento de detalle con uno nuevo
             fragmentManager.popBackStack(); // Eliminar el fragmento actual de la pila
-            navigateToFragment(new ClientDetailFragment(), false); // Cargar un nuevo fragmento con los datos actualizados
+            replaceFragment(new ClientDetailFragment(), false); // Cargar un nuevo fragmento con los datos actualizados
         }
     }
 
@@ -578,7 +579,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             selectedTechnician = updatedTechnician;
             Toast.makeText(this, "Technician modified: " + updatedTechnician.getName(), Toast.LENGTH_SHORT).show();
             fragmentManager.popBackStack();
-            navigateToFragment(new TechnicianDetailFragment(), false);
+            replaceFragment(new TechnicianDetailFragment(), false);
         }
     }
 
@@ -620,6 +621,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
         Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
         fragmentManager.popBackStack();
-        navigateToFragment(new DeviceDetailFragment(), false);
+        replaceFragment(new DeviceDetailFragment(), false);
     }
 }

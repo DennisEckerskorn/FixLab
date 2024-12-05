@@ -5,12 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".ui.MainActivity" >
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvMain"
         android:name="com.app.fixlab.ui.fragments.SplashFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight="50" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcvDetail"
+        android:name="com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"/>
 </LinearLayout>

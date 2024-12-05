@@ -62,7 +62,7 @@ public class ClientDetailFragment extends Fragment {
         Button btnModify = view.findViewById(R.id.btnModify);
         btnModify.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity){
-                ((MainActivity) getActivity()).navigateToFragment(new ClientModifyFragment(), true);
+                ((MainActivity) getActivity()).replaceFragment(new ClientModifyFragment(), true);
             }
         });
     }
