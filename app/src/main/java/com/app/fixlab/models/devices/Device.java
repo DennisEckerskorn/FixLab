@@ -77,19 +77,19 @@ public class Device implements Serializable {
         int status = -1;
         switch (this.getStatus()) {
             case PENDING:
-                status = R.string.status_recived;
+                status = R.string.status_pending;
                 break;
             case COMPLETED:
-                status = R.string.status_in_reparation;
+                status = R.string.status_completed;
                 break;
             case IN_PROGRESS:
-                status = R.string.status_in_revision;
+                status = R.string.status_in_progress;
                 break;
             case NEEDS_PARTS:
-                status = R.string.status_fixed;
+                status = R.string.status_waiting_for_parts;
                 break;
             case UNREPAIRABLE:
-                status = R.string.status_waiting_for_parts;
+                status = R.string.status_unreparable;
                 break;
             default:
                 break;

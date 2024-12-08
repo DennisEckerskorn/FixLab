@@ -59,5 +59,9 @@
     <string name="btn_save_repair_summary">Mark Repair as Done</string>
     <string name="cost">Cost</string>
     <string name="time_needed">Time needed</string>
-    <string name="btn_save_diagnosis">Save Diagnosis</string>"
+    <string name="btn_save_diagnosis">Save Diagnosis</string>
+    <string name="status_pending">Pending</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_in_progress">In progress</string>
+    <string name="status_unreparable">Unreparable</string>"
 </resources>
