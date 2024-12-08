@@ -61,4 +61,8 @@
     <string name="cost">Coste</string>
     <string name="time_needed">Tiempo necesario</string>
     <string name="btn_save_diagnosis">Guardar Diagnóstico</string>
+    <string name="status_pending">Pendiente</string>
+    <string name="status_completed">Completado</string>
+    <string name="status_in_progress">En progreso</string>
+    <string name="status_unreparable">Irreparable</string>
 </resources>
