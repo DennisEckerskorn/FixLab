@@ -29,7 +29,7 @@ public class WorkshopManager {
         return this.addPersons(dataManager.loadTechnicians(context));
     }
     public int loadTechnicians(){
-        return this.addPersons(dataManager.loadClientsAndDevices(this));
+        return this.addPersons(dataManager.loadClientsAndDevices(context));
     }
     /**
      * @param persons array of persons to add
@@ -193,5 +193,8 @@ public class WorkshopManager {
 
     public List<Person> getAllTechnicians() {
         return allTechnicians;
+    }
+    public void saveData(){
+
     }
 }
