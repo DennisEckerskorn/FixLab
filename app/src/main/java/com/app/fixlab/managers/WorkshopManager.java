@@ -20,6 +20,18 @@ public class WorkshopManager {
     }
 
     /**
+     * @param persons array of persons to add
+     * @return number of persons added successfully
+     */
+    public int addPersons(List<Person> persons) {
+        int count = 0;
+        for (int i = 0; i < persons.size(); i++) {
+            if(addPerson(persons.get(i)))
+                count++;
+        }
+        return count;
+    }
+    /**
      * @param person can be a instance of Person
      * @return true if added successfully
      */
