@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         //detailAvailable = findViewById(R.id.fcvDetail) != null;
         if (savedInstanceState == null) {
             fragmentManager = getSupportFragmentManager();
-            workshopManager = new WorkshopManager();
+            workshopManager = new WorkshopManager(this);
             loadData();
             selectedClient = null;
             selectedTechnician = null;
@@ -129,8 +129,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      * LOAD DATA: Loads data of clients, devices and technicians from JSON files
      */
     private void loadData() {
-        int techniciansLoaded = workshopManager.addPersons(dataManager.loadTechnicians(this));
-        int clientsLoaded = workshopManager.addPersons(dataManager.loadClientsAndDevices(this));
+
+        int techniciansLoaded = workshopManager.loadTechnicians();
+
+        int clientsLoaded = workshopManager.loadClients();
         Toast.makeText(this, "Technicians loaded: " + techniciansLoaded, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "Clients loaded: " + clientsLoaded, Toast.LENGTH_SHORT).show();
     }
