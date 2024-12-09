@@ -34,7 +34,6 @@ import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.models.repair.Diagnosis;
 import com.app.fixlab.models.repair.Repair;
 import com.app.fixlab.parsers.DataManager;
-import com.app.fixlab.parsers.TestSaveData;
 import com.app.fixlab.ui.fragments.MainMenuFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
@@ -86,10 +85,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dataManager = DataManager.getInstance();
-        TestSaveData testSaveData = new TestSaveData(this);
-        testSaveData.loadData();
-        testSaveData.addPerson(new Client("1234", "pedro", "pascual", "pedropascual@gmail.com", "656764563", "avenida siempre viva 14", "pedropas23", "1234"));
-        testSaveData.saveData();
         //detailAvailable = findViewById(R.id.fcvDetail) != null;
         if (savedInstanceState == null) {
             fragmentManager = getSupportFragmentManager();
