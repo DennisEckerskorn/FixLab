@@ -3,6 +3,7 @@ package com.app.fixlab.adapters.clientadapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -71,6 +72,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
      * It holds the views representing the client's data and sets up the click listener.
      */
     class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final ImageView ivClientPhoto;
         private final TextView tvNameClient;
         private final TextView tvPhoneClient;
         private final TextView tvEmailClient;
@@ -85,6 +87,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
          */
         public ClientViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivClientPhoto = itemView.findViewById(R.id.ivClientPhoto);
             tvNameClient = itemView.findViewById(R.id.tvNameClient);
             tvPhoneClient = itemView.findViewById(R.id.tvPhoneClient);
             tvEmailClient = itemView.findViewById(R.id.tvEmailClient);
@@ -98,6 +101,7 @@ public class ClientsAdapter extends RecyclerView.Adapter<ClientsAdapter.ClientVi
          */
         private void bindClient(Person client) {
             this.client = client;
+            ivClientPhoto.setImageResource(R.drawable.profile);
             tvNameClient.setText(client.getName());
             tvPhoneClient.setText(client.getPhoneNumber());
             tvEmailClient.setText(client.getEmail());
