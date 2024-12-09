@@ -19,6 +19,6 @@
         android:id="@+id/fcvDetail"
         android:name="com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="50"/>
+        android:layout_height="match_parent"
+        android:layout_weight="50" />
 </LinearLayout>

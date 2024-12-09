@@ -49,6 +49,7 @@ import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceModifyFragment;
+import com.app.fixlab.ui.fragments.repairfragments.CompletedRepairListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
 import com.app.fixlab.ui.fragments.repairfragments.RepairSummaryFragment;
 import com.app.fixlab.ui.fragments.repairfragments.RepairedDeviceListFragment;
@@ -494,7 +495,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
     @Override
     public void onRepairSummarySelected() {
-
+        replaceFragment(new CompletedRepairListFragment(), true);
     }
 
 
