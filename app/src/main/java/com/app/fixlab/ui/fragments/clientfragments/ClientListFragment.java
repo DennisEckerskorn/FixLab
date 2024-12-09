@@ -19,16 +19,51 @@ import com.app.fixlab.models.persons.Person;
 import java.util.List;
 
 /**
- * CLIENT LIST FRAGMENT: Fragment that shows a list of clients
+ * ClientListFragment displays a list of clients in a RecyclerView.
+ *
+ * <p>This fragment is part of the client management system and shows all clients retrieved
+ * from a data provider. Each client is displayed in an item within the RecyclerView, and clicking
+ * on an item triggers a listener for further actions.</p>
+ *
+ * <p>The layout for this fragment is defined in {@code R.layout.fragment_list}.</p>
+ *
+ * <p>Key features:
+ * <ul>
+ *   <li>Displays a list of {@link Person} objects representing clients.</li>
+ *   <li>Uses {@link ClientsAdapter} to bind data to the RecyclerView.</li>
+ *   <li>Integrates with {@link IonItemClickListenerGeneric} to handle item clicks.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>Dependencies:
+ * <ul>
+ *   <li>{@link RecyclerView} for displaying the list of clients.</li>
+ *   <li>{@link LinearLayoutManager} for vertical list layout management.</li>
+ *   <li>{@link IdataProvider} for fetching client data.</li>
+ * </ul>
+ * </p>
+ *
+ * @author [Dennis Eckerskorn]
  */
 public class ClientListFragment extends Fragment {
     private List<Person> clients;
     private IonItemClickListenerGeneric<Person> itemClickListener;
 
+    /**
+     * Default constructor. Initializes the fragment with its layout resource.
+     */
     public ClientListFragment() {
         super(R.layout.fragment_list);
     }
 
+    /**
+     * Called when the view hierarchy for this fragment is created.
+     * Configures the {@link RecyclerView} to display the client list using {@link ClientsAdapter}.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -42,6 +77,12 @@ public class ClientListFragment extends Fragment {
         rvList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Initializes the client data and item click listener by interacting with the hosting activity.
+     *
+     * @param context The context of the host activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

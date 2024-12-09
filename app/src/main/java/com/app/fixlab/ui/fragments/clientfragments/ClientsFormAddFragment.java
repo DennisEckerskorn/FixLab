@@ -15,6 +15,31 @@ import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.google.android.material.textfield.TextInputLayout;
 
+/**
+ * ClientsFormAddFragment is a Fragment designed for adding new clients.
+ *
+ * <p>This fragment provides a form with input fields for entering a new client's details, such as
+ * their name, email, phone number, and other relevant information. It interacts with a listener
+ * to save the newly created client.</p>
+ *
+ * <p>The layout for this fragment is defined in {@code R.layout.activity_add_client}.</p>
+ *
+ * <p>Key Features:
+ * <ul>
+ *   <li>Form fields with validation to ensure correct client details are entered.</li>
+ *   <li>Integrates with {@link OnSaveAddClient} to handle the saving of a new client.</li>
+ *   <li>Uses {@link TextInputLayout} for user-friendly input management.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>Dependencies:
+ * <ul>
+ *   <li>{@link OnSaveAddClient} interface to handle actions when the "Save" button is clicked.</li>
+ * </ul>
+ * </p>
+ *
+ * @author [Dennis Eckerskorn]
+ */
 public class ClientsFormAddFragment extends Fragment {
     private OnSaveAddClient saveAddClientListener;
     private TextInputLayout tilDni;
@@ -27,10 +52,21 @@ public class ClientsFormAddFragment extends Fragment {
     private TextInputLayout tilPassword;
     private Button bGuardar;
 
+    /**
+     * Default constructor. Initializes the fragment with its layout resource.
+     */
     public ClientsFormAddFragment() {
         super(R.layout.activity_add_client);
     }
 
+    /**
+     * Called when the view hierarchy for this fragment is created.
+     * Sets up the input fields and the save button's click listener.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -45,7 +81,7 @@ public class ClientsFormAddFragment extends Fragment {
         bGuardar = view.findViewById(R.id.bGuardar);
 
         bGuardar.setOnClickListener(v -> {
-            if (saveAddClientListener != null) {                                                                                                
+            if (saveAddClientListener != null) {
                 // Get data from TextInputEditText views
                 String DNI = tilDni.getEditText().getText().toString();
                 String name = tilName.getEditText().getText().toString(); // Access EditText within TextInputLayout
@@ -56,17 +92,23 @@ public class ClientsFormAddFragment extends Fragment {
                 String username = tilUsername.getEditText().getText().toString();
                 String password = tilPassword.getEditText().getText().toString();
 
-                //TODO: ADJUST DATA; LAYOUT NEEDS TO BE ADAPTED:
-                Client newClient = new Client(DNI, name, surname,  email, telefono, direccion, username, password); // Assuming your Client class has a constructor that takes these parameters
+                Client newClient = new Client(DNI, name, surname, email, telefono, direccion, username, password); // Assuming your Client class has a constructor that takes these parameters
 
                 saveAddClientListener.onSaveAddClient(newClient);
             }
         });
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Ensures the activity implements {@link OnSaveAddClient}.
+     *
+     * @param context The context of the host activity.
+     * @throws ClassCastException if the host activity does not implement {@link OnSaveAddClient}.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-       saveAddClientListener = (OnSaveAddClient) requireActivity();
+        saveAddClientListener = (OnSaveAddClient) requireActivity();
     }
 }

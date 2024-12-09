@@ -24,6 +24,25 @@ import com.app.fixlab.models.persons.Person;
 
 import java.util.List;
 
+/**
+ * ClientDetailFragment displays detailed information about a selected client,
+ * including their associated devices. Users can modify or delete the client
+ * using the provided buttons. Devices are listed in a RecyclerView, allowing
+ * interaction through item click events.
+ *
+ * <p>The layout for this fragment is defined in {@code R.layout.detail_client_item}.</p>
+ *
+ * <p>Required listeners for the host activity:
+ * <ul>
+ *   <li>{@link IdataProvider} - Provides data about the selected client and their devices.</li>
+ *   <li>{@link OnDeviceClickListener} - Handles item click events for devices in the RecyclerView.</li>
+ *   <li>{@link OnDeleteListener} - Handles delete button click events.</li>
+ *   <li>{@link OnModifyListener} - Handles modify button click events.</li>
+ * </ul>
+ * </p>
+ *
+ * @author [Dennis, Borja]
+ */
 public class ClientDetailFragment extends Fragment {
     private Person selectedClient;
     private List<Device> devices;
@@ -31,10 +50,22 @@ public class ClientDetailFragment extends Fragment {
     private OnDeleteListener buttonListener;
     private OnModifyListener modifyListener;
 
+    /**
+     * Default constructor. Initializes the fragment with its layout.
+     */
     public ClientDetailFragment() {
         super(R.layout.detail_client_item);
     }
 
+    /**
+     * Called when the view hierarchy for this fragment is created.
+     * Initializes views, populates data for the selected client, and sets up listeners
+     * for the RecyclerView and buttons.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -74,6 +105,13 @@ public class ClientDetailFragment extends Fragment {
         });
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Initializes required listeners and retrieves data for the selected client
+     * and their associated devices.
+     *
+     * @param context The context of the host activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

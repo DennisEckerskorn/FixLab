@@ -16,16 +16,54 @@ import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.ui.MainActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
+/**
+ * ClientModifyFragment is a Fragment used for editing and saving changes to a client's details.
+ *
+ * <p>This fragment allows users to modify the details of a selected client, such as their name,
+ * email, phone number, and address. It includes validation to ensure that the inputs conform
+ * to expected formats.</p>
+ *
+ * <p>The layout for this fragment is defined in {@code R.layout.fragment_modify_client}.</p>
+ *
+ * <p>Key features:
+ * <ul>
+ *   <li>Displays editable fields for client details.</li>
+ *   <li>Performs validation on user inputs, including format checks for email and phone number.</li>
+ *   <li>Communicates updates to a listener implementing {@link OnModifyListener}.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>Dependencies:
+ * <ul>
+ *   <li>{@link OnModifyListener} to handle saving of updated client details.</li>
+ *   <li>{@link MainActivity} to retrieve the selected client's data.</li>
+ * </ul>
+ * </p>
+ *
+ * @author [Dennis, Borja]
+ * @version 1.0
+ */
 public class ClientModifyFragment extends Fragment {
     private Person selectedPerson;
     private TextInputEditText etName, etEmail, etPhone, etAddress;
     private OnModifyListener modifyListener;
     Button btnSave;
 
+    /**
+     * Default constructor. Initializes the fragment with its layout resource.
+     */
     public ClientModifyFragment() {
         super(R.layout.fragment_modify_client);
     }
 
+    /**
+     * Called when the view hierarchy for this fragment is created.
+     * Sets up the view elements and initializes data for editing.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     *                           from a previous saved state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -33,6 +71,11 @@ public class ClientModifyFragment extends Fragment {
         setupInitialData();
     }
 
+    /**
+     * Initializes the views, including setting up the save button's click listener.
+     *
+     * @param view The root view of the fragment.
+     */
     private void initViews(View view) {
         btnSave = view.findViewById(R.id.btnSaveEdit);
         btnSave.setOnClickListener(v -> {
@@ -46,6 +89,9 @@ public class ClientModifyFragment extends Fragment {
         etAddress = view.findViewById(R.id.etEditAddress);
     }
 
+    /**
+     * Populates the input fields with the selected client's current details.
+     */
     private void setupInitialData() {
         if (selectedPerson != null) {
             etName.setText(selectedPerson.getName());
@@ -55,6 +101,11 @@ public class ClientModifyFragment extends Fragment {
         }
     }
 
+    /**
+     * Validates the input fields for correctness.
+     *
+     * @return true if all fields pass validation; false otherwise.
+     */
     private boolean validateFields() {
         if (etName == null || etEmail == null || etPhone == null || etAddress == null) {
             return false;
@@ -66,7 +117,6 @@ public class ClientModifyFragment extends Fragment {
         String email = etEmail.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
         String address = etAddress.getText().toString().trim();
-
 
 
         if (name.isEmpty()) {
@@ -115,6 +165,10 @@ public class ClientModifyFragment extends Fragment {
         return isValid;
     }
 
+
+    /**
+     * Saves the modified client details by notifying the listener.
+     */
     private void saveChanges() {
         if (modifyListener != null && selectedPerson != null) {
             // Crear un nuevo cliente con los datos actualizados pero manteniendo la misma referencia
@@ -132,6 +186,12 @@ public class ClientModifyFragment extends Fragment {
         }
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Sets up the listener and retrieves the selected client for modification.
+     *
+     * @param context The context of the host activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
