@@ -74,6 +74,13 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     private static final String REPAIR_KEY = "SELECTED_REPAIR";
     private static DataManager dataManager;
 
+    /**
+     * Called when the activity is first created.
+     * Initializes the application, sets up the UI, loads initial data, and displays the SplashFragment.
+     *
+     * @param savedInstanceState If the activity is being reinitialized after previously being shut down,
+     *                           this Bundle contains the data it most recently supplied in onSaveInstanceState().
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +109,12 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         // toolbarSettings();
     }
 
+    /**
+     * Saves the current state of the activity.
+     * Used to preserve the state of selected client, technician, device, and repair during configuration changes.
+     *
+     * @param outState The Bundle in which to place the saved state.
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -112,10 +125,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * NAVIGATION TO FRAGMENT: Navigates to a fragment
+     * Replaces the current fragment with a new one.
      *
-     * @param fragment       Fragment to navigate to
-     * @param addToBackStack Whether to add the fragment to the back stack, or not
+     * @param fragment       The new Fragment to display.
+     * @param addToBackStack If true, the transaction is added to the back stack, allowing the user to navigate back.
      */
     public void replaceFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction()
@@ -127,7 +140,8 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * LOAD DATA: Loads data of clients, devices and technicians from JSON files
+     * Loads the workshop data for clients and technicians from JSON files.
+     * Displays a Toast message indicating the number of clients and technicians loaded.
      */
     private void loadData() {
         int techniciansLoaded = workshopManager.loadTechnicians();
@@ -150,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
 
     /**
-     * ON CLIENTS SELECTED: Navigates to the clients fragment
+     * Navigates to the ClientsFragment to display the list of clients.
      */
     @Override
     public void onClientsSelected() {
@@ -158,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON DEVICES SELECTED: Navigates to the devices fragment
+     * Navigates to the DevicesFragment to display the list of devices.
      */
     @Override
     public void onDevicesSelected() {
@@ -166,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON TECHNICIANS SELECTED: Navigates to the technicians fragment
+     * Navigates to the TechniciansFragment to display the list of technicians.
      */
     @Override
     public void onTechniciansSelected() {
@@ -174,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON START REPARATION SELECTED: Navigates to the start reparation fragment
+     * Navigates to the TechnicianSelectionFragment to start a repair process.
      */
     @Override
     public void onStartReparationSelected() {
@@ -188,9 +202,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
 
     /**
-     * GET CLIENT DATA: Returns the clients of the workshop
+     * Retrieves the list of all clients in the workshop.
      *
-     * @return List<Person> clients of the workshop
+     * @return A list of clients; an empty list if no clients exist.
      */
     @Override
     public List<Person> getClientData() {
@@ -199,9 +213,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * GET TECHNICIAN DATA: Returns the technicians of the workshop
+     * Retrieves the list of all technicians in the workshop.
      *
-     * @return List<Person> technicians of the workshop
+     * @return A list of technicians; an empty list if no technicians exist.
      */
     @Override
     public List<Person> getTechnicianData() {
@@ -210,9 +224,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * GET DEVICE DATA: Returns the devices of the workshop
+     * Retrieves the list of all devices in the workshop.
      *
-     * @return List<Device> devices of the workshop
+     * @return A list of devices; an empty list if no devices exist.
      */
     @Override
     public List<Device> getDeviceData() {
@@ -221,9 +235,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * GET DEVICE OF CLIENT: Returns the devices of the selected client
+     * Retrieves the list of devices belonging to the selected client.
      *
-     * @return List<Device> devices of the selected client
+     * @return A list of devices; an empty list if the client has no devices or no client is selected.
      */
     @Override
     public List<Device> getDeviceOfClient() {
@@ -234,6 +248,11 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         return Collections.emptyList();
     }
 
+    /**
+     * Retrieves the list of completed repairs.
+     *
+     * @return A list of completed repairs; an empty list if no repairs exist.
+     */
     @Override
     public List<Repair> getCompletedRepairs() {
         if (currentRepair != null) {
@@ -245,9 +264,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
 
     /**
-     * GET CLIENT: Returns the selected client
+     * Gets the currently selected client.
      *
-     * @return Client selected
+     * @return The selected client; null if no client is selected.
      */
     @Override
     public Person getClient() {
@@ -255,9 +274,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * GET TECHNICIAN: Returns the selected technician
+     * Gets the currently selected technician.
      *
-     * @return Technician selected
+     * @return The selected technician; null if no technician is selected.
      */
     @Override
     public Person getTechnician() {
@@ -265,9 +284,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * GET DEVICE: Returns the selected device
+     * Gets the currently selected device.
      *
-     * @return Device selected
+     * @return The selected device; null if no device is selected.
      */
     @Override
     public Device getDevice() {
@@ -275,9 +294,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * GET REPAIR: Returns the current repair
+     * Gets the current repair process.
      *
-     * @return Repair current
+     * @return The current repair; null if no repair is active.
      */
     @Override
     public Repair getRepair() {
@@ -290,7 +309,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
 
     /**
-     * ON SAVE ADD CLIENT: Saves the client
+     * Saves a new client to the system.
+     *
+     * @param client The client to be added.
      */
     @Override
     public void onSaveAddClient(Client client) {
@@ -303,7 +324,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * OnSaveAddTechnician: Saves the technician
+     * Saves a new technician to the system.
+     *
+     * @param technician The technician to be added.
      */
     @Override
     public void onSaveAddTechnician(Technician technician) {
@@ -316,19 +339,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON SPLASH DELAY FINISHED: Navigates to the main menu fragment
-     */
-    @Override
-    public void onSPlashDelayFinished() {
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            replaceFragment(new MainMenuFragment(), false);
-        }, SPLASH_SCREEN_DELAY);
-    }
-
-    /**
-     * ON SAVE ADD DEVICE: Saves the device
+     * Saves a new device to the system.
      *
-     * @param device Device to save
+     * @param device The device to be added.
      */
     @Override
     public void onSaveAddDevice(Device device) {
@@ -339,111 +352,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
-
     /**
-     * ON ITEM CLICK: Handles the click on an item
+     * Saves the diagnosis data and updates the repair status.
      *
-     * @param item Item that was clicked
-     */
-    @Override
-    public void onItemClick(Person item) {
-        if (item instanceof Client) {
-            selectedClient = item;
-            ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
-            replaceFragment(clientDetailFragment, true);
-            Toast.makeText(this, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
-        } else if (item instanceof Technician) {
-            selectedTechnician = item;
-            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
-            replaceFragment(new TechnicianDetailFragment(), true);
-        }
-    }
-
-    @Override
-    public void onCompletedSummaryRepair(Repair item) {
-        currentRepair = item;
-        RepairSummaryFragment repairSummaryFragment = new RepairSummaryFragment();
-        repairSummaryFragment.setShowFields(false);
-        replaceFragment(repairSummaryFragment, true);
-    }
-
-
-    /**
-     * ON ITEM REPAIR CLICK: Handles the click on an item
-     *
-     * @param item Item that was clicked
-     */
-    @Override
-    public void onItemClickRepair(Object item) {
-        if (item instanceof Technician) {
-            selectedTechnician = (Person) item;
-            this.currentRepair = new Repair(selectedTechnician, null, null);
-            replaceFragment(new RepairedDeviceListFragment(), true);
-            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * ON DEVICE CLICK: Handles the click on a device
-     *
-     * @param device Device that was clicked
-     */
-    @Override
-    public void onDeviceClick(Device device) {
-        selectedDevice = device;
-        Toast.makeText(this, "Device selected: " + device.getModel(), Toast.LENGTH_SHORT).show();
-        replaceFragment(new DeviceDetailFragment(), true);
-    }
-
-    /**
-     * ON REPAIRED DEVICE CLICK: Handles the click on a repaired device
-     *
-     * @param device Device that was repaired
-     */
-    @Override
-    public void onRepairedDeviceClick(Device device) {
-        Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
-        selectedDevice = device;
-        selectedDevice.setStatus(DeviceStatus.IN_PROGRESS);
-        selectedClient = workshopManager.getClientByDevice(selectedDevice);
-
-        if (currentRepair != null) {
-            currentRepair.setDevice(selectedDevice);
-            currentRepair.setClient((Client) selectedClient);
-            currentRepair.setStatus(Repair.RepairStatus.PENDING);
-            Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
-            replaceFragment(new DiagnosisFragment(), true);
-        } else {
-            Toast.makeText(this, "No device selected", Toast.LENGTH_SHORT).show();
-        }
-
-
-    }
-
-    /**
-     * ON CHECKED CHANGE: Handles the change of a checked item
-     *
-     * @param item      Item that was checked
-     * @param isChecked Whether the item is checked or not
-     */
-    @Override
-    public void onCheckedChange(Diagnosis.DiagnosisCheckItem item, boolean isChecked) {
-        if (currentRepair != null && currentRepair.getDiagnosis() != null) {
-            currentRepair.getDiagnosis().setCheckItem(item, isChecked);
-
-            if (currentRepair.getDiagnosis().isAllCheckItemsCompleted()) {
-                currentRepair.setStatus(Repair.RepairStatus.DIAGNOSED);
-                Toast.makeText(this, "Diagnosis completed", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    /**
-     * ON SAVE DIAGNOSIS: Saves the diagnosis
-     *
-     * @param diagnosis Diagnosis to save
+     * @param diagnosis The diagnosis data to be saved.
      */
     @Override
     public void onSaveDiagnosis(Diagnosis diagnosis) {
@@ -463,7 +375,122 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
-    //TODO: Marcar dispositivo como COMPLETED y que se cambie en Devices
+    /**
+     * Starts the main menu after the splash delay has finished.
+     */
+    @Override
+    public void onSPlashDelayFinished() {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            replaceFragment(new MainMenuFragment(), false);
+        }, SPLASH_SCREEN_DELAY);
+    }
+    
+    /**
+     * Handles the selection of a person item.
+     * Navigates to the appropriate detail fragment based on whether the item is a client or a technician.
+     *
+     * @param item The person item selected.
+     */
+    @Override
+    public void onItemClick(Person item) {
+        if (item instanceof Client) {
+            selectedClient = item;
+            ClientDetailFragment clientDetailFragment = new ClientDetailFragment();
+            replaceFragment(clientDetailFragment, true);
+            Toast.makeText(this, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();
+        } else if (item instanceof Technician) {
+            selectedTechnician = item;
+            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
+            replaceFragment(new TechnicianDetailFragment(), true);
+        }
+    }
+
+    /**
+     * Handles the selection of a repair item to view its summary.
+     *
+     * @param item The repair item selected.
+     */
+    @Override
+    public void onCompletedSummaryRepair(Repair item) {
+        currentRepair = item;
+        RepairSummaryFragment repairSummaryFragment = new RepairSummaryFragment();
+        repairSummaryFragment.setShowFields(false);
+        replaceFragment(repairSummaryFragment, true);
+    }
+
+    /**
+     * Handles the selection of a technician or other repair-related item.
+     *
+     * @param item The repair-related item selected.
+     */
+    @Override
+    public void onItemClickRepair(Object item) {
+        if (item instanceof Technician) {
+            selectedTechnician = (Person) item;
+            this.currentRepair = new Repair(selectedTechnician, null, null);
+            replaceFragment(new RepairedDeviceListFragment(), true);
+            Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Handles the selection of a device and navigates to its details.
+     *
+     * @param device The device selected.
+     */
+    @Override
+    public void onDeviceClick(Device device) {
+        selectedDevice = device;
+        Toast.makeText(this, "Device selected: " + device.getModel(), Toast.LENGTH_SHORT).show();
+        replaceFragment(new DeviceDetailFragment(), true);
+    }
+
+    /**
+     * Handles the selection of a repaired device and starts a repair process.
+     *
+     * @param device The device selected for repair.
+     */
+    @Override
+    public void onRepairedDeviceClick(Device device) {
+        Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
+        selectedDevice = device;
+        selectedDevice.setStatus(DeviceStatus.IN_PROGRESS);
+        selectedClient = workshopManager.getClientByDevice(selectedDevice);
+
+        if (currentRepair != null) {
+            currentRepair.setDevice(selectedDevice);
+            currentRepair.setClient((Client) selectedClient);
+            currentRepair.setStatus(Repair.RepairStatus.PENDING);
+            Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
+            replaceFragment(new DiagnosisFragment(), true);
+        } else {
+            Toast.makeText(this, "No device selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Updates the status of a diagnosis check item.
+     *
+     * @param item      The diagnosis item being checked or unchecked.
+     * @param isChecked The state of the item (checked or unchecked).
+     */
+    @Override
+    public void onCheckedChange(Diagnosis.DiagnosisCheckItem item, boolean isChecked) {
+        if (currentRepair != null && currentRepair.getDiagnosis() != null) {
+            currentRepair.getDiagnosis().setCheckItem(item, isChecked);
+
+            if (currentRepair.getDiagnosis().isAllCheckItemsCompleted()) {
+                currentRepair.setStatus(Repair.RepairStatus.DIAGNOSED);
+                Toast.makeText(this, "Diagnosis completed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
+     * Marks the current repair as completed and updates device and repair statuses.
+     */
     @Override
     public void onRepairCompleted() {
         if (currentRepair != null) {
@@ -477,32 +504,42 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
-
+    /**
+     * Navigates to the ClientModifyFragment to allow modification of client details.
+     */
     @Override
     public void onModifyButtonClient() {
         replaceFragment(new ClientModifyFragment(), true);
     }
 
+    /**
+     * Navigates to the TechnicianModifyFragment to allow modification of technician details.
+     */
     @Override
     public void onModifyButtonTechnician() {
         replaceFragment(new TechnicianModifyFragment(), true);
     }
 
+    /**
+     * Navigates to the DeviceModifyFragment to allow modification of device details.
+     */
     @Override
     public void onModifyButtonDevice() {
         replaceFragment(new DeviceModifyFragment(), true);
     }
 
+    /**
+     * Navigates to the CompletedRepairListFragment to view completed repairs.
+     */
     @Override
     public void onRepairSummarySelected() {
         replaceFragment(new CompletedRepairListFragment(), true);
     }
 
-
     /**
-     * ON CLIENT MODIFY: Handles the modification of a client.
+     * Modifies the details of the selected client and updates it in the system.
      *
-     * @param updatedClient Client to modify.
+     * @param updatedClient The updated client details.
      */
     @Override
     public void onClientModify(Client updatedClient) {
@@ -521,9 +558,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON TECHNICIAN MODIFY: Handles the modification of a technician.
+     * Modifies the details of the selected technician and updates it in the system.
      *
-     * @param updatedTechnician Technician to modify.
+     * @param updatedTechnician The updated technician details.
      */
     @Override
     public void onTechnicianModify(Technician updatedTechnician) {
@@ -546,9 +583,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
     /**
-     * ON DEVICE MODIFY: Handles the modification of a device.
+     * Modifies the details of the selected device and updates it in the system.
      *
-     * @param updatedDevice Device to modify.
+     * @param updatedDevice The updated device details.
      */
     @Override
     public void onDeviceModify(Device updatedDevice) {
@@ -593,7 +630,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
-
+    /**
+     * Deletes the currently selected client and navigates to the ClientListFragment.
+     */
     @Override
     public void onDeleteClient() {
         fragmentManager.popBackStack();
