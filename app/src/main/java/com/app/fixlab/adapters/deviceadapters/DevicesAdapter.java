@@ -1,4 +1,4 @@
-package com.app.fixlab.adapters;
+package com.app.fixlab.adapters.deviceadapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IOnItemRepairClickListener;
-import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.models.devices.Device;
 

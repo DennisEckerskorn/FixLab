@@ -14,16 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.DevicesAdapter;
+import com.app.fixlab.adapters.deviceadapters.DevicesAdapter;
 import com.app.fixlab.listeners.IdataProvider;
-import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.devices.Device;
-import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
-import com.app.fixlab.ui.MainActivity;
 
 import java.util.List;
 

@@ -4,27 +4,17 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.DevicesAdapter;
-import com.app.fixlab.listeners.IdataProvider;
-import com.app.fixlab.listeners.OnDeviceClickListener;
 import com.app.fixlab.listeners.OnModifyListener;
-import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.ui.MainActivity;
-import com.app.fixlab.ui.fragments.devicefragments.DeviceModifyFragment;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.List;
 
 public class ClientModifyFragment extends Fragment {
     private Person selectedPerson;

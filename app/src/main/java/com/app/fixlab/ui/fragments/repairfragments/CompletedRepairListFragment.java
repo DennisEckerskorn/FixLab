@@ -2,9 +2,7 @@ package com.app.fixlab.ui.fragments.repairfragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.CompletedRepairAdapter;
+import com.app.fixlab.adapters.repairadapters.CompletedRepairAdapter;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.models.repair.Repair;

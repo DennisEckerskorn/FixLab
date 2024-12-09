@@ -1,12 +1,10 @@
-package com.app.fixlab.adapters;
+package com.app.fixlab.adapters.deviceadapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
-import com.app.fixlab.ui.fragments.clientfragments.ClientsFormAddFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DevicesFormAddFragment;
 

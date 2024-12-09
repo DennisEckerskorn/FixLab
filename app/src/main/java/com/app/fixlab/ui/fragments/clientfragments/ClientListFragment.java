@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.ClientsAdapter;
+import com.app.fixlab.adapters.clientadapters.ClientsAdapter;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.IonItemClickListenerGeneric;
 import com.app.fixlab.models.persons.Person;

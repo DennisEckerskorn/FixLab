@@ -2,9 +2,7 @@ package com.app.fixlab.ui.fragments.repairfragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.DiagnosisCheckListAdapter;
+import com.app.fixlab.adapters.repairadapters.DiagnosisCheckListAdapter;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.OnCheckedChangeListener;
 import com.app.fixlab.listeners.OnSaveDiagnosis;

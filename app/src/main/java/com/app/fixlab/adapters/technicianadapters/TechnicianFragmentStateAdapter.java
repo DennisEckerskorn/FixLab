@@ -1,4 +1,4 @@
-package com.app.fixlab.adapters;
+package com.app.fixlab.adapters.technicianadapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

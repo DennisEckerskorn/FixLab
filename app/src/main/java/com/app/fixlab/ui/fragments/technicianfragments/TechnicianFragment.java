@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.TechnicianFragmentStateAdapter;
+import com.app.fixlab.adapters.technicianadapters.TechnicianFragmentStateAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

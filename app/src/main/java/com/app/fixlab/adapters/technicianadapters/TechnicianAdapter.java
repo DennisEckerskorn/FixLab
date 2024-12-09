@@ -1,4 +1,4 @@
-package com.app.fixlab.adapters;
+package com.app.fixlab.adapters.technicianadapters;
 
 import android.view.LayoutInflater;
 import android.view.View;

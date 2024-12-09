@@ -3,7 +3,6 @@ package com.app.fixlab.ui.fragments.repairfragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.TechnicianAdapter;
+import com.app.fixlab.adapters.technicianadapters.TechnicianAdapter;
 import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.persons.Person;

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.fixlab.R;
-import com.app.fixlab.adapters.DevicesAdapter;
+import com.app.fixlab.adapters.deviceadapters.DevicesAdapter;
 import com.app.fixlab.listeners.IOnItemRepairClickListener;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.models.devices.Device;
