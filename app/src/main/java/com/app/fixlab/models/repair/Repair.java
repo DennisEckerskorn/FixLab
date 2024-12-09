@@ -111,7 +111,11 @@ public class Repair implements Serializable {
         return "Repair{" +
                 "technician=" + technician +
                 ", device=" + device +
+                ", client=" + client +
+                ", diagnosis=" + diagnosis +
                 ", status=" + status +
+                ", repairDate=" + repairDate +
+                ", repairResult='" + repairResult + '\'' +
                 '}';
     }
 }

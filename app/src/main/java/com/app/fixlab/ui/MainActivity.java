@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         dataManager = DataManager.getInstance();
         TestSaveData testSaveData = new TestSaveData(this);
         testSaveData.loadData();
-        testSaveData.addPerson(new Client("1234","pedro","pascual","pedropascual@gmail.com","656764563","avenida siempre viva 14", "pedropas23","1234"));
+        testSaveData.addPerson(new Client("1234", "pedro", "pascual", "pedropascual@gmail.com", "656764563", "avenida siempre viva 14", "pedropas23", "1234"));
         testSaveData.saveData();
         //detailAvailable = findViewById(R.id.fcvDetail) != null;
         if (savedInstanceState == null) {
@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         Toast.makeText(this, "Technicians loaded: " + techniciansLoaded, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "Clients loaded: " + clientsLoaded, Toast.LENGTH_SHORT).show();
     }
-
 
 
     /**
@@ -239,6 +238,15 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         if (selectedClient != null) {
             List<Device> devices = selectedClient.getDevices();
             return devices == null ? Collections.emptyList() : devices;
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<Repair> getCompletedRepairs() {
+        if (currentRepair != null) {
+            List<Repair> repairs = workshopManager.getAllRepairs();
+            return repairs == null ? Collections.emptyList() : repairs;
         }
         return Collections.emptyList();
     }
@@ -460,6 +468,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         if (currentRepair != null) {
             currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
             currentRepair.getDevice().setStatus(DeviceStatus.COMPLETED);
+            workshopManager.addRepair(currentRepair);
             Toast.makeText(this, "Reparación completada", Toast.LENGTH_SHORT).show();
             replaceFragment(new MainMenuFragment(), false);
         } else {
@@ -482,6 +491,12 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onModifyButtonDevice() {
         replaceFragment(new DeviceModifyFragment(), true);
     }
+
+    @Override
+    public void onRepairSummarySelected() {
+
+    }
+
 
     /**
      * ON CLIENT MODIFY: Handles the modification of a client.
@@ -578,12 +593,10 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     }
 
 
-
     @Override
     public void onDeleteClient() {
         fragmentManager.popBackStack();
         replaceFragment(new ClientListFragment(), false);
         workshopManager.removePerson(selectedClient);
-
     }
 }

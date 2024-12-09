@@ -26,12 +26,14 @@ public class MainMenuFragment extends Fragment {
         Button bDevices = view.findViewById(R.id.bDevices);
         Button bTechnicians = view.findViewById(R.id.bTechnicians);
         Button bStartReparation = view.findViewById(R.id.bStartReparation);
+        Button bCompletedRepair = view.findViewById(R.id.bCompletedRepair);
 
         // Set click listeners for the buttons
         bClients.setOnClickListener(v -> menuActionListener.onClientsSelected());
         bDevices.setOnClickListener(v -> menuActionListener.onDevicesSelected());
         bTechnicians.setOnClickListener(v -> menuActionListener.onTechniciansSelected());
         bStartReparation.setOnClickListener(v -> menuActionListener.onStartReparationSelected());
+        bCompletedRepair.setOnClickListener(v -> menuActionListener.onRepairSummarySelected());
     }
 
     @Override

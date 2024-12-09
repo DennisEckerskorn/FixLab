@@ -16,6 +16,8 @@ public interface IdataProvider {
 
     List<Device> getDeviceOfClient();
 
+    List<Repair> getCompletedRepairs();
+
     Person getClient();
 
     Person getTechnician();

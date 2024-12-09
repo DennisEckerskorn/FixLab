@@ -6,6 +6,7 @@ import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
+import com.app.fixlab.models.repair.Repair;
 import com.app.fixlab.parsers.DataManager;
 
 import java.util.ArrayList;
@@ -17,11 +18,14 @@ public class WorkshopManager {
     private final List<Person> allClients;
     private final Context context;
     private final DataManager dataManager;
+    private final List<Repair> allRepairs;
+
     public WorkshopManager(Context context) {
         dataManager = DataManager.getInstance();
         allDevices = new ArrayList<>();
         allTechnicians = new ArrayList<>();
         allClients = new ArrayList<>();
+        allRepairs = new ArrayList<>();
         this.context = context;
     }
 
@@ -81,6 +85,11 @@ public class WorkshopManager {
      */
     public boolean addDevice(Device device) {
         allDevices.add(device);
+        return true;
+    }
+
+    public boolean addRepair(Repair repair){
+        allRepairs.add(repair);
         return true;
     }
 
@@ -258,5 +267,9 @@ public class WorkshopManager {
     }
     public void saveData(){
 
+    }
+
+    public List<Repair> getAllRepairs() {
+        return allRepairs;
     }
 }

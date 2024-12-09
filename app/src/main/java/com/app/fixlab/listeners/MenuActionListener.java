@@ -11,4 +11,6 @@ public interface MenuActionListener {
 
     void onStartReparationSelected();
 
+    void onRepairSummarySelected();
+
 }
