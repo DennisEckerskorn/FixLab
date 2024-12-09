@@ -14,9 +14,25 @@ import com.app.fixlab.models.repair.Diagnosis;
 
 import java.util.List;
 
+/**
+ * Adapter class for displaying a checklist of completed diagnosis items in a {@link RecyclerView}.
+ * This adapter binds the list of completed diagnosis check items to each item view in the list,
+ * displaying each item's name along with a checked checkbox to indicate its completion status.
+ * <p>
+ * The checklist is typically displayed for a diagnosis process, where each item represents
+ * a test or action performed during the diagnosis.
+ * </p>
+ *
+ * @see Diagnosis.DiagnosisCheckItem
+ */
 public class CompletedCheckListAdapter extends RecyclerView.Adapter<CompletedCheckListAdapter.ViewHolder> {
     private final List<Diagnosis.DiagnosisCheckItem> completedItems;
 
+    /**
+     * Constructor for the adapter.
+     *
+     * @param completedItems List of {@link Diagnosis.DiagnosisCheckItem} objects that are completed.
+     */
     public CompletedCheckListAdapter(List<Diagnosis.DiagnosisCheckItem> completedItems) {
         this.completedItems = completedItems;
     }
@@ -43,10 +59,21 @@ public class CompletedCheckListAdapter extends RecyclerView.Adapter<CompletedChe
         return completedItems.size();
     }
 
+    /**
+     * ViewHolder class for diagnosis checklist items in the RecyclerView.
+     * It holds the views representing the checkbox and the name of the diagnosis item.
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox tvCheckBoxDiagnosis;
         TextView tvDiagnosisItem;
 
+
+        /**
+         * Constructor for the {@link ViewHolder}.
+         * Initializes the views for the checkbox and diagnosis item name.
+         *
+         * @param itemView The item view for this diagnosis checklist item.
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDiagnosisItem = itemView.findViewById(R.id.tvDiagnosisItem);
