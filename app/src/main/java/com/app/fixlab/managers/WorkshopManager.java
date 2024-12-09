@@ -1,9 +1,12 @@
 package com.app.fixlab.managers;
 
+import android.content.Context;
+
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
+import com.app.fixlab.parsers.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +15,34 @@ public class WorkshopManager {
     private final List<Device> allDevices;
     private final List<Person> allTechnicians;
     private final List<Person> allClients;
-
-    public WorkshopManager() {
+    private final Context context;
+    private final DataManager dataManager;
+    public WorkshopManager(Context context) {
+        dataManager = DataManager.getInstance();
         allDevices = new ArrayList<>();
         allTechnicians = new ArrayList<>();
         allClients = new ArrayList<>();
+        this.context = context;
     }
 
+    public int loadClients(){
+        return this.addPersons(dataManager.loadTechnicians(context));
+    }
+    public int loadTechnicians(){
+        return this.addPersons(dataManager.loadClientsAndDevices(context));
+    }
+    /**
+     * @param persons array of persons to add
+     * @return number of persons added successfully
+     */
+    public int addPersons(List<Person> persons) {
+        int count = 0;
+        for (int i = 0; i < persons.size(); i++) {
+            if(addPerson(persons.get(i)))
+                count++;
+        }
+        return count;
+    }
     /**
      * @param person can be a instance of Person
      * @return true if added successfully
@@ -231,5 +255,8 @@ public class WorkshopManager {
 
     public List<Person> getAllTechnicians() {
         return allTechnicians;
+    }
+    public void saveData(){
+
     }
 }
