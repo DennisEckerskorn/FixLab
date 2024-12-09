@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.ui.MainActivity;
@@ -30,6 +31,7 @@ public class TechnicianDetailFragment extends Fragment {
     private TextView tvPhoneDetailValue;
     private TextView tvTechnicianAddressDetailValue;
     private TextView tvAvailabilityDetailValue;
+    private OnDeleteListener buttonListener;
 
 
     public TechnicianDetailFragment() {
@@ -64,6 +66,10 @@ public class TechnicianDetailFragment extends Fragment {
                 tvAvailabilityDetailValue.setTextColor(ContextCompat.getColor(tvAvailabilityDetailValue.getContext(), R.color.red));
             }
         }
+        Button btnDelete = view.findViewById(R.id.btnDeleteOnTechnicianDetail);
+        btnDelete.setOnClickListener(v -> {
+            buttonListener.onDeleteClient();
+        });
 
         Button btnModifyTechnician = view.findViewById(R.id.btnModifyTechnician);
         btnModifyTechnician.setOnClickListener(v -> {
@@ -76,6 +82,7 @@ public class TechnicianDetailFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         technicianProvider = (IdataProvider) requireActivity();
+        buttonListener = (OnDeleteListener) requireActivity();
         modifyListener = (OnModifyListener) requireActivity();
         selectedTechnician = (Technician) technicianProvider.getTechnician();
         Toast.makeText(context, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();

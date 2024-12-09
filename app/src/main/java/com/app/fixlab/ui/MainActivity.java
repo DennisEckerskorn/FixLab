@@ -42,6 +42,7 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientModifyFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceModifyFragment;
 import com.app.fixlab.ui.fragments.repairfragments.CompletedRepairListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
@@ -633,5 +634,16 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         fragmentManager.popBackStack();
         replaceFragment(new ClientListFragment(), false);
         workshopManager.removePerson(selectedClient);
+    }
+
+    /**
+     * Deletes the currently selected device and navigates to the DeviceListFragment.
+     */
+    @Override
+    public void onDeleteDevice() {
+        //TODO: replace fragment depending on where user is previusly
+        fragmentManager.popBackStack();
+        replaceFragment(new DeviceListFragment(), false);
+        workshopManager.removeDevice(selectedDevice);
     }
 }

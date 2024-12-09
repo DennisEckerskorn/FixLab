@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.ui.MainActivity;
@@ -33,6 +34,7 @@ public class DeviceDetailFragment extends Fragment {
     public DeviceDetailFragment() {
         super(R.layout.detail_device_item);
     }
+    private OnDeleteListener buttonListener;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -57,6 +59,10 @@ public class DeviceDetailFragment extends Fragment {
         //TODO: Implement device list
 
 
+        Button btnDelete = view.findViewById(R.id.btnDeleteOnDeviceDetail);
+        btnDelete.setOnClickListener(v -> {
+            buttonListener.onDeleteDevice();
+        });
 
         //Implementacion del boton de modificar
         Button btnModify = view.findViewById(R.id.btnModifyDevice);
@@ -71,6 +77,7 @@ public class DeviceDetailFragment extends Fragment {
         super.onAttach(context);
         IdataProvider dataProvider = (IdataProvider) requireActivity();
         onModifyListener = (OnModifyListener) requireActivity();
+        buttonListener = (OnDeleteListener) requireActivity();
         selectedDevice = dataProvider.getDevice();
         Toast.makeText(context, "Device selected: " + selectedDevice.getModel(), Toast.LENGTH_SHORT).show();
     }

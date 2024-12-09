@@ -92,7 +92,7 @@ public class ClientDetailFragment extends Fragment {
             tvEmailDetailValue.setText(selectedClient.getEmail());
             tvClientAddressDetailValue.setText(selectedClient.getAddress());
         }
-        Button btnDelete = view.findViewById(R.id.btnDelete);
+        Button btnDelete = view.findViewById(R.id.btnDeleteOnClientDetail);
         Button btnModify = view.findViewById(R.id.btnModify);
 
 
