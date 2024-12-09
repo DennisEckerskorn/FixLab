@@ -9,6 +9,35 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * The {@code Repair} class represents a repair process for a device.
+ * It includes details about the technician, device, client, diagnosis, repair status,
+ * repair date, and the result of the repair.
+ *
+ * <p>It also manages the state of the repair, including whether it is pending, diagnosed,
+ * in progress, completed, or cancelled.</p>
+ *
+ * <p>Each repair has a technician assigned, a client for whom the repair is done,
+ * and a device being repaired. The diagnosis and the repair result are also part of the repair information.</p>
+ *
+ * <p>This class implements {@link Serializable} to allow the repair objects to be saved and restored.</p>
+ *
+ * <p>Repair Statuses:
+ * <ul>
+ *   <li>{@code PENDING}: The repair is yet to be started.</li>
+ *   <li>{@code DIAGNOSED}: The diagnosis has been completed.</li>
+ *   <li>{@code IN_PROGRESS}: The repair is actively being worked on.</li>
+ *   <li>{@code COMPLETED}: The repair has been finished and closed.</li>
+ *   <li>{@code CANCELLED}: The repair has been cancelled.</li>
+ * </ul>
+ * </p>
+ *
+ * @author [Dennis Eckerskorn]
+ * @see Diagnosis
+ * @see Technician
+ * @see Client
+ * @see Device
+ */
 public class Repair implements Serializable {
     private Person technician;
     private Device device;
@@ -18,7 +47,9 @@ public class Repair implements Serializable {
     private final Date repairDate;
     private String repairResult;
 
-
+    /**
+     * Enum representing the status of a repair.
+     */
     public enum RepairStatus {
         PENDING,
         DIAGNOSED,
@@ -27,6 +58,14 @@ public class Repair implements Serializable {
         CANCELLED
     }
 
+    /**
+     * Constructor to initialize a new repair with a technician, device, and client.
+     * The repair starts with the status of {@link RepairStatus#PENDING}.
+     *
+     * @param technician The technician assigned to the repair.
+     * @param device     The device that needs to be repaired.
+     * @param client     The client who owns the device.
+     */
     public Repair(Person technician, Device device, Client client) {
         this.technician = technician;
         this.device = device;
