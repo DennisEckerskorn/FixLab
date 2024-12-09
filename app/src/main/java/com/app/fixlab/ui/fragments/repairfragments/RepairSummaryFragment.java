@@ -22,20 +22,61 @@ import com.app.fixlab.models.repair.Repair;
 
 import java.util.List;
 
+/**
+ * RepairSummaryFragment displays a summary of a repair, including technician details,
+ * client information, device details, diagnosis description, and a list of completed checklist items.
+ *
+ * <p>This fragment allows the user to view the repair information and complete the repair process
+ * by providing a repair result description.</p>
+ *
+ * <p>The layout for this fragment is defined in {@code R.layout.fragment_repair_summary}.</p>
+ *
+ * <p>Key Features:
+ * <ul>
+ *   <li>Displays technician, client, and device information.</li>
+ *   <li>Shows the diagnosis details such as description, estimated cost, and time.</li>
+ *   <li>Displays a list of completed checklist items using {@link CompletedCheckListAdapter}.</li>
+ *   <li>Provides an option to enter a repair result description and complete the repair.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>Dependencies:
+ * <ul>
+ *   <li>{@link IdataProvider} interface for retrieving the current repair data.</li>
+ *   <li>{@link IOnItemRepairClickListener} interface for handling repair completion events.</li>
+ * </ul>
+ * </p>
+ *
+ * @author [Dennis Eckerskorn]
+ */
 public class RepairSummaryFragment extends Fragment {
     private Repair currentRepair;
     private IOnItemRepairClickListener repairClickListener;
     private boolean showFields = true;
 
-
+    /**
+     * Default constructor. Initializes the fragment with its layout resource.
+     */
     public RepairSummaryFragment() {
         super(R.layout.fragment_repair_summary);
     }
 
+    /**
+     * Sets whether the fields related to repair completion should be shown.
+     *
+     * @param showFields True to show the fields, false to hide them.
+     */
     public void setShowFields(boolean showFields) {
         this.showFields = showFields;
     }
 
+    /**
+     * Called when the fragment's view hierarchy is created.
+     * Sets up the UI elements with data from the current repair object and sets up the RecyclerView.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -50,13 +91,14 @@ public class RepairSummaryFragment extends Fragment {
         TextView tvDiagnosisTimeSummary = view.findViewById(R.id.tvDiagnosisTimeSummary);
         Button btnSummaryCompleteRepair = view.findViewById(R.id.btnSummaryCompleteRepair);
 
+        // Hide fields if showFields is false
         if (!showFields) {
             tvRepairRealizedLabel.setVisibility(View.GONE);
             etSummaryRepairResult.setVisibility(View.GONE);
             btnSummaryCompleteRepair.setVisibility(View.GONE);
         }
 
-
+        // Populate UI elements with data from the currentRepair object
         if (currentRepair != null) {
             if (currentRepair.getTechnician() != null) {
                 tvSummaryTechnician.setText(getString(R.string.technician) + ": " + currentRepair.getTechnician().getName());
@@ -78,6 +120,7 @@ public class RepairSummaryFragment extends Fragment {
 
         }
 
+        // Set up RecyclerView to display the completed checklist items
         if (currentRepair != null && currentRepair.getDiagnosis() != null) {
             List<Diagnosis.DiagnosisCheckItem> completedCheckItems = currentRepair.getDiagnosis().getCompletedCheckItems();
             CompletedCheckListAdapter adapter = new CompletedCheckListAdapter(completedCheckItems);
@@ -86,7 +129,7 @@ public class RepairSummaryFragment extends Fragment {
             rvSummaryDiagnosis.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         }
 
-        //Boton
+        // Handle the "Complete Repair" button click
         btnSummaryCompleteRepair.setOnClickListener(v -> {
             String repairResult = etSummaryRepairResult.getText().toString();
 
@@ -105,9 +148,17 @@ public class RepairSummaryFragment extends Fragment {
         });
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Initializes the data provider and repair click listener.
+     *
+     * @param context The context of the host activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        
+        // Retrieve the data provider and repair click listener from the host activity
         IdataProvider dataProvider = (IdataProvider) requireActivity();
         repairClickListener = (IOnItemRepairClickListener) requireActivity();
         currentRepair = dataProvider.getRepair();
