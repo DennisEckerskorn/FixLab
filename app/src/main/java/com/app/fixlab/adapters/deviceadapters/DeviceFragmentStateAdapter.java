@@ -8,18 +8,42 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DevicesFormAddFragment;
 
+/**
+ * A {@link FragmentStateAdapter} implementation that manages fragments
+ * representing different pages in a ViewPager2.
+ * <p>This adapter manages two fragments:
+ * <ul>
+ *     <li>{@link DeviceListFragment}: Displays a list of devices.</li>
+ *     <li>{@link DevicesFormAddFragment}: Provides a form to add a new device.</li>
+ * </ul>
+ * @author [Jon]
+ */
 public class DeviceFragmentStateAdapter extends FragmentStateAdapter {
+
+    /**
+     * The total number of pages managed by the adapter.
+     */
     private static final int NUM_PAGES = 2;
 
+    /**
+     * Constructs a new {@link DeviceFragmentStateAdapter}.
+     *
+     * @param fragmentActivity The {@link FragmentActivity} that hosts the adapter.
+     */
     public DeviceFragmentStateAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
     /**
-     * CREATE FRAGMENT: Creates a fragment based on the position
+     * Creates a new fragment for the given position in the ViewPager2.
      *
-     * @param position Position of the fragment
-     * @return Fragment based on the position
+     * @param position The position of the fragment to create.
+     *                 <ul>
+     *                     <li>0: {@link DeviceListFragment}</li>
+     *                     <li>1: {@link DevicesFormAddFragment}</li>
+     *                 </ul>
+     * @return A {@link Fragment} instance corresponding to the specified position.
+     * @throws RuntimeException if the position is invalid.
      */
     @NonNull
     @Override
@@ -27,15 +51,14 @@ public class DeviceFragmentStateAdapter extends FragmentStateAdapter {
         return switch (position) {
             case 0 -> new DeviceListFragment();
             case 1 -> new DevicesFormAddFragment();
-//            case 2 -> new
-            default -> throw new RuntimeException("Invalid fragment:");
+            default -> throw new RuntimeException("Invalid fragment position: " + position);
         };
     }
 
     /**
-     * GET ITEM COUNT: Returns the number of pages
+     * Returns the total number of pages (fragments) managed by this adapter.
      *
-     * @return Number of pages
+     * @return The total number of pages.
      */
     @Override
     public int getItemCount() {
