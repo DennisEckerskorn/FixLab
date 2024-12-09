@@ -643,6 +643,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onDeleteDevice() {
         //TODO: replace fragment depending on where user is previusly
         fragmentManager.popBackStack();
+//        replaceFragment(new ClientDetailFragment(), false);
         replaceFragment(new DeviceListFragment(), false);
         workshopManager.removeDevice(selectedDevice);
     }

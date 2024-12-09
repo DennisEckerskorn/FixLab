@@ -98,8 +98,10 @@ public class WorkshopManager {
      * @return true if removed successfully or false if not exists
      */
     public boolean removeDevice(Device device) {
-        if (allDevices.contains(device)) {
+        if (allDevices.contains(device) && this.getClientByDevice(device) != null) {
+            Person client = this.getClientByDevice(device);
             allDevices.remove(device);
+            client.removeDevice(device);
             return true;
         }
         return false;
