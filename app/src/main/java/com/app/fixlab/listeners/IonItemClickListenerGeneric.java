@@ -2,6 +2,7 @@ package com.app.fixlab.listeners;
 
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.models.persons.Person;
+import com.app.fixlab.models.repair.Repair;
 
 import java.util.List;
 
@@ -11,5 +12,8 @@ import java.util.List;
  */
 public interface IonItemClickListenerGeneric<T> {
     void onItemClick(T item);
+
+
+    void onCompletedSummaryRepair(Repair item);
 }
 

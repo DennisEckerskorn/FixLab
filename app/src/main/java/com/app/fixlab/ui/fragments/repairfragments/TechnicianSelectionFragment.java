@@ -46,6 +46,5 @@ public class TechnicianSelectionFragment extends Fragment {
         IdataProvider idataProvider = (IdataProvider) requireActivity();
         itemClickListener = (IOnItemRepairClickListener) requireActivity();
         technicians = idataProvider.getTechnicianData();
-
     }
 }

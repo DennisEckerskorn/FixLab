@@ -68,7 +68,7 @@ public class CompletedRepairAdapter extends RecyclerView.Adapter<CompletedRepair
         @Override
         public void onClick(View view) {
             if (repairListener != null) {
-                repairListener.onItemClick(repair);
+                repairListener.onCompletedSummaryRepair(repair);
             }
         }
     }

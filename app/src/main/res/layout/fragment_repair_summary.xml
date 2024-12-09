@@ -128,6 +128,7 @@
             app:cardElevation="4dp">
 
             <LinearLayout
+                android:id="@+id/repairRealizedContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -147,8 +148,8 @@
                     android:id="@+id/etSummaryRepairResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/repair_hint_summary"
                     android:layout_marginTop="8dp"
+                    android:hint="@string/repair_hint_summary"
                     android:inputType="textMultiLine" />
 
             </LinearLayout>

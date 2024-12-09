@@ -3,7 +3,6 @@ package com.app.fixlab.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,16 +27,13 @@ import com.app.fixlab.listeners.OnSaveDiagnosis;
 import com.app.fixlab.listeners.OnSplashDelayFinished;
 import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.devices.Device;
-import com.app.fixlab.models.devices.DeviceCondition;
 import com.app.fixlab.models.devices.DeviceStatus;
-import com.app.fixlab.models.devices.DeviceType;
 import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.models.repair.Diagnosis;
 import com.app.fixlab.models.repair.Repair;
 import com.app.fixlab.parsers.DataManager;
-import com.app.fixlab.parsers.GeneralJSONParser;
 import com.app.fixlab.parsers.TestSaveData;
 import com.app.fixlab.ui.fragments.MainMenuFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
@@ -47,7 +43,6 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientModifyFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
-import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceModifyFragment;
 import com.app.fixlab.ui.fragments.repairfragments.CompletedRepairListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
@@ -58,11 +53,7 @@ import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianModifyFragment;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -367,6 +358,15 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             replaceFragment(new TechnicianDetailFragment(), true);
         }
     }
+
+    @Override
+    public void onCompletedSummaryRepair(Repair item) {
+        currentRepair = item;
+        RepairSummaryFragment repairSummaryFragment = new RepairSummaryFragment();
+        repairSummaryFragment.setShowFields(false);
+        replaceFragment(repairSummaryFragment, true);
+    }
+
 
     /**
      * ON ITEM REPAIR CLICK: Handles the click on an item

@@ -25,15 +25,21 @@ import java.util.List;
 public class RepairSummaryFragment extends Fragment {
     private Repair currentRepair;
     private IOnItemRepairClickListener repairClickListener;
+    private boolean showFields = true;
 
 
     public RepairSummaryFragment() {
         super(R.layout.fragment_repair_summary);
     }
 
+    public void setShowFields(boolean showFields) {
+        this.showFields = showFields;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextView tvRepairRealizedLabel = view.findViewById(R.id.tvRepairRealizedLabel);
         TextView tvSummaryTechnician = view.findViewById(R.id.tvSummaryTechnician);
         TextView tvSummaryClient = view.findViewById(R.id.tvSummaryClient);
         TextView tvSummaryDevice = view.findViewById(R.id.tvSummaryDevice);
@@ -43,6 +49,12 @@ public class RepairSummaryFragment extends Fragment {
         TextView tvDiagnosisCostSummary = view.findViewById(R.id.tvDiagnosisCostSummary);
         TextView tvDiagnosisTimeSummary = view.findViewById(R.id.tvDiagnosisTimeSummary);
         Button btnSummaryCompleteRepair = view.findViewById(R.id.btnSummaryCompleteRepair);
+
+        if (!showFields) {
+            tvRepairRealizedLabel.setVisibility(View.GONE);
+            etSummaryRepairResult.setVisibility(View.GONE);
+            btnSummaryCompleteRepair.setVisibility(View.GONE);
+        }
 
 
         if (currentRepair != null) {
@@ -93,13 +105,11 @@ public class RepairSummaryFragment extends Fragment {
         });
     }
 
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         IdataProvider dataProvider = (IdataProvider) requireActivity();
         repairClickListener = (IOnItemRepairClickListener) requireActivity();
         currentRepair = dataProvider.getRepair();
-
     }
 }
