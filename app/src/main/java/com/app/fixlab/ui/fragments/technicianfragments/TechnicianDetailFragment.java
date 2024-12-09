@@ -14,11 +14,13 @@ import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.ui.MainActivity;
 
 public class TechnicianDetailFragment extends Fragment {
     private IdataProvider technicianProvider;
+    private OnModifyListener modifyListener;
 
     private Technician selectedTechnician;
     private TextView tvNameDetailValue;
@@ -65,9 +67,7 @@ public class TechnicianDetailFragment extends Fragment {
 
         Button btnModifyTechnician = view.findViewById(R.id.btnModifyTechnician);
         btnModifyTechnician.setOnClickListener(v -> {
-           if (getActivity() instanceof  MainActivity){
-                ((MainActivity) getActivity()).replaceFragment(new TechnicianModifyFragment(), true);
-            }
+            modifyListener.onModifyButtonTechnician();
         });
 
     }
@@ -76,6 +76,7 @@ public class TechnicianDetailFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         technicianProvider = (IdataProvider) requireActivity();
+        modifyListener = (OnModifyListener) requireActivity();
         selectedTechnician = (Technician) technicianProvider.getTechnician();
         Toast.makeText(context, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
     }

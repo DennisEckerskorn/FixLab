@@ -8,4 +8,8 @@ public interface OnModifyListener {
     void onClientModify(Client client);
     void onTechnicianModify(Technician technician);
     void onDeviceModify(Device device);
+
+    void onModifyButtonClient();
+    void onModifyButtonTechnician();
+    void onModifyButtonDevice();
 }

@@ -19,7 +19,9 @@ import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.MenuActionListener;
 import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnDeviceClickListener;
+import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.devices.Device;
+import com.app.fixlab.models.persons.Client;
 import com.app.fixlab.models.persons.Person;
 import com.app.fixlab.ui.MainActivity;
 
@@ -30,6 +32,7 @@ public class ClientDetailFragment extends Fragment {
     private List<Device> devices;
     private OnDeviceClickListener itemClickListener;
     private OnDeleteListener buttonListener;
+    private OnModifyListener modifyListener;
 
     public ClientDetailFragment() {
         super(R.layout.detail_client_item);
@@ -70,9 +73,7 @@ public class ClientDetailFragment extends Fragment {
         });
 
         btnModify.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity){
-                ((MainActivity) getActivity()).replaceFragment(new ClientModifyFragment(), true);
-            }
+            modifyListener.onModifyButtonClient();
         });
     }
 
@@ -82,6 +83,7 @@ public class ClientDetailFragment extends Fragment {
         IdataProvider dataProvider = (IdataProvider) requireActivity();
         itemClickListener = (OnDeviceClickListener) requireActivity();
         buttonListener = (OnDeleteListener) requireActivity();
+        modifyListener = (OnModifyListener) requireActivity();
         devices = dataProvider.getDeviceOfClient();
         selectedClient = dataProvider.getClient();
         Toast.makeText(context, "Client selected: " + selectedClient.getName(), Toast.LENGTH_SHORT).show();

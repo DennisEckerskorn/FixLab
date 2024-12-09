@@ -159,6 +159,68 @@ public class WorkshopManager {
         return null;
     }
 
+    /**
+     * Actualiza los datos de una persona existente manteniendo la misma referencia en la lista correspondiente.
+     * @param oldPerson La persona existente que se actualizará.
+     * @param newPerson La nueva persona con los datos actualizados.
+     * @return true si la persona se actualizó correctamente, false en caso contrario.
+     */
+    public boolean updatePerson(Person oldPerson, Person newPerson) {
+        if (oldPerson instanceof Client && newPerson instanceof Client) {
+            newPerson.getDevices().addAll(oldPerson.getDevices());
+
+            int index = allClients.indexOf(oldPerson);
+            allClients.set(index, newPerson);
+            updateDevices(oldPerson.getDevices(), newPerson.getDevices());
+
+            return true;
+        } else if (oldPerson instanceof Technician && newPerson instanceof Technician) {
+            newPerson.getDevices().addAll(oldPerson.getDevices());
+
+            int index = allTechnicians.indexOf(oldPerson);
+            allTechnicians.set(index, newPerson);
+            return true;
+        }
+        return false;
+    }
+
+    // Actualiza los datos dispositivos de una persona existente manteniendo la misma referencia en la lista correspondiente.
+    public void updateDevices(List<Device> oldDevices, List<Device> newDevices){
+        for (int i = 0; i < oldDevices.size(); i++) {
+            for (int j = 0; j < newDevices.size(); j++) {
+                if (oldDevices.get(i).equals(newDevices.get(j))){
+                    int index = allDevices.indexOf(oldDevices.get(i));
+                    allDevices.set(index, newDevices.get(j));
+                }
+            }
+        }
+    }
+
+    // Actualiza los datos de un dispositivo existente manteniendo la misma referencia en la lista correspondiente.
+    public boolean updateDevice(Device oldDevice, Device newDevice) {
+        int index = allDevices.indexOf(oldDevice);
+        allDevices.set(index, newDevice);
+        return true;
+    }
+
+    /**
+     * Metodo para buscar el dispositivo en el cliente y actualizarlo
+     * @param updatedDevice el dispositivo actualizado
+     * @param clientDevices la lista de dispositivos del cliente
+     */
+    public void updateDeviceInClient(Device selectedDevice ,Device updatedDevice, List<Device> clientDevices) {
+        // Buscar el dispositivo en el cliente y actualizarlo
+        for (int i = 0; i < clientDevices.size(); i++) {
+            Device currentDevice = clientDevices.get(i);
+            if (currentDevice != null && currentDevice.getModel() != null &&
+                    currentDevice.getModel().equals(selectedDevice.getModel())) {
+                clientDevices.set(i, updatedDevice);
+                break;
+            }
+        }
+    }
+
+
     public List<Device> getAllDevices() {
         return allDevices;
     }

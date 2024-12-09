@@ -42,14 +42,18 @@ import com.app.fixlab.ui.fragments.clientfragments.ClientDetailFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientFragment;
 import com.app.fixlab.ui.fragments.SplashFragment;
 import com.app.fixlab.ui.fragments.clientfragments.ClientListFragment;
+import com.app.fixlab.ui.fragments.clientfragments.ClientModifyFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceDetailFragment;
 import com.app.fixlab.ui.fragments.devicefragments.DeviceFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceListFragment;
+import com.app.fixlab.ui.fragments.devicefragments.DeviceModifyFragment;
 import com.app.fixlab.ui.fragments.repairfragments.DiagnosisFragment;
 import com.app.fixlab.ui.fragments.repairfragments.RepairSummaryFragment;
 import com.app.fixlab.ui.fragments.repairfragments.RepairedDeviceListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
+import com.app.fixlab.ui.fragments.technicianfragments.TechnicianModifyFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -540,84 +544,116 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         }
     }
 
+
+    @Override
+    public void onModifyButtonClient() {
+        replaceFragment(new ClientModifyFragment(), true);
+    }
+
+    @Override
+    public void onModifyButtonTechnician() {
+        replaceFragment(new TechnicianModifyFragment(), true);
+    }
+
+    @Override
+    public void onModifyButtonDevice() {
+        replaceFragment(new DeviceModifyFragment(), true);
+    }
+
     /**
-     * ON CLIENT MODIFY: Handles the modification of a client
+     * ON CLIENT MODIFY: Handles the modification of a client.
      *
-     * @param updatedClient Client to modify
+     * @param updatedClient Client to modify.
      */
     @Override
     public void onClientModify(Client updatedClient) {
         if (updatedClient != null) {
-            // Actualizar el cliente en el WorkshopManager
-            workshopManager.removePerson(selectedClient);
-            workshopManager.addPerson(updatedClient);
-
-            // Añadir los dispositivos del cliente anterior al cliente actualizado
-            updatedClient.getDevices().addAll(selectedClient.getDevices());
-
-            // Actualizar el cliente seleccionado
-            selectedClient = updatedClient;
-
-            Toast.makeText(this, "Client modified: " + updatedClient.getName(), Toast.LENGTH_SHORT).show();
-
-            // Reemplazar el fragmento de detalle con uno nuevo
-            fragmentManager.popBackStack(); // Eliminar el fragmento actual de la pila
-            replaceFragment(new ClientDetailFragment(), false); // Cargar un nuevo fragmento con los datos actualizados
+            if (workshopManager.updatePerson(selectedClient, updatedClient)) {
+                // Actualizar el cliente seleccionado
+                selectedClient = updatedClient;
+                Toast.makeText(this, "Client modified: " + updatedClient.getName(), Toast.LENGTH_SHORT).show();
+                // Volver al fragmento de detalle
+                fragmentManager.popBackStack();
+                replaceFragment(new ClientDetailFragment(), false);
+            } else {
+                Toast.makeText(this, "Error updating client", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     /**
-     * ON TECHNICIAN MODIFY: Handles the modification of a technician
+     * ON TECHNICIAN MODIFY: Handles the modification of a technician.
      *
-     * @param updatedTechnician Technician to modify
+     * @param updatedTechnician Technician to modify.
      */
     @Override
     public void onTechnicianModify(Technician updatedTechnician) {
-        //TODO: IMPLEMENTAR
-        if (selectedTechnician != null) {
-            // Actualizar el técnico en el WorkshopManager
-            workshopManager.removePerson(selectedTechnician);
-            workshopManager.addPerson(updatedTechnician);
-            updatedTechnician.getDevices().addAll(selectedTechnician.getDevices());
-            selectedTechnician = updatedTechnician;
-            Toast.makeText(this, "Technician modified: " + updatedTechnician.getName(), Toast.LENGTH_SHORT).show();
-            fragmentManager.popBackStack();
-            replaceFragment(new TechnicianDetailFragment(), false);
+        if (updatedTechnician != null) {
+            if (workshopManager.updatePerson(selectedTechnician, updatedTechnician)) {
+                // Transferir los dispositivos del técnico antiguo al actualizado
+                updatedTechnician.getDevices().addAll(selectedTechnician.getDevices());
+
+                // Actualizar el técnico seleccionado
+                selectedTechnician = updatedTechnician;
+                Toast.makeText(this, "Technician modified: " + updatedTechnician.getName(), Toast.LENGTH_SHORT).show();
+
+                // Volver al fragmento de detalle
+                fragmentManager.popBackStack();
+                replaceFragment(new TechnicianDetailFragment(), false);
+            } else {
+                Toast.makeText(this, "Error updating technician", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     /**
-     * ON DEVICE MODIFY: Handles the modification of a device
+     * ON DEVICE MODIFY: Handles the modification of a device.
      *
-     * @param updatedDevice Device to modify
+     * @param updatedDevice Device to modify.
      */
     @Override
     public void onDeviceModify(Device updatedDevice) {
-        if (selectedClient == null) {
-            Toast.makeText(this, "No client selected", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        List<Device> clientDevices = selectedClient.getDevices();
-
-
-        // Buscar el dispositivo en el cliente y actualizarlo
-        for (int i = 0; i < clientDevices.size(); i++) {
-            Device currentDevice = clientDevices.get(i);
-            if (currentDevice != null && currentDevice.getModel() != null &&
-                    currentDevice.getModel().equals(selectedDevice.getModel())) {
-                clientDevices.set(i, updatedDevice);
-                break;
+        if (updatedDevice != null && selectedDevice != null) {
+            // Buscar el cliente que tiene el dispositivo seleccionado
+            Person client = workshopManager.getClientByDevice(selectedDevice);
+            if (client == null) {
+                Toast.makeText(this, "Error: Client not found for the selected device", Toast.LENGTH_SHORT).show();
+                return;
             }
-        }
-        // Actualizar el dispositivo en el workshopManager
-        workshopManager.removeDevice(selectedDevice);
-        workshopManager.addDevice(updatedDevice);
 
-        Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
-        fragmentManager.popBackStack();
-        replaceFragment(new DeviceDetailFragment(), false);
+            // Obtener la lista de dispositivos del cliente
+            List<Device> clientDevices = client.getDevices();
+            if (clientDevices == null || clientDevices.isEmpty()) {
+                Toast.makeText(this, "Error: Client has no devices to update", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Buscar y actualizar el dispositivo en la lista del cliente
+            int deviceIndex = clientDevices.indexOf(selectedDevice);
+            if (deviceIndex == -1) {
+                Toast.makeText(this, "Error: Device not found in client's devices", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Actualizar el dispositivo en la lista del cliente
+            clientDevices.set(deviceIndex, updatedDevice);
+
+            // Actualizar el dispositivo en el WorkshopManager
+            if (workshopManager.updateDevice(selectedDevice, updatedDevice)) {
+                selectedDevice = updatedDevice; // Actualizar la referencia seleccionada
+                Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
+
+                // Volver al fragmento de detalle
+                fragmentManager.popBackStack();
+                replaceFragment(new DeviceDetailFragment(), false);
+            } else {
+                Toast.makeText(this, "Error updating device in the system", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Error: Missing device data for modification", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
 
     @Override

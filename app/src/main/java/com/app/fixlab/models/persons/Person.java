@@ -60,6 +60,12 @@ public abstract class Person {
     public void removeDevice(Device device) {
         devices.remove(device);
     }
+    /**
+     * Removes all devices from the list of devices assigned to the person
+     */
+    public void removeDevices() {
+        devices.clear();
+    }
 
     /**
      * Updates a device in the list of devices assigned to the person
@@ -130,7 +136,6 @@ public abstract class Person {
     public int hashCode() {
         return Objects.hashCode(dni);
     }
-
     /*
     TOSTRING:
      */

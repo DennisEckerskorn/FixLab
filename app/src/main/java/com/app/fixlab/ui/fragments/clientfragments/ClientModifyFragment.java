@@ -29,9 +29,7 @@ import java.util.List;
 public class ClientModifyFragment extends Fragment {
     private Person selectedPerson;
     private TextInputEditText etName, etEmail, etPhone, etAddress;
-    private RecyclerView rvDevices;
     private OnModifyListener modifyListener;
-    private OnDeviceClickListener itemClickListener;
     Button btnSave;
 
     public ClientModifyFragment() {
@@ -129,7 +127,7 @@ public class ClientModifyFragment extends Fragment {
 
     private void saveChanges() {
         if (modifyListener != null && selectedPerson != null) {
-
+            // Crear un nuevo cliente con los datos actualizados pero manteniendo la misma referencia
             Client updatedClient = new Client(
                     selectedPerson.getDni(),
                     etName.getText().toString(),
@@ -148,7 +146,6 @@ public class ClientModifyFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            itemClickListener = (OnDeviceClickListener) requireActivity();
             modifyListener = (OnModifyListener) requireActivity();
             selectedPerson = ((MainActivity) requireActivity()).getClient();
         } catch (ClassCastException e) {

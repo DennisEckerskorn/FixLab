@@ -13,12 +13,13 @@ import androidx.fragment.app.Fragment;
 
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
+import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.devices.Device;
 import com.app.fixlab.ui.MainActivity;
 
 public class DeviceDetailFragment extends Fragment {
-
     private Device selectedDevice;
+    private OnModifyListener onModifyListener;
 
     private TextView tvDeviceModel;
     private TextView tvDeviceBrand;
@@ -60,16 +61,16 @@ public class DeviceDetailFragment extends Fragment {
         //Implementacion del boton de modificar
         Button btnModify = view.findViewById(R.id.btnModifyDevice);
         btnModify.setOnClickListener(v -> {
-            if (getActivity() instanceof MainActivity){
-                ((MainActivity) getActivity()).replaceFragment(new DeviceModifyFragment(), true);
-            }
+            onModifyListener.onModifyButtonDevice();
         });
+
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         IdataProvider dataProvider = (IdataProvider) requireActivity();
+        onModifyListener = (OnModifyListener) requireActivity();
         selectedDevice = dataProvider.getDevice();
         Toast.makeText(context, "Device selected: " + selectedDevice.getModel(), Toast.LENGTH_SHORT).show();
     }
