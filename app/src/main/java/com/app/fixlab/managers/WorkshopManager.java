@@ -324,11 +324,4 @@ public class WorkshopManager {
     public List<Repair> getAllRepairs() {
         return allRepairs;
     }
-
-    /**
-     * Saves the current state of the manager (not implemented).
-     */
-    public void saveData() {
-        // Implementation pending
-    }
 }

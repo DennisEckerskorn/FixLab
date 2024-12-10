@@ -70,9 +70,6 @@ public class ClientDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TODO: Implement device list
-        //private TextView tvClientDevicesDetailValue;
-
         TextView tvNameDetailValue = view.findViewById(R.id.tvNameDetailValue);
         TextView tvPhoneDetailValue = view.findViewById(R.id.tvPhoneDetailValue);
         TextView tvEmailDetailValue = view.findViewById(R.id.tvEmailDetailValue);
