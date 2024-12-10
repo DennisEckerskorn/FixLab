@@ -29,12 +29,14 @@ public class WorkshopManager {
         this.context = context;
     }
 
-    public int loadClients(){
+    public int loadClients() {
         return this.addPersons(dataManager.loadTechnicians(context));
     }
-    public int loadTechnicians(){
+
+    public int loadTechnicians() {
         return this.addPersons(dataManager.loadClientsAndDevices(context));
     }
+
     /**
      * @param persons array of persons to add
      * @return number of persons added successfully
@@ -42,11 +44,12 @@ public class WorkshopManager {
     public int addPersons(List<Person> persons) {
         int count = 0;
         for (int i = 0; i < persons.size(); i++) {
-            if(addPerson(persons.get(i)))
+            if (addPerson(persons.get(i)))
                 count++;
         }
         return count;
     }
+
     /**
      * @param person can be a instance of Person
      * @return true if added successfully
@@ -88,9 +91,10 @@ public class WorkshopManager {
         return true;
     }
 
-    public boolean addRepair(Repair repair){
-        allRepairs.add(repair);
-        return true;
+    public void addRepair(Repair repair) {
+        if (repair != null) {
+            allRepairs.add(repair);
+        }
     }
 
     /**
@@ -196,6 +200,7 @@ public class WorkshopManager {
 
     /**
      * Actualiza los datos de una persona existente manteniendo la misma referencia en la lista correspondiente.
+     *
      * @param oldPerson La persona existente que se actualizará.
      * @param newPerson La nueva persona con los datos actualizados.
      * @return true si la persona se actualizó correctamente, false en caso contrario.
@@ -220,10 +225,10 @@ public class WorkshopManager {
     }
 
     // Actualiza los datos dispositivos de una persona existente manteniendo la misma referencia en la lista correspondiente.
-    public void updateDevices(List<Device> oldDevices, List<Device> newDevices){
+    public void updateDevices(List<Device> oldDevices, List<Device> newDevices) {
         for (int i = 0; i < oldDevices.size(); i++) {
             for (int j = 0; j < newDevices.size(); j++) {
-                if (oldDevices.get(i).equals(newDevices.get(j))){
+                if (oldDevices.get(i).equals(newDevices.get(j))) {
                     int index = allDevices.indexOf(oldDevices.get(i));
                     allDevices.set(index, newDevices.get(j));
                 }
@@ -240,10 +245,11 @@ public class WorkshopManager {
 
     /**
      * Metodo para buscar el dispositivo en el cliente y actualizarlo
+     *
      * @param updatedDevice el dispositivo actualizado
      * @param clientDevices la lista de dispositivos del cliente
      */
-    public void updateDeviceInClient(Device selectedDevice ,Device updatedDevice, List<Device> clientDevices) {
+    public void updateDeviceInClient(Device selectedDevice, Device updatedDevice, List<Device> clientDevices) {
         // Buscar el dispositivo en el cliente y actualizarlo
         for (int i = 0; i < clientDevices.size(); i++) {
             Device currentDevice = clientDevices.get(i);
@@ -267,7 +273,8 @@ public class WorkshopManager {
     public List<Person> getAllTechnicians() {
         return allTechnicians;
     }
-    public void saveData(){
+
+    public void saveData() {
 
     }
 

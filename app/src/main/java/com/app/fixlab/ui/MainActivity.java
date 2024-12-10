@@ -56,6 +56,7 @@ import com.app.fixlab.ui.fragments.technicianfragments.TechnicianListFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianModifyFragment;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -294,11 +295,23 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public List<Repair> getCompletedRepairs() {
-        if (currentRepair != null) {
-            List<Repair> repairs = workshopManager.getAllRepairs();
-            return repairs == null ? Collections.emptyList() : repairs;
+        // Obtener todas las reparaciones desde WorkshopManager
+        List<Repair> allRepairs = workshopManager.getAllRepairs();
+
+        // Si no hay reparaciones, devolver una lista vacía
+        if (allRepairs == null || allRepairs.isEmpty()) {
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
+
+        // Filtrar las reparaciones con estado COMPLETED
+        List<Repair> completedRepairs = new ArrayList<>();
+        for (Repair repair : allRepairs) {
+            if (repair.getStatus() == Repair.RepairStatus.COMPLETED) {
+                completedRepairs.add(repair);
+            }
+        }
+
+        return completedRepairs;
     }
 
 
@@ -398,19 +411,21 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onSaveDiagnosis(Diagnosis diagnosis) {
-        if (currentRepair != null && currentRepair.getDiagnosis() != null) {
+        if (currentRepair != null) {
+            // Asignar el diagnóstico a la reparación
             currentRepair.setDiagnosis(diagnosis);
+            currentRepair.setStatus(Repair.RepairStatus.IN_PROGRESS);
 
             if (currentRepair.getDevice() != null) {
                 currentRepair.getDevice().setStatus(DeviceStatus.IN_REPAIR);
             }
 
-            currentRepair.setStatus(Repair.RepairStatus.IN_PROGRESS);
-
             Toast.makeText(this, "Diagnosis saved successfully", Toast.LENGTH_SHORT).show();
-            replaceFragment(RepairSummaryFragment.class, true);
+
+            // Navegar al fragmento de resumen
+            replaceFragment(new RepairSummaryFragment(), true);
         } else {
-            Toast.makeText(this, "Diagnosis not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No repair initialized", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -460,16 +475,21 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      *
      * @param item The repair item selected.
      */
+    /**
+     * Handles the selection of a repair item to view its summary.
+     *
+     * @param item The repair item selected.
+     */
     @Override
     public void onCompletedSummaryRepair(Repair item) {
         currentRepair = item;
-        RepairSummaryFragment repairSummaryFragment = (RepairSummaryFragment) fragmentCache.get(RepairSummaryFragment.class.getSimpleName());
-        if (repairSummaryFragment == null) {
-            repairSummaryFragment = new RepairSummaryFragment();
-            repairSummaryFragment.setShowFields(false);
-            fragmentCache.put(RepairSummaryFragment.class.getSimpleName(), repairSummaryFragment);
-        }
-        replaceFragment(RepairSummaryFragment.class, true);
+
+        // Crear una nueva instancia del fragmento
+        RepairSummaryFragment repairSummaryFragment = new RepairSummaryFragment();
+        repairSummaryFragment.setShowFields(false);
+
+        // Reemplazar el fragmento sin usar el caché
+        replaceFragment(repairSummaryFragment, true);
     }
 
     /**
@@ -481,11 +501,69 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     public void onItemClickRepair(Object item) {
         if (item instanceof Technician) {
             selectedTechnician = (Person) item;
-            this.currentRepair = new Repair(selectedTechnician, null, null);
+
+            // Crear una nueva reparación
+            currentRepair = new Repair(selectedTechnician, null, null);
+
+            // Navegar al fragmento de selección de dispositivos
             replaceFragment(RepairedDeviceListFragment.class, true);
+
             Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Technician not selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Handles the selection of a repaired device and starts a repair process.
+     *
+     * @param device The device selected for repair.
+     */
+    @Override
+    public void onRepairedDeviceClick(Device device) {
+        if (currentRepair != null) {
+            selectedDevice = device;
+
+            // Asignar el dispositivo a la reparación
+            currentRepair.setDevice(selectedDevice);
+            currentRepair.setClient((Client) workshopManager.getClientByDevice(selectedDevice));
+            currentRepair.setStatus(Repair.RepairStatus.PENDING);
+
+            Toast.makeText(this, "Device selected: " + device.getModel(), Toast.LENGTH_SHORT).show();
+
+            // Navegar al fragmento de diagnóstico
+            replaceFragment(new DiagnosisFragment(), true);
+        } else {
+            Toast.makeText(this, "No repair initialized", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Marks the current repair as completed and updates device and repair statuses.
+     */
+    @Override
+    public void onRepairCompleted() {
+        if (currentRepair != null) {
+            // Actualizar el estado de la reparación y del dispositivo
+            currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
+            if (currentRepair.getDevice() != null) {
+                currentRepair.getDevice().setStatus(DeviceStatus.COMPLETED);
+            }
+
+            // Guardar la reparación en WorkshopManager
+            workshopManager.addRepair(currentRepair);
+
+            Toast.makeText(this, "Repair completed successfully", Toast.LENGTH_SHORT).show();
+
+            // Reiniciar el estado para la próxima reparación
+            currentRepair = null;
+            selectedTechnician = null;
+            selectedDevice = null;
+
+            // Volver al menú principal
+            replaceFragment(MainMenuFragment.class, false);
+        } else {
+            Toast.makeText(this, "No repair to complete", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -501,28 +579,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         replaceFragment(DeviceDetailFragment.class, true);
     }
 
-    /**
-     * Handles the selection of a repaired device and starts a repair process.
-     *
-     * @param device The device selected for repair.
-     */
-    @Override
-    public void onRepairedDeviceClick(Device device) {
-        Toast.makeText(this, "Device repaired: " + device.getModel(), Toast.LENGTH_SHORT).show();
-        selectedDevice = device;
-        selectedDevice.setStatus(DeviceStatus.IN_PROGRESS);
-        selectedClient = workshopManager.getClientByDevice(selectedDevice);
-
-        if (currentRepair != null) {
-            currentRepair.setDevice(selectedDevice);
-            currentRepair.setClient((Client) selectedClient);
-            currentRepair.setStatus(Repair.RepairStatus.PENDING);
-            Toast.makeText(this, "Device selected for repair: " + device.getModel() + "current repair: " + currentRepair.getStatus(), Toast.LENGTH_SHORT).show();
-            replaceFragment(DiagnosisFragment.class, true);
-        } else {
-            Toast.makeText(this, "No device selected", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     /**
      * Updates the status of a diagnosis check item.
@@ -539,22 +595,6 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
                 currentRepair.setStatus(Repair.RepairStatus.DIAGNOSED);
                 Toast.makeText(this, "Diagnosis completed", Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-
-    /**
-     * Marks the current repair as completed and updates device and repair statuses.
-     */
-    @Override
-    public void onRepairCompleted() {
-        if (currentRepair != null) {
-            currentRepair.setStatus(Repair.RepairStatus.COMPLETED);
-            currentRepair.getDevice().setStatus(DeviceStatus.COMPLETED);
-            workshopManager.addRepair(currentRepair);
-            Toast.makeText(this, "Reparación completada", Toast.LENGTH_SHORT).show();
-            replaceFragment(MainMenuFragment.class, false);
-        } else {
-            Toast.makeText(this, "No se puede completar la reparación", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -587,7 +627,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onRepairSummarySelected() {
-        replaceFragment(CompletedRepairListFragment.class, true);
+        replaceFragment(new CompletedRepairListFragment(), true);
     }
 
     /**
