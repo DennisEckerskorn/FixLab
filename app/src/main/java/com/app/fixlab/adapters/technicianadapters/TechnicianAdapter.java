@@ -18,22 +18,42 @@ import com.app.fixlab.models.persons.Technician;
 
 import java.util.List;
 
+/**
+ * Adapter for managing a list of technicians in a RecyclerView.
+ * This class binds data related to technicians to views and handles interactions with them.
+ */
 public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.TechnicianViewHolder> {
+
     private final List<Person> technicians;
     private IonItemClickListenerGeneric<Person> technicianListener;
     private IOnItemRepairClickListener repairListener;
     private final boolean disableUnavailableSelection;
 
-
+    /**
+     * Constructor for the TechnicianAdapter.
+     *
+     * @param technicians              the list of technicians to display.
+     * @param disableUnavailableSelection flag to determine if unavailable technicians can be selected.
+     */
     public TechnicianAdapter(List<Person> technicians, boolean disableUnavailableSelection) {
         this.technicians = technicians;
         this.disableUnavailableSelection = disableUnavailableSelection;
     }
 
+    /**
+     * Sets the listener for technician item clicks.
+     *
+     * @param technicianListener the listener to handle item clicks.
+     */
     public void setListenerTechnicians(IonItemClickListenerGeneric<Person> technicianListener) {
         this.technicianListener = technicianListener;
     }
 
+    /**
+     * Sets the listener for repair item clicks.
+     *
+     * @param repairListener the listener to handle repair item clicks.
+     */
     public void setRepairListener(IOnItemRepairClickListener repairListener) {
         this.repairListener = repairListener;
     }
@@ -55,16 +75,22 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
         return technicians.size();
     }
 
-
+    /**
+     * ViewHolder for the RecyclerView to represent a technician item.
+     */
     class TechnicianViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         private final ImageView ivTechnicianPhoto;
         private final TextView tvNameTechnician;
         private final TextView tvDniTechnician;
         private final TextView tvAvailabilityTechnician;
-
         private Person technician;
-        ;
 
+        /**
+         * Constructor for TechnicianViewHolder.
+         *
+         * @param itemView the view for the technician item.
+         */
         public TechnicianViewHolder(@NonNull View itemView) {
             super(itemView);
             ivTechnicianPhoto = itemView.findViewById(R.id.ivTechnicianPhoto);
@@ -74,6 +100,11 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
             itemView.setOnClickListener(this);
         }
 
+        /**
+         * Binds a technician's data to the view.
+         *
+         * @param technician the technician whose data is to be displayed.
+         */
         private void bindTechnician(Person technician) {
             this.technician = technician;
             ivTechnicianPhoto.setImageResource(R.drawable.ic_launcher_foreground);

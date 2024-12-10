@@ -6,9 +6,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * DEVICE CLASS: Father class of Laptop, Computer, Smartphone, Tablet, Smartwatch, Monitor, Peripheral and Other
+ * Represents a generic device with attributes such as model, serial number, description,
+ * brand, type, condition, and status.
+ * It serves as the base class for specific types of devices such as laptops, computers,
+ * smartphones, tablets, etc.
  */
 public class Device implements Serializable {
+
     private final String model;
     private final String serialNumber;
     private final String description;
@@ -17,6 +21,16 @@ public class Device implements Serializable {
     private final DeviceType type;
     private final DeviceCondition condition;
 
+    /**
+     * Constructor for the Device class.
+     *
+     * @param model       the model of the device.
+     * @param serialNumber the unique serial number of the device.
+     * @param description a brief description of the device.
+     * @param brand       the brand of the device.
+     * @param type        the type of the device (e.g., Laptop, Smartphone).
+     * @param condition   the condition of the device (e.g., New, Used).
+     */
     public Device(String model, String serialNumber, String description, String brand, DeviceType type, DeviceCondition condition) {
         this.model = model;
         this.serialNumber = serialNumber;
@@ -27,35 +41,67 @@ public class Device implements Serializable {
         this.status = DeviceStatus.PENDING;
     }
 
+    /**
+     * Sets the status of the device.
+     *
+     * @param status the new status of the device.
+     */
     public void setStatus(DeviceStatus status) {
         this.status = status;
     }
 
+    // GETTERS:
 
     /**
-     * GETTERS:
-     **/
-
+     * Gets the model of the device.
+     *
+     * @return the model.
+     */
     public String getModel() {
         return model;
     }
 
+    /**
+     * Gets the serial number of the device.
+     *
+     * @return the serial number.
+     */
     public String getSerialNumber() {
         return serialNumber;
     }
 
+    /**
+     * Gets the description of the device.
+     *
+     * @return the description.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the brand of the device.
+     *
+     * @return the brand.
+     */
     public String getBrand() {
         return brand;
     }
 
+    /**
+     * Gets the current status of the device.
+     *
+     * @return the status.
+     */
     public DeviceStatus getStatus() {
         return status;
     }
 
+    /**
+     * Converts the device's condition to a string resource ID.
+     *
+     * @return the string resource ID for the condition.
+     */
     public int getConditionString() {
         int condition = -1;
         switch (this.getCondition()) {
@@ -70,8 +116,11 @@ public class Device implements Serializable {
         }
         return condition;
     }
-
-    //TODO: ADAPTAR AL ENUMERADO
+    /**
+     * Converts the device's status to a string resource ID.
+     *
+     * @return the string resource ID for the status.
+     */
     public int getStatusString() {
         int status = -1;
         switch (this.getStatus()) {
@@ -96,10 +145,20 @@ public class Device implements Serializable {
         return status;
     }
 
+    /**
+     * Gets the type of the device.
+     *
+     * @return the type.
+     */
     public DeviceType getType() {
         return type;
     }
 
+    /**
+     * Converts the device's type to an image resource ID.
+     *
+     * @return the image resource ID for the type.
+     */
     public int getTypeString() {
         int type = -1;
         switch (this.getType()) {
@@ -134,9 +193,22 @@ public class Device implements Serializable {
     }
 
     /**
-     * EQUALS AND HASHCODE:
-     **/
+     * Gets the condition of the device.
+     *
+     * @return the condition.
+     */
+    public DeviceCondition getCondition() {
+        return condition;
+    }
 
+    // EQUALS AND HASHCODE:
+
+    /**
+     * Checks if this device is equal to another object based on its serial number.
+     *
+     * @param o the object to compare.
+     * @return true if equal, false otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -145,15 +217,23 @@ public class Device implements Serializable {
         return Objects.equals(serialNumber, device.serialNumber);
     }
 
+    /**
+     * Generates a hash code based on the serial number.
+     *
+     * @return the hash code.
+     */
     @Override
     public int hashCode() {
         return Objects.hashCode(serialNumber);
     }
 
-    /**
-     * TOSTRING:
-     **/
+    // TOSTRING:
 
+    /**
+     * Returns a string representation of the device.
+     *
+     * @return the string representation.
+     */
     @Override
     public String toString() {
         return "Device{" +
@@ -161,13 +241,7 @@ public class Device implements Serializable {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +
-                // ", condition=" + condition +
                 ", type=" + type +
                 '}';
     }
-
-    public DeviceCondition getCondition() {
-        return condition;
-    }
 }
-
