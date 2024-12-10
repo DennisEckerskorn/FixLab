@@ -16,8 +16,11 @@ import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.devices.Device;
-import com.app.fixlab.ui.MainActivity;
 
+/**
+ * Fragment that displays the details of a selected device.
+ * Allows for modification or deletion of the device.
+ */
 public class DeviceDetailFragment extends Fragment {
     private Device selectedDevice;
     private OnModifyListener onModifyListener;
@@ -29,17 +32,27 @@ public class DeviceDetailFragment extends Fragment {
     private TextView tvDeviceStatus;
     private TextView tvDeviceDescription;
 
-    //TODO: Implement device list
-    //private TextView tvClientDevicesDetailValue;
+    private OnDeleteListener buttonListener;
+
+    /**
+     * Default constructor that sets the layout resource for the fragment.
+     */
     public DeviceDetailFragment() {
         super(R.layout.detail_device_item);
     }
-    private OnDeleteListener buttonListener;
 
+    /**
+     * Called when the fragment's view is created.
+     * Initializes the views and sets up event listeners for the delete and modify buttons.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState Saved state of the fragment, if available.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialize text views
         tvDeviceModel = view.findViewById(R.id.tvDeviceModel);
         tvDeviceBrand = view.findViewById(R.id.tvDeviceBrand);
         tvDeviceSerialNumber = view.findViewById(R.id.tvDeviceSerialNumber);
@@ -47,7 +60,7 @@ public class DeviceDetailFragment extends Fragment {
         tvDeviceStatus = view.findViewById(R.id.tvDeviceStatus);
         tvDeviceDescription = view.findViewById(R.id.tvDeviceDescription);
 
-        //TODO: ALGUN TEXTVIEW FALLA Y DA NULL POINTER EN ESTA PARTE:
+        // Populate the views with the details of the selected device
         if (selectedDevice != null) {
             tvDeviceModel.setText(selectedDevice.getModel());
             tvDeviceBrand.setText(selectedDevice.getBrand());
@@ -56,29 +69,38 @@ public class DeviceDetailFragment extends Fragment {
             tvDeviceStatus.setText(selectedDevice.getStatusString());
             tvDeviceDescription.setText(selectedDevice.getDescription());
         }
-        //TODO: Implement device list
 
-
+        // Set up the delete button listener
         Button btnDelete = view.findViewById(R.id.btnDeleteOnDeviceDetail);
-        btnDelete.setOnClickListener(v -> {
-            buttonListener.onDeleteDevice();
-        });
+        btnDelete.setOnClickListener(v -> buttonListener.onDeleteDevice());
 
-        //Implementacion del boton de modificar
+        // Set up the modify button listener
         Button btnModify = view.findViewById(R.id.btnModifyDevice);
-        btnModify.setOnClickListener(v -> {
-            onModifyListener.onModifyButtonDevice();
-        });
-
+        btnModify.setOnClickListener(v -> onModifyListener.onModifyButtonDevice());
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Retrieves the required listeners and the selected device from the activity.
+     *
+     * @param context The context of the host activity.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        IdataProvider dataProvider = (IdataProvider) requireActivity();
-        onModifyListener = (OnModifyListener) requireActivity();
-        buttonListener = (OnDeleteListener) requireActivity();
-        selectedDevice = dataProvider.getDevice();
-        Toast.makeText(context, "Device selected: " + selectedDevice.getModel(), Toast.LENGTH_SHORT).show();
+        try {
+            // Get the required interfaces from the activity
+            IdataProvider dataProvider = (IdataProvider) requireActivity();
+            onModifyListener = (OnModifyListener) requireActivity();
+            buttonListener = (OnDeleteListener) requireActivity();
+
+            // Retrieve the selected device
+            selectedDevice = dataProvider.getDevice();
+
+            // Display a toast message with the selected device's model
+            Toast.makeText(context, "Device selected: " + selectedDevice.getModel(), Toast.LENGTH_SHORT).show();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement required listeners.");
+        }
     }
 }

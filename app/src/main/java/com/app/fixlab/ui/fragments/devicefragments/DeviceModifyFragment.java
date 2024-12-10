@@ -12,20 +12,33 @@ import androidx.fragment.app.Fragment;
 import com.app.fixlab.R;
 import com.app.fixlab.listeners.OnModifyListener;
 import com.app.fixlab.models.devices.Device;
-import com.app.fixlab.models.devices.DeviceCondition;
-import com.app.fixlab.models.devices.DeviceType;
 import com.app.fixlab.ui.MainActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
+/**
+ * Fragment that allows modifying the details of a selected device.
+ * The updated device details are passed back to the host activity via a listener.
+ */
 public class DeviceModifyFragment extends Fragment {
+
     private Device selectedDevice;
     private TextInputEditText etModel, etBrand, etSerialNumber, etDescription;
     private OnModifyListener modifyListener;
 
+    /**
+     * Default constructor that sets the layout resource for the fragment.
+     */
     public DeviceModifyFragment() {
         super(R.layout.fragment_modify_device);
     }
 
+    /**
+     * Called when the fragment's view is created.
+     * Initializes the view elements and sets up initial device data.
+     *
+     * @param view               The root view of the fragment.
+     * @param savedInstanceState Saved state of the fragment, if available.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -33,6 +46,11 @@ public class DeviceModifyFragment extends Fragment {
         setupInitialData();
     }
 
+    /**
+     * Initializes the input fields and button listeners in the view.
+     *
+     * @param view The root view of the fragment.
+     */
     private void initViews(View view) {
         Button btnSave = view.findViewById(R.id.btnSaveDeviceEdit);
         btnSave.setOnClickListener(v -> {
@@ -40,12 +58,17 @@ public class DeviceModifyFragment extends Fragment {
                 saveChanges();
             }
         });
+
+        // Initialize input fields
         etModel = view.findViewById(R.id.etEditDeviceModel);
         etBrand = view.findViewById(R.id.etEditDeviceBrand);
         etSerialNumber = view.findViewById(R.id.etEditDeviceSerialNumber);
         etDescription = view.findViewById(R.id.etEditDeviceDescription);
     }
 
+    /**
+     * Populates the input fields with the data of the selected device.
+     */
     private void setupInitialData() {
         if (selectedDevice != null) {
             etModel.setText(selectedDevice.getModel());
@@ -55,6 +78,11 @@ public class DeviceModifyFragment extends Fragment {
         }
     }
 
+    /**
+     * Validates that all required fields are filled out.
+     *
+     * @return True if all fields are valid; otherwise, false.
+     */
     private boolean validateFields() {
         boolean isValid = true;
 
@@ -78,6 +106,9 @@ public class DeviceModifyFragment extends Fragment {
         return isValid;
     }
 
+    /**
+     * Saves the changes to the device and notifies the host activity via the listener.
+     */
     private void saveChanges() {
         if (modifyListener != null && selectedDevice != null) {
             Device updatedDevice = new Device(
@@ -85,16 +116,26 @@ public class DeviceModifyFragment extends Fragment {
                     etSerialNumber.getText().toString(),
                     etDescription.getText().toString(),
                     etBrand.getText().toString(),
-                    selectedDevice.getType(),
-                    selectedDevice.getCondition()
+                    selectedDevice.getType(),  // Keep the original type
+                    selectedDevice.getCondition()  // Keep the original condition
             );
+
+            // Notify the listener of the updated device
             modifyListener.onDeviceModify(updatedDevice);
         }
     }
 
+    /**
+     * Called when the fragment is attached to its host activity.
+     * Retrieves the selected device and the modify listener from the activity.
+     *
+     * @param context The context of the host activity.
+     * @throws ClassCastException If the activity does not implement the required listener.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+
         try {
             modifyListener = (OnModifyListener) requireActivity();
             selectedDevice = ((MainActivity) requireActivity()).getDevice();
