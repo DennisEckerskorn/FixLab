@@ -2,7 +2,6 @@ package com.app.fixlab.parsers;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.app.fixlab.R;
 import com.app.fixlab.models.devices.Device;
@@ -18,13 +17,24 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Singleton class for managing data operations such as loading technicians, clients, and devices.
+ */
 public class DataManager {
     private static DataManager instance;
 
+    /**
+     * Private constructor to prevent direct instantiation.
+     */
     private DataManager() {
 
     }
 
+    /**
+     * Returns the singleton instance of DataManager.
+     *
+     * @return the singleton instance of DataManager.
+     */
     public static DataManager getInstance() {
         if (instance == null) {
             instance = new DataManager();
@@ -32,9 +42,11 @@ public class DataManager {
         return instance;
     }
 
-
     /**
-     * LOAD TECHNICIANS: Loads technicians from JSON file
+     * Loads a list of technicians from a JSON resource file.
+     *
+     * @param context the application context, required to access resources.
+     * @return a list of technicians as {@link Person} objects.
      */
     public List<Person> loadTechnicians(Context context) {
         List<Person> technicians = new ArrayList<>();
@@ -63,6 +75,12 @@ public class DataManager {
         return technicians;
     }
 
+    /**
+     * Loads a list of clients and their devices from a JSON resource file.
+     *
+     * @param context the application context, required to access resources.
+     * @return a list of clients as {@link Person} objects.
+     */
     public List<Person> loadClientsAndDevices(Context context) {
         List<Person> clients = new ArrayList<>();
         try {
@@ -80,6 +98,7 @@ public class DataManager {
 
                 Person client = new Client(dni, name, surname, email, phoneNumber, address, username, password);
 
+                // Load devices if present
                 if (clientsJSONObject.has("devices")) {
                     JSONArray devicesJSON = clientsJSONObject.getJSONArray("devices");
                     for (int j = 0; j < devicesJSON.length(); j++) {
@@ -94,11 +113,11 @@ public class DataManager {
                             type = DeviceType.valueOf(devicesJSONObject.getString("type").toUpperCase());
                             condition = DeviceCondition.valueOf(devicesJSONObject.getString("condition").toUpperCase());
                         } catch (IllegalArgumentException e) {
-                            // Manejo de error si el valor de "type" no es válido
-                            System.err.println("Tipo de dispositivo no válido: " + devicesJSONObject.getString("type"));
-                            System.err.println("Condición de dispositivo no válida: " + devicesJSONObject.getString("condition"));
-                            condition = DeviceCondition.IN_GOOD_CONDITION;
-                            type = DeviceType.OTHER; // Valor por defecto en caso de error
+                            // Handle error if the "type" or "condition" value is invalid
+                            System.err.println("Invalid device type: " + devicesJSONObject.getString("type"));
+                            System.err.println("Invalid device condition: " + devicesJSONObject.getString("condition"));
+                            condition = DeviceCondition.IN_GOOD_CONDITION; // Default value
+                            type = DeviceType.OTHER; // Default value
                         }
                         Device device = new Device(model, serialNumber, description, brand, type, condition);
                         client.addDevice(device);
@@ -113,5 +132,4 @@ public class DataManager {
         }
         return clients;
     }
-
 }
