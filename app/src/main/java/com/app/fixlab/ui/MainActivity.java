@@ -158,6 +158,20 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
         fragmentManager.executePendingTransactions();
     }
 
+    public void replaceFragment(Fragment fragment, boolean addToBackStack) {
+        String fragmentTag = fragment.getClass().getSimpleName();
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction()
+                .replace(R.id.fcvMain, fragment, fragmentTag);
+
+        if (addToBackStack) {
+            transaction.addToBackStack(fragmentTag);
+        }
+
+        transaction.commitAllowingStateLoss();
+        fragmentManager.executePendingTransactions();
+    }
+
     /**
      * Loads the workshop data for clients and technicians from JSON files.
      * Displays a Toast message indicating the number of clients and technicians loaded.
