@@ -64,5 +64,5 @@
     <string name="status_completed">Completed</string>
     <string name="status_in_progress">In progress</string>
     <string name="status_unreparable">Unreparable</string>
-    <string name="summaries">Summaries</string>"
+    <string name="summaries">"Finalized Repairs "</string>"
 </resources>

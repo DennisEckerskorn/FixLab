@@ -65,4 +65,5 @@
     <string name="status_completed">Completado</string>
     <string name="status_in_progress">En progreso</string>
     <string name="status_unreparable">Irreparable</string>
+    <string name="summaries">Reparaciones finalizadas</string>
 </resources>

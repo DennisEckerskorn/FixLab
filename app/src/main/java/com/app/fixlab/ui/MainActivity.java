@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -51,6 +52,7 @@ import com.app.fixlab.ui.fragments.repairfragments.RepairedDeviceListFragment;
 import com.app.fixlab.ui.fragments.repairfragments.TechnicianSelectionFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianDetailFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianFragment;
+import com.app.fixlab.ui.fragments.technicianfragments.TechnicianListFragment;
 import com.app.fixlab.ui.fragments.technicianfragments.TechnicianModifyFragment;
 
 import java.io.Serializable;
@@ -73,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     private static final String DEVICE_KEY = "SELECTED_DEVICE";
     private static final String REPAIR_KEY = "SELECTED_REPAIR";
     private static DataManager dataManager;
+
+
 
     /**
      * Called when the activity is first created.
@@ -380,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             replaceFragment(new MainMenuFragment(), false);
         }, SPLASH_SCREEN_DELAY);
     }
-    
+
     /**
      * Handles the selection of a person item.
      * Navigates to the appropriate detail fragment based on whether the item is a client or a technician.

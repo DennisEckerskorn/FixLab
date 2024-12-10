@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.app.fixlab.R;
 import com.app.fixlab.listeners.IdataProvider;
 import com.app.fixlab.listeners.OnDeleteListener;
 import com.app.fixlab.listeners.OnModifyListener;
+import com.app.fixlab.managers.WorkshopManager;
 import com.app.fixlab.models.persons.Technician;
 import com.app.fixlab.ui.MainActivity;
 
@@ -31,6 +33,7 @@ public class TechnicianDetailFragment extends Fragment {
     private TextView tvPhoneDetailValue;
     private TextView tvTechnicianAddressDetailValue;
     private TextView tvAvailabilityDetailValue;
+    private Switch switchAvailability;
     private OnDeleteListener buttonListener;
 
 
@@ -49,6 +52,7 @@ public class TechnicianDetailFragment extends Fragment {
         tvPhoneDetailValue = view.findViewById(R.id.tvTechnicianPhone);
         tvTechnicianAddressDetailValue = view.findViewById(R.id.tvTechnicianAddress);
         tvAvailabilityDetailValue = view.findViewById(R.id.tvTechnicianAvailability);
+        switchAvailability = view.findViewById(R.id.switchAvailability);
 
         tvNameDetailValue.setText(selectedTechnician.getName());
         tvDniDetailValue.setText(selectedTechnician.getDni());
@@ -59,6 +63,7 @@ public class TechnicianDetailFragment extends Fragment {
         if (selectedTechnician != null) {
             Technician.Availability availability = (selectedTechnician).getAvailability();
             tvAvailabilityDetailValue.setText(availability.toString());
+            switchAvailability.setChecked(availability == Technician.Availability.AVAILABLE);
 
             if (availability == Technician.Availability.AVAILABLE) {
                 tvAvailabilityDetailValue.setTextColor(ContextCompat.getColor(tvAvailabilityDetailValue.getContext(), R.color.neon_green));
@@ -66,6 +71,24 @@ public class TechnicianDetailFragment extends Fragment {
                 tvAvailabilityDetailValue.setTextColor(ContextCompat.getColor(tvAvailabilityDetailValue.getContext(), R.color.red));
             }
         }
+
+        switchAvailability.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (selectedTechnician != null) {
+                Technician.Availability newAvailability = isChecked
+                        ? Technician.Availability.AVAILABLE
+                        : Technician.Availability.UNAVAILABLE;
+                selectedTechnician.setAvailability(newAvailability);
+                tvAvailabilityDetailValue.setText(newAvailability.toString());
+
+                if (newAvailability == Technician.Availability.AVAILABLE) {
+                    tvAvailabilityDetailValue.setTextColor(ContextCompat.getColor(tvAvailabilityDetailValue.getContext(), R.color.neon_green));
+                } else {
+                    tvAvailabilityDetailValue.setTextColor(ContextCompat.getColor(tvAvailabilityDetailValue.getContext(), R.color.red));
+                }
+            }
+        });
+
+
         Button btnDelete = view.findViewById(R.id.btnDeleteOnTechnicianDetail);
         btnDelete.setOnClickListener(v -> {
             buttonListener.onDeleteClient();
