@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onTechniciansSelected() {
-        replaceFragment(TechnicianFragment.class, true);
+        replaceFragment(new TechnicianFragment(), true);
     }
 
     /**
@@ -464,6 +464,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
                 technicianDetailFragment = new TechnicianDetailFragment();
                 fragmentCache.put(TechnicianDetailFragment.class.getSimpleName(), technicianDetailFragment);
             }
+
             replaceFragment(TechnicianDetailFragment.class, true);
             Toast.makeText(this, "Technician selected: " + selectedTechnician.getName(), Toast.LENGTH_SHORT).show();
         }
