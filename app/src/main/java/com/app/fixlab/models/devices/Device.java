@@ -9,7 +9,6 @@ import java.util.Objects;
  * DEVICE CLASS: Father class of Laptop, Computer, Smartphone, Tablet, Smartwatch, Monitor, Peripheral and Other
  */
 public class Device implements Serializable {
-    private final static int id = 0;
     private final String model;
     private final String serialNumber;
     private final String description;
