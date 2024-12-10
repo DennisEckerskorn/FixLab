@@ -29,17 +29,29 @@ public class WorkshopManager {
         this.context = context;
     }
 
+    /**
+     * Loads all clients and their associated data.
+     *
+     * @return the number of clients loaded.
+     */
     public int loadClients() {
         return this.addPersons(dataManager.loadTechnicians(context));
     }
 
+    /**
+     * Loads all technicians and their associated data.
+     *
+     * @return the number of technicians loaded.
+     */
     public int loadTechnicians() {
         return this.addPersons(dataManager.loadClientsAndDevices(context));
     }
 
     /**
-     * @param persons array of persons to add
-     * @return number of persons added successfully
+     * Adds a list of persons to the manager.
+     *
+     * @param persons list of persons to add.
+     * @return the number of persons successfully added.
      */
     public int addPersons(List<Person> persons) {
         int count = 0;
@@ -51,8 +63,10 @@ public class WorkshopManager {
     }
 
     /**
-     * @param person can be a instance of Person
-     * @return true if added successfully
+     * Adds a single person (client or technician) and their devices.
+     *
+     * @param person the person to add.
+     * @return true if the person was successfully added.
      */
     public boolean addPerson(Person person) {
         if (person instanceof Technician) {
@@ -65,10 +79,11 @@ public class WorkshopManager {
     }
 
     /**
-     * @param person can be a instance of Person
-     * @return true if removed successfully or false if not exists
+     * Removes a person (client or technician) and their devices.
+     *
+     * @param person the person to remove.
+     * @return true if the person was successfully removed, false otherwise.
      */
-
     public boolean removePerson(Person person) {
         if (person instanceof Technician && allTechnicians.contains(person)) {
             allTechnicians.remove(person);
@@ -83,14 +98,21 @@ public class WorkshopManager {
     }
 
     /**
-     * @param device can be a instance of Device
-     * @return true if added successfully
+     * Adds a single device.
+     *
+     * @param device the device to add.
+     * @return true if the device was successfully added.
      */
     public boolean addDevice(Device device) {
         allDevices.add(device);
         return true;
     }
 
+    /**
+     * Adds a repair record to the manager.
+     *
+     * @param repair the repair record to add.
+     */
     public void addRepair(Repair repair) {
         if (repair != null) {
             allRepairs.add(repair);
@@ -98,8 +120,10 @@ public class WorkshopManager {
     }
 
     /**
-     * @param device can be a instance of Device
-     * @return true if removed successfully or false if not exists
+     * Removes a device and updates its associated client.
+     *
+     * @param device the device to remove.
+     * @return true if the device was successfully removed, false otherwise.
      */
     public boolean removeDevice(Device device) {
         if (allDevices.contains(device) && this.getClientByDevice(device) != null) {
@@ -112,28 +136,27 @@ public class WorkshopManager {
     }
 
     /**
-     * @param name String name of client
-     * @return all clients by that name or null if there is no similar names
+     * Finds clients by their name.
+     *
+     * @param name the name of the client to search for.
+     * @return a list of clients with the specified name or null if none exist.
      */
     public List<Person> getClientsByName(String name) {
         List<Person> results = new ArrayList<>();
-
         for (int i = 0; i < allClients.size(); i++) {
             if (allClients.get(i).getName().equals(name)) {
                 results.add(allClients.get(i));
             }
         }
-        if (results.isEmpty()) {
-            return null;
-        }
-        return results;
+        return results.isEmpty() ? null : results;
     }
 
     /**
-     * @param dni String dni of client
-     * @return all clients by that name or null if dni doesnt exist
+     * Finds a client by their DNI.
+     *
+     * @param dni the DNI of the client to search for.
+     * @return the client with the specified DNI or null if not found.
      */
-
     public Person getClientsByDNI(String dni) {
         Person result = null;
         for (int i = 0; i < allClients.size(); i++) {
@@ -145,25 +168,27 @@ public class WorkshopManager {
     }
 
     /**
-     * @param device device for search
-     * @return first Client with the same device or null if the device doesnt exist
+     * Finds the client associated with a specific device.
+     *
+     * @param device the device to search for.
+     * @return the client who owns the device or null if not found.
      */
     public Person getClientByDevice(Device device) {
-        Person client = null;
         for (int i = 0; i < allClients.size(); i++) {
             for (int j = 0; j < allClients.get(i).getDevices().size(); j++) {
-                //si el dispositivo device es igual al dispositivo(j) del cliente (i) devuelve
                 if (device.equals(allClients.get(i).getDevices().get(j))) {
-                    client = allClients.get(i);
+                    return allClients.get(i);
                 }
             }
         }
-        return client;
+        return null;
     }
 
     /**
-     * @param model String that contains the same model name
-     * @return list of clients that have the exact model name or null if model doesnt exist
+     * Finds clients by the model of their device.
+     *
+     * @param model the device model to search for.
+     * @return a list of clients with devices of the specified model or null if none exist.
      */
     public List<Person> getClientsByDeviceModel(String model) {
         List<Device> devices = new ArrayList<>();
@@ -173,50 +198,43 @@ public class WorkshopManager {
             }
         }
         List<Person> result = new ArrayList<>();
-        for (int i = 0; i < devices.size(); i++) {
-            result.add(getClientByDevice(devices.get(i)));
+        for (Device device : devices) {
+            result.add(getClientByDevice(device));
         }
-        if (result.isEmpty())
-            return null;
-        return result;
+        return result.isEmpty() ? null : result;
     }
 
     /**
-     * @param serialNumber String that contains the same serial number
-     * @return first client that have the exact model serial number or null if model doesnt exist
+     * Finds the client associated with a device by its serial number.
+     *
+     * @param serialNumber the serial number of the device to search for.
+     * @return the client who owns the device or null if not found.
      */
     public Person getClientByDeviceSerialNumber(String serialNumber) {
-        Device device = null;
         for (int i = 0; i < allDevices.size(); i++) {
             if (serialNumber.equals(allDevices.get(i).getSerialNumber())) {
-                device = allDevices.get(i);
+                return getClientByDevice(allDevices.get(i));
             }
-        }
-        if (device != null) {
-            return getClientByDevice(device);
         }
         return null;
     }
 
     /**
-     * Actualiza los datos de una persona existente manteniendo la misma referencia en la lista correspondiente.
+     * Updates the details of an existing person.
      *
-     * @param oldPerson La persona existente que se actualizará.
-     * @param newPerson La nueva persona con los datos actualizados.
-     * @return true si la persona se actualizó correctamente, false en caso contrario.
+     * @param oldPerson the existing person.
+     * @param newPerson the updated person.
+     * @return true if the person was successfully updated, false otherwise.
      */
     public boolean updatePerson(Person oldPerson, Person newPerson) {
         if (oldPerson instanceof Client && newPerson instanceof Client) {
             newPerson.getDevices().addAll(oldPerson.getDevices());
-
             int index = allClients.indexOf(oldPerson);
             allClients.set(index, newPerson);
             updateDevices(oldPerson.getDevices(), newPerson.getDevices());
-
             return true;
         } else if (oldPerson instanceof Technician && newPerson instanceof Technician) {
             newPerson.getDevices().addAll(oldPerson.getDevices());
-
             int index = allTechnicians.indexOf(oldPerson);
             allTechnicians.set(index, newPerson);
             return true;
@@ -224,7 +242,12 @@ public class WorkshopManager {
         return false;
     }
 
-    // Actualiza los datos dispositivos de una persona existente manteniendo la misma referencia en la lista correspondiente.
+    /**
+     * Updates a list of devices with new data.
+     *
+     * @param oldDevices the existing list of devices.
+     * @param newDevices the updated list of devices.
+     */
     public void updateDevices(List<Device> oldDevices, List<Device> newDevices) {
         for (int i = 0; i < oldDevices.size(); i++) {
             for (int j = 0; j < newDevices.size(); j++) {
@@ -236,7 +259,12 @@ public class WorkshopManager {
         }
     }
 
-    // Actualiza los datos de un dispositivo existente manteniendo la misma referencia en la lista correspondiente.
+    /**
+     * Updates the data of a single device.
+     *
+     * @param device the updated device.
+     * @return true if the device was successfully updated.
+     */
     public boolean updateDevice(Device device) {
         int index = allDevices.indexOf(device);
         allDevices.set(index, device);
@@ -244,13 +272,13 @@ public class WorkshopManager {
     }
 
     /**
-     * Metodo para buscar el dispositivo en el cliente y actualizarlo
+     * Updates a specific device in a client's device list.
      *
-     * @param updatedDevice el dispositivo actualizado
-     * @param clientDevices la lista de dispositivos del cliente
+     * @param selectedDevice the current device.
+     * @param updatedDevice  the updated device.
+     * @param clientDevices  the list of the client's devices.
      */
     public void updateDeviceInClient(Device selectedDevice, Device updatedDevice, List<Device> clientDevices) {
-        // Buscar el dispositivo en el cliente y actualizarlo
         for (int i = 0; i < clientDevices.size(); i++) {
             Device currentDevice = clientDevices.get(i);
             if (currentDevice != null && currentDevice.getModel() != null &&
@@ -261,24 +289,46 @@ public class WorkshopManager {
         }
     }
 
-
+    /**
+     * Retrieves all devices.
+     *
+     * @return a list of all devices.
+     */
     public List<Device> getAllDevices() {
         return allDevices;
     }
 
+    /**
+     * Retrieves all clients.
+     *
+     * @return a list of all clients.
+     */
     public List<Person> getAllClients() {
         return allClients;
     }
 
+    /**
+     * Retrieves all technicians.
+     *
+     * @return a list of all technicians.
+     */
     public List<Person> getAllTechnicians() {
         return allTechnicians;
     }
 
-    public void saveData() {
-
-    }
-
+    /**
+     * Retrieves all repair records.
+     *
+     * @return a list of all repair records.
+     */
     public List<Repair> getAllRepairs() {
         return allRepairs;
+    }
+
+    /**
+     * Saves the current state of the manager (not implemented).
+     */
+    public void saveData() {
+        // Implementation pending
     }
 }

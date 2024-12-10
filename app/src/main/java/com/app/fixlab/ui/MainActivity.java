@@ -739,9 +739,9 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onDeleteDevice() {
-        int fragments = fragmentManager.getBackStackEntryCount();
-        if (fragments > 1) {
-            String fragmentTag = fragmentManager.getBackStackEntryAt(fragments - 2).getName();
+        int fragmentsLoaded = fragmentManager.getBackStackEntryCount();
+        if (fragmentsLoaded > 1) {
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentsLoaded - 2).getName();
             Fragment currentFragment = fragmentManager.findFragmentByTag(fragmentTag);
             if (currentFragment instanceof ClientDetailFragment) {
                 replaceFragment(new ClientDetailFragment(), false);
@@ -752,5 +752,4 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             fragmentManager.popBackStack();
         }
     }
-
 }
