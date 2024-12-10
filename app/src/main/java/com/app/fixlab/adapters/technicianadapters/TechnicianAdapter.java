@@ -22,10 +22,12 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
     private final List<Person> technicians;
     private IonItemClickListenerGeneric<Person> technicianListener;
     private IOnItemRepairClickListener repairListener;
+    private final boolean disableUnavailableSelection;
 
 
-    public TechnicianAdapter(List<Person> technicians) {
+    public TechnicianAdapter(List<Person> technicians, boolean disableUnavailableSelection) {
         this.technicians = technicians;
+        this.disableUnavailableSelection = disableUnavailableSelection;
     }
 
     public void setListenerTechnicians(IonItemClickListenerGeneric<Person> technicianListener) {
@@ -84,14 +86,23 @@ public class TechnicianAdapter extends RecyclerView.Adapter<TechnicianAdapter.Te
 
                 if (availability == Technician.Availability.AVAILABLE) {
                     tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.neon_green));
+                    itemView.setAlpha(1.0f);
                 } else {
                     tvAvailabilityTechnician.setTextColor(ContextCompat.getColor(tvAvailabilityTechnician.getContext(), R.color.red));
+                    itemView.setAlpha(disableUnavailableSelection ? 0.5f : 1.0f);
                 }
             }
         }
 
         @Override
         public void onClick(View view) {
+            if (technician instanceof Technician) {
+                Technician.Availability availability = ((Technician) technician).getAvailability();
+                if (disableUnavailableSelection && availability == Technician.Availability.UNAVAILABLE) {
+                    return;
+                }
+            }
+
             if (technicianListener != null) {
                 technicianListener.onItemClick(technician);
             }

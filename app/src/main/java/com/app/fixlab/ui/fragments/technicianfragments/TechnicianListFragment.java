@@ -32,7 +32,7 @@ public class TechnicianListFragment extends Fragment {
         RecyclerView rvList = view.findViewById(R.id.rvList);
 
         // Set the adapter for the recycler view
-        TechnicianAdapter technicianAdapter = new TechnicianAdapter(technicians);
+        TechnicianAdapter technicianAdapter = new TechnicianAdapter(technicians, false);
         technicianAdapter.setListenerTechnicians(itemClickListener);
         rvList.setAdapter(technicianAdapter);
         rvList.setHasFixedSize(true);

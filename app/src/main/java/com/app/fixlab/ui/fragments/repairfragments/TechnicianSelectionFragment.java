@@ -66,7 +66,7 @@ public class TechnicianSelectionFragment extends Fragment {
         RecyclerView rvList = view.findViewById(R.id.rvList);
 
         // Set up the TechnicianAdapter with the list of technicians
-        TechnicianAdapter technicianAdapter = new TechnicianAdapter(technicians);
+        TechnicianAdapter technicianAdapter = new TechnicianAdapter(technicians, true);
         technicianAdapter.setRepairListener(itemClickListener);
         rvList.setAdapter(technicianAdapter);
         rvList.setHasFixedSize(true);
