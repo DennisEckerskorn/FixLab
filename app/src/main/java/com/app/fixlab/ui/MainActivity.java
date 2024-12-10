@@ -398,8 +398,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
     @Override
     public void onSaveAddDevice(Device device) {
         if (device != null) {
-            //TODO: FALTA IMPLEMENTAR EN WORKSHOPMANAGER
-            // workshopManager.addDevice(device);
+            workshopManager.addDevice(device);
             Toast.makeText(this, "Device saved: " + device.getModel(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -603,7 +602,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onModifyButtonClient() {
-        replaceFragment(ClientModifyFragment.class, true);
+        replaceFragment(new ClientModifyFragment(), true);
     }
 
     /**
@@ -611,7 +610,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onModifyButtonTechnician() {
-        replaceFragment(TechnicianModifyFragment.class, true);
+        replaceFragment(new TechnicianModifyFragment(), true);
     }
 
     /**
@@ -619,7 +618,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onModifyButtonDevice() {
-        replaceFragment(DeviceModifyFragment.class, true);
+        replaceFragment(new DeviceModifyFragment(), true);
     }
 
     /**
@@ -715,7 +714,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
 
                 // Volver al fragmento de detalle
                 fragmentManager.popBackStack();
-                replaceFragment(DeviceDetailFragment.class, false);
+                replaceFragment(new DeviceDetailFragment(), false);
             } else {
                 Toast.makeText(this, "Error updating device in the system", Toast.LENGTH_SHORT).show();
             }

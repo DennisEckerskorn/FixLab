@@ -8,5 +8,5 @@ public enum DeviceType {
     SMARTWATCH,
     MONITOR,
     PERIPHERAL,
-    OTHER
+    OTHER;
 }
