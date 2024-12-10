@@ -237,9 +237,9 @@ public class WorkshopManager {
     }
 
     // Actualiza los datos de un dispositivo existente manteniendo la misma referencia en la lista correspondiente.
-    public boolean updateDevice(Device oldDevice, Device newDevice) {
-        int index = allDevices.indexOf(oldDevice);
-        allDevices.set(index, newDevice);
+    public boolean updateDevice(Device device) {
+        int index = allDevices.indexOf(device);
+        allDevices.set(index, device);
         return true;
     }
 

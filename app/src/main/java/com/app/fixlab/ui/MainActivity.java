@@ -709,7 +709,7 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
             clientDevices.set(deviceIndex, updatedDevice);
 
             // Actualizar el dispositivo en el WorkshopManager
-            if (workshopManager.updateDevice(selectedDevice, updatedDevice)) {
+            if (workshopManager.updateDevice(selectedDevice)) {
                 selectedDevice = updatedDevice; // Actualizar la referencia seleccionada
                 Toast.makeText(this, "Device modified: " + updatedDevice.getModel(), Toast.LENGTH_SHORT).show();
 
@@ -739,10 +739,18 @@ public class MainActivity extends AppCompatActivity implements IonItemClickListe
      */
     @Override
     public void onDeleteDevice() {
-        //TODO: replace fragment depending on where user is previusly
-        fragmentManager.popBackStack();
-//        replaceFragment(new ClientDetailFragment(), false);
-        replaceFragment(DeviceListFragment.class, false);
-        workshopManager.removeDevice(selectedDevice);
+        int fragments = fragmentManager.getBackStackEntryCount();
+        if (fragments > 1) {
+            String fragmentTag = fragmentManager.getBackStackEntryAt(fragments - 2).getName();
+            Fragment currentFragment = fragmentManager.findFragmentByTag(fragmentTag);
+            if (currentFragment instanceof ClientDetailFragment) {
+                replaceFragment(new ClientDetailFragment(), false);
+            } else {
+                replaceFragment(new DeviceListFragment(), false);
+            }
+            workshopManager.removeDevice(selectedDevice);
+            fragmentManager.popBackStack();
+        }
     }
+
 }
