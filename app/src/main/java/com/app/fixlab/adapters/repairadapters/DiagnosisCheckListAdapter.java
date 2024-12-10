@@ -104,6 +104,8 @@ public class DiagnosisCheckListAdapter extends RecyclerView.Adapter<DiagnosisChe
             String displayText = item.toString().replace("_", " ").toLowerCase();
             displayText = displayText.substring(0, 1).toUpperCase() + displayText.substring(1);
             checkBox.setText(displayText);
+
+            checkBox.setOnCheckedChangeListener(null);
             checkBox.setChecked(Boolean.TRUE.equals(checkedItems.get(item)));
 
             checkBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
